@@ -7,4 +7,8 @@ Futur site internet qui permettera d'avoir les horaires en temps réel des bus G
 ## Ce qui change par rapport à Optymo'Clock
 Contrairement à Optymo qui met en service des pages web dédiées aux horaires, ce n'est pas le cas pour Ginko.\
 Donc Biloba utilisera l'API officielle de Ginko pour recevoir les horaires.
+## Début du développement
+Le développement commençera bientôt, je vais d'abord achever Optymo' Clock une bonne fois pour toutes puis je commençerais Biloba.
+
+J'en profiterai également pour me familiariser aussi avec l'API de Ginko et comment je peut intégrer ça en JavaScript.
 
