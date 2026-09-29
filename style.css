@@ -70,7 +70,7 @@ a,
     align-items: center;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: 25%;
     color: white;
     font-weight: bold;
     text-decoration: none;
@@ -83,45 +83,37 @@ a,
     transform: scale(1.2); /* Slightly enlarge the dot on hover */
 }
 
-.line-1 {
-    background-color: #d3414e;
+.line-t1 {
+    background-color: #00A5C2;
 }
 
-.line-2 {
-    background-color: #e79129;
+.line-t2 {
+    background-color: #006D78;
 }
 
-.line-3 {
-    background-color: #60a4df;
+.line-l3 {
+    background-color: #006AB3;
 }
 
-.line-4 {
-    background-color: #570091;
+.line-l4 {
+    background-color: #E2001A;
 }
 
-.line-5 {
-    background-color: #68c88c;
+.line-l5 {
+    background-color: #1FA22E;
 }
 
-.line-8 {
-    background-color: #beaa61;
+.line-l6 {
+    background-color: #FFE500;
+    color: black;
 }
-.line-9 {background-color: #324e87; color: white;}
-.line-x {background-color: #9a61b9; color: white;}
-.line-20 {background-color: #33888a; color: white;}
-.line-21 {background-color: #3f55c5; color: white;}
-.line-22 {background-color: #3f55c5; color: white;}
-.line-23 {background-color: #e88439; color: white;}
-.line-24 {background-color: #f8fc6d; color: black;}
-.line-25 {background-color: #6a4893; color: white;}
-.line-26 {background-color: #bec537; color: white;}
-.line-ter {background-color: #034ea2; color: white;}
-.subline-even {background-color: #b4b1a8; color: white;}
-.subline-odd {background-color: #6a5841; color: white;}
-.line-90 {background-color: #70acad; color: white;}
-.line-91 {background-color: #7989d7; color: white;}
-.line-92 {background-color: #efa974; color: white;}
-.line-93 {background-color: #977fb3; color: white;}
+.line-7 {background-color: #A74C21; color: white;}
+.line-8 {background-color: #00396B; color: white;}
+.line-9 {background-color: #F29400; color: white;}
+.line-10 {background-color: #CECB00; color: black;}
+.line-11 {background-color: #C592BE; color: white;}
+.line-12 {background-color: #7BC6BC; color: black;}
+
 a,
 .line-link,
 .line-dot {
