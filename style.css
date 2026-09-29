@@ -1,0 +1,311 @@
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    align-items: center;
+    text-align: center;
+}
+
+.top-bar {
+    background-color: #333;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 60px;
+}
+
+.top-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.top-bar li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.top-bar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative; /* Required for the ::after pseudo-element */
+    transition: color 0.3s ease; /* Smooth color transition */
+    outline: none; /* Remove the default blue outline */
+}
+a,
+.line-link,
+.line-dot {
+    -webkit-tap-highlight-color: transparent; /* Remove the blue highlight on mobile */
+    outline: none; /* Remove the default focus outline */
+}
+
+.top-bar a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Position the underline just below the text */
+    width: 0;
+    height: 2px;
+    background-color: #ffcc00; /* Underline color */
+    transition: width 0.3s ease; /* Smooth underline animation */
+}
+
+.top-bar a:hover {
+    color: #ffcc00; /* Change text color on hover */
+}
+
+.top-bar a:hover::after {
+    width: 100%; /* Expand the underline to full width */
+}
+
+.line-dots {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.line-dot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 25px;
+    transition: transform 0.3s ease;
+    outline: none; /* Remove the default blue outline */
+}
+
+.line-dot:hover {
+    transform: scale(1.2); /* Slightly enlarge the dot on hover */
+}
+
+.line-1 {
+    background-color: #d3414e;
+}
+
+.line-2 {
+    background-color: #e79129;
+}
+
+.line-3 {
+    background-color: #60a4df;
+}
+
+.line-4 {
+    background-color: #570091;
+}
+
+.line-5 {
+    background-color: #68c88c;
+}
+
+.line-8 {
+    background-color: #beaa61;
+}
+.line-9 {background-color: #324e87; color: white;}
+.line-x {background-color: #9a61b9; color: white;}
+.line-20 {background-color: #33888a; color: white;}
+.line-21 {background-color: #3f55c5; color: white;}
+.line-22 {background-color: #3f55c5; color: white;}
+.line-23 {background-color: #e88439; color: white;}
+.line-24 {background-color: #f8fc6d; color: black;}
+.line-25 {background-color: #6a4893; color: white;}
+.line-26 {background-color: #bec537; color: white;}
+.line-ter {background-color: #034ea2; color: white;}
+.subline-even {background-color: #b4b1a8; color: white;}
+.subline-odd {background-color: #6a5841; color: white;}
+.line-90 {background-color: #70acad; color: white;}
+.line-91 {background-color: #7989d7; color: white;}
+.line-92 {background-color: #efa974; color: white;}
+.line-93 {background-color: #977fb3; color: white;}
+a,
+.line-link,
+.line-dot {
+    -webkit-tap-highlight-color: transparent; /* Remove the blue highlight on mobile */
+    outline: none; /* Remove the default focus outline */
+}
+
+.line-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 45%;      /* Prend 45% de la largeur du conteneur, s'adapte */
+       
+       /* Largeur min pour éviter des boutons trop petits */
+    height: 48px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    background-color: var(--line-color, #333);
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 18px;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.line-link:hover {
+    background-color: #555;
+    transform: scale(1.01);
+}
+
+.line-link h3 {
+    display: inline-block; /* Ensure each word is inline */
+    margin: 0 5px; /* Add spacing between words */
+}
+
+.line-link h3.notbold {
+    font-weight: normal; /* Make the text not bold */
+}
+.link-container {
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow links to wrap to the next line on smaller screens */
+    justify-content: center; /* Center the links horizontally */
+    gap: 15px; /* Add space between the links */
+    padding: 10px; /* Add padding to prevent links from touching the edges */
+    flex-direction: column; /* Stack headings vertically */
+    align-items: center;
+    text-align: center;
+}
+
+.notbold {
+    font-weight: 400;
+}
+
+@media (max-width: 600px) {
+    .line-link {
+        flex: 1 1 48%;   /* 2 boutons par ligne sur mobile */
+        max-width: 100%;
+    }
+}
+#wrap {
+  width: 750px;
+  height: 1500px;
+  overflow: hidden;
+  
+}
+
+#scaled-frame {
+  width: 73%;
+  height: 500;
+  transform: scale(1.30);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  align-items: center;
+}
+.list-title {
+    margin-bottom: 1px; /* Brings the title closer to the list */
+}
+
+.notable-list {
+    margin-top: 0;      /* Removes the top gap of the list */
+    padding-left: 20px; /* Keeps the bullets indented */
+    list-style-position: inside; /* Centers the bullets better in your layout */
+    text-align: left;   /* Optional: keeps the items aligned if you prefer */
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+    }
+    .header {
+        color: #DDD;
+    }
+    .lightmode{color: #DDD;}
+}
+
+/* =================================================
+    VVV STYLE DU WIDGET INFOS TRAFIC (MECATRAN) VVV
+   ================================================= */
+
+#view-mecatran-alerts {
+    background-color: #333 !important;
+    color: #ffffff !important;         
+    max-width: 600px;                  
+    margin: 20px auto;                 
+    padding: 20px;
+    text-align: center;                  
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+    font-family: Arial, sans-serif;
+
+    border-radius: 15px !important;   
+    overflow: hidden !important;     
+}
+
+
+#view-mecatran-alerts li,
+#view-mecatran-alerts div {
+    border-radius: 8px; 
+}
+
+
+#view-mecatran-alerts h1, 
+#view-mecatran-alerts h2, 
+#view-mecatran-alerts h3, 
+#view-mecatran-alerts h4 {
+    color: #ffcc00 !important;         
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+#view-mecatran-alerts a {
+    color: #ffcc00 !important;         
+    text-decoration: none !important; 
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+#view-mecatran-alerts a:hover {
+    color: #ffffff !important;         
+    text-decoration: underline !important;
+}
+
+#view-mecatran-alerts ul {
+    list-style-type: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#view-mecatran-alerts li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#view-mecatran-alerts li:last-child {
+    border-bottom: none;
+}
+
+
+#view-mecatran-alerts,
+#view-mecatran-alerts * {
+    font-family: Arial, sans-serif !important;
+}
+
+#view-mecatran-alerts div,
+#view-mecatran-alerts li,
+#view-mecatran-alerts p,
+#view-mecatran-alerts span {
+    text-align: center !important;
+    justify-content: center !important; 
+    float: none !important;             
+}
+
+#view-mecatran-alerts img,
+#view-mecatran-alerts svg,
+#view-mecatran-alerts [class*="badge"],
+#view-mecatran-alerts [class*="icon"],
+#view-mecatran-alerts [class*="line"] {
+    display: inline-block !important;   
+    margin-left: auto !important;
+    margin-right: auto !important;
+    float: none !important;
+}
