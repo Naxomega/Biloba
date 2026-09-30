@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Biloba Beta</title>
+  <style>
+    body { background-color: #121212; color: #fff; font-family: sans-serif; padding: 20px; }
+    .passage { border-bottom: 1px solid #333; padding: 8px 0; }
+    .ligne { font-weight: bold; color: #4CAF50; }
+  </style>
+
+  
+  <script src="https://api.ginko.voyage/api.js?apiKey=38bde5f4eccd5e6a5a28452fd83a852c"></script>
+</head>
+<body>
+
+  <h2>Prochains passages - Temps réel</h2>
+  <div id="temps-reel">Chargement des horaires...</div>
+
+  <script>
+    
+    const callGinko = (methodPath, args = {}) => {
+      return new Promise((resolve, reject) => {
+        ginkoAPI(
+          methodPath,
+          args,
+          (data) => resolve(data),
+          (err) => reject(err)
+        );
+      });
+    };
+
+    // 2. Fonction principale pour récupérer et afficher les horaires
+    const afficherHoraires = async (nomArret) => {
+  const conteneur = document.querySelector("#temps-reel");
+
+  try {
+    const response = await callGinko("TR/getTempsLieu", { nom: nomArret });
+    
+    
+    console.log("Réponse de l'API :", response);
+
+    
+    const passages = response.listeTemps;
+    if (passages.length == 0) {
+      conteneur.innerHTML = "<p>Aucun passage trouvé pour cet arrêt.</p>";
+      return;
+    }
+
+    // 3. Affichage
+    conteneur.innerHTML = passages
+      .map((p) => `
+        <div class="passage">
+          Ligne <strong>${p.numLignePublic}</strong> — 
+          Direction <strong>${p.destination || p.direction || "?"}</strong> : 
+          <em>${p.temps || p.heure || "?"}</em>
+        </div>
+      `)
+      .join("");
+
+  } catch (erreur) {
+    console.error("Erreur :", erreur);
+    conteneur.innerHTML = `<p style="color:red">Erreur : ${erreur}</p>`;
+  }
+};
+
+// Modifier arret ici VVVVVVV
+    afficherHoraires("Gare Viotte");
+  </script>
+</body>
+</html>
