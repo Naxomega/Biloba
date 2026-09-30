@@ -118,11 +118,11 @@ body {
     font-family:'Poppins Custom';
     background-color: #00ABC4;
     border-radius: 10px;
-    max-width: 400px;
+    max-width: 100%;
+    min-width: 100%;
     display: flex;
     justify-content: center;
-    margin-left:40%;
-    margin-right: 40%;
+
     min-width: fit-content;
     padding-top:10px;
     
