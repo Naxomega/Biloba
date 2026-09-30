@@ -83,30 +83,12 @@ a,
     transform: scale(1.2); /* Slightly enlarge the dot on hover */
 }
 
-.line-t1 {
-    background-color: #00A5C2;
-}
-
-.line-t2 {
-    background-color: #006D78;
-}
-
-.line-l3 {
-    background-color: #006AB3;
-}
-
-.line-l4 {
-    background-color: #E2001A;
-}
-
-.line-l5 {
-    background-color: #1FA22E;
-}
-
-.line-l6 {
-    background-color: #FFE500;
-    color: black;
-}
+.line-t1 {background-color: #00A5C2;}
+.line-t2 {background-color: #006D78;}
+.line-l3 {background-color: #006AB3;}
+.line-l4 {background-color: #E2001A;}
+.line-l5 {background-color: #1FA22E;}
+.line-l6 {background-color: #FFE500; color: black;}
 .line-7 {background-color: #A74C21; color: white;}
 .line-8 {background-color: #00396B; color: white;}
 .line-9 {background-color: #F29400; color: white;}

@@ -1,0 +1,331 @@
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    align-items: center;
+    text-align: center;
+}
+
+.top-bar {
+    background-color: #333;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 60px;
+}
+
+.top-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.top-bar li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.top-bar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative; /* Required for the ::after pseudo-element */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Center the content inside the .content div */
+.content {
+    margin-top: 20px;
+    border-radius: 25px;
+    background-color: #d3414e; /* Warm rose for Line 1 */
+    padding: 20px;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack headings vertically */
+    align-items: center; /* Center all content horizontally */
+    gap: 20px; /* Add space between elements */
+    text-align: center; /* Center text inside the container */
+}
+
+.link-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    padding: 10px;
+}
+
+.top-bar a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Position the underline just below the text */
+    width: 0;
+    height: 2px;
+    background-color: #ffcc00; /* Underline color */
+    transition: width 0.3s ease; /* Smooth underline animation */
+}
+
+.top-bar a:hover {
+    color: #ffcc00; /* Change text color on hover */
+}
+
+.top-bar a:hover::after {
+    width: 100%; /* Expand the underline to full width */
+}
+
+.line-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.line-dot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 25%;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.line-1 {
+    background-color: #d3414e;
+    color: white;
+}
+
+.line-t1 {background-color: #00A5C2; color: white;}
+.line-t2 {background-color: #006D78; color: white;}
+.line-l3 {background-color: #006AB3; color: white;}
+.line-l4 {background-color: #E2001A; color: white;}
+.line-l5 {background-color: #1FA22E; color: white;}
+.line-l6 {background-color: #FFE500; color: black;}
+.line-7 {background-color: #A74C21; color: white;}
+.line-8 {background-color: #00396B; color: white;}
+.line-9 {background-color: #F29400; color: white;}
+.line-10 {background-color: #CECB00; color: black;}
+.line-11 {background-color: #C592BE; color: white;}
+.line-12 {background-color: #7BC6BC; color: black;}
+@font-face {
+    font-family: "Poppins Custom";
+    src: url("https://www.ginko.voyage/fileadmin/ginko/fonts/poppinsmediumcustom/poppinsmediumcustom-regular-webfont.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+.logo {
+    font-family:'Poppins Custom';
+    background-color: #00ABC4;
+    border-radius: 10px;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    margin-left:40%;
+    margin-right: 40%;
+    min-width: fit-content;
+    padding-top:10px;
+    
+}
+
+
+
+
+
+a,
+.line-link,
+.line-dot {
+    -webkit-tap-highlight-color: transparent; /* Remove the blue highlight on mobile */
+    outline: none; /* Remove the default focus outline */
+}
+
+.enlarge{
+    margin-left: 40%;
+    margin-right: 40%;
+    border: white;
+
+}
+
+.tile-t1 {
+    background-color:#00A5C2;
+    border-radius: 15px;
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+}
+.tile-t2 {
+    background-color:#006D78;
+    border-radius: 15px;
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+}
+.tile-l3 {
+    background-color:#006AB3;
+    border-radius: 15px;
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+}
+.tile-l4 {
+    background-color:#E2001A;
+    border-radius: 15px;
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+}
+.tile-l5 {
+    background-color:#1FA22E;
+    border-radius: 15px;
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+}
+.tile-l6 {
+    background-color:#FFE500;
+    border-radius: 15px;
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+    color: black;
+}
+.tile-7 {
+    background-color:#A74C21;
+    border-radius: 15px;
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+}
+.tile-8 {
+    background-color:#00396B;
+    border-radius: 15px;
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+}
+.tile-9 {
+    background-color:#F29400;
+    border-radius: 15px;
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+}
+.tile-10 {
+    background-color:#CECB00;
+    border-radius: 15px;
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+    color: black;
+
+}
+.tile-11 {
+    background-color:#C592BE;
+    border-radius: 15px;
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+}
+.tile-12 {
+    background-color:#7BC6BC;
+    border-radius: 15px;
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+    color: black;
+}
+
+.line-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 45%;      /* Prend 45% de la largeur du conteneur, s'adapte */
+    max-width: 200px;   /* Largeur max pour éviter des boutons trop larges */
+    min-width: 120px;   /* Largeur min pour éviter des boutons trop petits */
+    height: 48px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    background-color: var(--line-color, #d3414e);
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 18px;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.line-link:hover {
+    background-color: #b0303e;
+    transform: scale(1.05);
+}
+
+.line-link span {
+    display: inline-block; /* Ensure each word is inline */
+    margin: 0 5px; /* Add spacing between words */
+}
+
+.line-link span.notbold {
+    font-weight: normal; /* Make the text not bold */
+}
+
+.notbold {
+    font-weight: 400;
+}
+
+@media (max-width: 600px) {
+    .line-link {
+        flex: 1 1 48%;   /* 2 boutons par ligne sur mobile */
+        max-width: 100%;
+    }
+}
+#wrap {
+  width: 750px;
+  height: 1500px;
+  overflow: hidden;
+  
+}
+
+#optymo-clock-iframe {
+  width: 73%;
+  height: 500;
+  transform: scale(1.30);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  align-items: center;
+}
+.list-title {
+    margin-bottom: 1px; /* Brings the title closer to the list */
+}
+
+.notable-list {
+    margin-top: 0;     
+    padding-left: 20px; 
+    list-style-position: inside; 
+    text-align: left;   
+}
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+    }
+    .header {
+        color: #DDD;
+    }
+    .lightmode{color: #DDD;}
+}
