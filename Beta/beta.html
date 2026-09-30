@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<title>Ginko Json API Démo</title>
+	
+	<style type="text/css">
+		p { margin:0; }
+	</style>
+		
+	<script type="text/javascript" src="https://api.ginko.voyage/api.js?apiKey=38bde5f4eccd5e6a5a28452fd83a852c"></script>
+	<script>
+		// Dès le chargement de la page, on charge et affiche les lignes
+		ginkoAPI("DR/getLignes", { }, function(listeLignes){ 
+			// Réussite de la requête
+			console.log("Résultat de getLignes:", listeLignes); // Regardez la console (F12) pour voir la tête que ça a
+			var content = "<table><tr><th>Ligne</th><th>Libellé</th><th>Variantes</th></tr>";
+			
+			// Parcours des lignes
+			// (ce code n'est pas beau, mais le but n'est pas là ;))
+			listeLignes.forEach(function(ligne){
+				// On prépare la liste affichable des variantes de la ligne
+				var variantesDeMaLigne = "";
+				ligne.variantes.forEach(function(variante){
+					variantesDeMaLigne += "<p>"+variante.destination;
+					if(variante.precisionDestination) variantesDeMaLigne += " " + variante.precisionDestination;
+					variantesDeMaLigne += " (ID: "+variante.id+") <a href='javascript:detailsVariante(\""+ligne.id+"\",\""+variante.id+"\")'>Arrêts</a></p>";
+				});
+				
+				// On ajoute la ligne à notre tableau
+				content += "<tr>"+
+							"<td style=\"background-color:#"+ligne.couleurFond+"; color:#"+ligne.couleurTexte+";\">"+ligne.numLignePublic+"<br/>(ID: "+ligne.id+")</td>"+
+							"<td>"+ligne.libellePublic+"</td>"+
+							"<td>"+variantesDeMaLigne+"</td>"+
+							"</tr>";
+			});
+			
+			content += "</table>";
+			document.getElementById("content").innerHTML = content;
+			
+		}, function(msg){ 
+			// Echec de la requête
+			document.getElementById("content").innerHTML = msg; 
+		});
+		
+		// Appelée lors d'un clic sur le lien 'Arrêts' d'une variante. Charge et affiche la liste des arrêts.
+		function detailsVariante(idLigne, idVariante){
+			ginkoAPI("DR/getDetailsVariante", { idLigne:idLigne, idVariante:idVariante }, function(listeArrets){ 
+				// Réussite de la requête
+				console.log("Résultat de getDetailsVariante:", listeArrets); // Regardez la console (F12) pour voir la tête que ça a
+				
+				var str = "";
+				listeArrets.forEach(function(arret){
+					if(str) str += ", ";
+					str += arret.nom;
+				});
+				alert(str);
+				
+			}, function(msg){
+				// Echec de la requête
+				alert(msg);
+			});
+		}
+	</script>
+</head>
+
+<body>
+	<div id="content">Chargement...</div>
+</body>
+</html>
