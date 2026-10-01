@@ -139,10 +139,11 @@ a,
     outline: none; /* Remove the default focus outline */
 }
 
-.enlarge{
-    margin-left: 40%;
-    margin-right: 40%;
+.enlarge1{
+    margin-left: 35%;
+    margin-right: 100%;
     border: white;
+    align-items: center;
 
 }
 
@@ -153,6 +154,8 @@ a,
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 15px;
+    min-width: 100%;
+
 }
 .tile-t2 {
     background-color:#006D78;
@@ -160,15 +163,22 @@ a,
     max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;
+    padding-bottom: 15px;    
+    min-width: 100%;
+
 }
 .tile-l3 {
     background-color:#006AB3;
     border-radius: 15px;
-    max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;
+    border: white;
+    flex: 1 1 100%;
+    align-items: center;
+    justify-content: center;
+    min-width: 95%;
+    display: flex;
+    flex-direction:row;
 }
 .tile-l4 {
     background-color:#E2001A;
@@ -176,7 +186,9 @@ a,
     max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;
+    padding-bottom: 15px;    
+    min-width: 100%;
+
 }
 .tile-l5 {
     background-color:#1FA22E;
@@ -184,7 +196,9 @@ a,
     max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;
+    padding-bottom: 15px;    
+    min-width: 100%;
+
 }
 .tile-l6 {
     background-color:#FFE500;
@@ -193,7 +207,9 @@ a,
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 15px;
-    color: black;
+    color: black;    
+    min-width: 100%;
+
 }
 .tile-7 {
     background-color:#A74C21;
@@ -201,7 +217,9 @@ a,
     max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;
+    padding-bottom: 15px;    
+    min-width: 100%;
+
 }
 .tile-8 {
     background-color:#00396B;
@@ -209,7 +227,9 @@ a,
     max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;
+    padding-bottom: 15px;    
+    min-width: 100%;
+
 }
 .tile-9 {
     background-color:#F29400;
@@ -217,7 +237,9 @@ a,
     max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;
+    padding-bottom: 15px;    
+    min-width: 100%;
+
 }
 .tile-10 {
     background-color:#CECB00;
@@ -226,7 +248,9 @@ a,
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 15px;
-    color: black;
+    color: black;    
+    min-width: 100%;
+
 
 }
 .tile-11 {
@@ -235,7 +259,9 @@ a,
     max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;
+    padding-bottom: 15px;    
+    min-width: 100%;
+
 }
 .tile-12 {
     background-color:#7BC6BC;
@@ -244,7 +270,9 @@ a,
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 15px;
-    color: black;
+    color: black;   
+    min-width: 100%;
+
 }
 
 .line-link {
