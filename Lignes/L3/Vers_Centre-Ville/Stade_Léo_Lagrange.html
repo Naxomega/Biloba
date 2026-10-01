@@ -63,7 +63,7 @@
     conteneur.innerHTML = passages.filter((a) => a.numLignePublic===ligne && (a.destination===destination || a.destination===destinationalt))
       .map((p) => `
         <div class="passage tile-${ligne.toLowerCase()} lightmode">
-          <strong><p class="line-dot line-${ligne.toLowerCase()} enlarge">${p.numLignePublic}</p></strong> <p>vers 
+          <strong><p class="line-dot line-${ligne.toLowerCase()} enlarge">${p.numLignePublic}</p></strong> <p> 
          <strong>${p.destination || p.direction || "?"}</strong> : 
           <em>${p.temps}</em></p>
 
@@ -81,28 +81,16 @@
 
 //  Syntaxe : Arrêt, Ligne, Destination, Destiation Alternative
 // Exemple : "Gare Viotte", "L3", "Pôle Temis", "Campus  Crous Université"
-    afficherHoraires("Gare Viotte", "L3", "Pôle Temis", "Campus  Crous Université");
+    afficherHoraires("Stade Léo Lagrange", "L3", "Centre-ville - 8 Septembre", "Centre-ville - République");
   </script>
         <br>
         <h3 class="list-title lightmode">Correspondances :</h3>
         <div class="line-dots">
-            <p class="line-dot line-t2">T2</p>
-            <p class="line-dot line-l5">L5</p>
-            <p class="line-dot line-8">8</p>
+            <p class="line-dot line-ter small">Vélo<br>Cité</p>
         </div>
-        <div class="line-dots">
-          <span class="line-dot line-ter">TER</span>
-          <span class="line-dot line-ter">TGV</span>
-          <span class="line-mobigo supersmall">Mobigo</span>
-        </div>
-        <h3 class="liste-title lightmode">Arrêts Proches :</h3>
-          <ul class="notable-list">
-            <li class="lightmode">Gare Viotte Nord (L5 et 8)</li>
-          </ul>
           <h3 class="liste-title lightmode">Lieux notables :</h3>
           <ul class="notable-list">
-            <li class="lightmode">Gare de Besançon-Viotte</li>
-            <li class="lightmode">Parc des Glacis</li>
+            <li class="lightmode">Stade Léo Lagrange</li>
           </ul>
     </div>
 </body>

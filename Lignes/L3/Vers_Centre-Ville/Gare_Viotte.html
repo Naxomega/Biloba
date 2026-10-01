@@ -63,7 +63,7 @@
     conteneur.innerHTML = passages.filter((a) => a.numLignePublic===ligne && (a.destination===destination || a.destination===destinationalt))
       .map((p) => `
         <div class="passage tile-${ligne.toLowerCase()} lightmode">
-          <strong><p class="line-dot line-${ligne.toLowerCase()} enlarge">${p.numLignePublic}</p></strong> <p>vers 
+          <strong><p class="line-dot line-${ligne.toLowerCase()} enlarge">${p.numLignePublic}</p></strong> <p> 
          <strong>${p.destination || p.direction || "?"}</strong> : 
           <em>${p.temps}</em></p>
 
@@ -81,7 +81,7 @@
 
 //  Syntaxe : Arrêt, Ligne, Destination, Destiation Alternative
 // Exemple : "Gare Viotte", "L3", "Pôle Temis", "Campus  Crous Université"
-    afficherHoraires("Gare Viotte", "L3", "Pôle Temis", "Campus  Crous Université");
+    afficherHoraires("Gare Viotte", "L3", "Centre-ville - 8 Septembre", "Centre-ville - République");
   </script>
         <br>
         <h3 class="list-title lightmode">Correspondances :</h3>

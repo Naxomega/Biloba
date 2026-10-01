@@ -108,24 +108,6 @@ body {
 .line-10 {background-color: #CECB00; color: black;}
 .line-11 {background-color: #C592BE; color: white;}
 .line-12 {background-color: #7BC6BC; color: black;}
-.line-ter {background-color: #034ea2; color: white;}
-.line-mobigo {
-    background-color: #006528; color: white; display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 25%;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 18px;
-    transition: transform 0.3s ease;}
-.small{
-    font-size: 15px
-}
-.supersmall{
-    font-size: 10px
-}
 @font-face {
     font-family: "Poppins Custom";
     src: url("https://www.ginko.voyage/fileadmin/ginko/fonts/poppinsmediumcustom/poppinsmediumcustom-regular-webfont.woff2") format("woff2");
@@ -375,7 +357,7 @@ a,
     .header {
         color: #DDD;
     }
-    .lightmode{color: #fff;}
+    .lightmode{color: #DDD;}
     .content{background-color: #333;}
     .logo{color:white;}
 }

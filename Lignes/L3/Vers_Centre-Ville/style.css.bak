@@ -306,7 +306,7 @@ a,
     text-decoration: none;
     text-align: center;
     border-radius: 10px;
-    background-color: var(--line-color, rgba(0, 0, 0, 0));
+    background-color: var(--line-color, #d3414e);
     transition: background-color 0.3s, transform 0.2s;
     font-size: 18px;
     box-sizing: border-box;
@@ -315,13 +315,11 @@ a,
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    border: solid rgba(255, 255, 255, 0.4) 1px;
 }
 
 .line-link:hover {
-    background-color: #006AB3;
+    background-color: #b0303e;
     transform: scale(1.05);
-    border: solid rgba(0, 0, 0, 0) 1px;
 }
 
 .line-link span {

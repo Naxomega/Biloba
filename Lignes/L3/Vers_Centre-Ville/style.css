@@ -315,13 +315,13 @@ a,
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    border: solid rgba(255, 255, 255, 0.4) 1px;
+	border: solid rgba(255, 255, 255, 0.4) 1px;
 }
 
 .line-link:hover {
     background-color: #006AB3;
     transform: scale(1.05);
-    border: solid rgba(0, 0, 0, 0) 1px;
+	border: solid rgba(0, 0, 0, 0) 1px;
 }
 
 .line-link span {
