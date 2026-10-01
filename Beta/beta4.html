@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="header">
-        <h1 class="logo">Biloba (WIP)</h1>
+        <h1 class="logo lightmode">Biloba (WIP)</h1>
         <h2>Plus d'excuses pour rater votre bus !</h2>
         <nav class="top-bar">
             <ul>
@@ -24,7 +24,7 @@
         </nav>
     </div>
     <div class="content">
-        <h2 id="titre">Biloba</h2>
+        <h2 class="titre lightmode">Biloba</h2>
         <br>
         <div id="temps-reel">Chargement des horaires...</div>
         <script>
@@ -44,7 +44,7 @@
     // 2. Fonction principale pour récupérer et afficher les horaires
     const afficherHoraires = async (nomArret, ligne, destination, destinationalt) => {
   const conteneur = document.querySelector("#temps-reel");
-  const titre = document.querySelector('#titre');
+  const titre = document.querySelector('.titre');
 
   try {
     const response = await callGinko("TR/getTempsLieu", { nom: nomArret });
@@ -62,7 +62,7 @@
     // 3. Affichage
     conteneur.innerHTML = passages.filter((a) => a.numLignePublic===ligne && (a.destination===destination || a.destination===destinationalt))
       .map((p) => `
-        <div class="passage tile-${ligne.toLowerCase()}">
+        <div class="passage tile-${ligne.toLowerCase()} lightmode">
           <strong><p class="line-dot line-${ligne.toLowerCase()} enlarge">${p.numLignePublic}</p></strong> <p>vers 
          <strong>${p.destination || p.direction || "?"}</strong> : 
           <em>${p.temps}</em></p>
@@ -80,16 +80,30 @@
 };
 
 //  Syntaxe : Arrêt, Ligne, Destination, Destiation Alternative
-// Exemple : "Gare Viotte", "L3", "Pôle Temis", "Campus Crous Université"
+// Exemple : "Gare Viotte", "L3", "Pôle Temis", "Campus  Crous Université"
     afficherHoraires("Gare Viotte", "L3", "Pôle Temis", "Campus  Crous Université");
   </script>
         <br>
-        <h3 class="list-title">Correspondances :</h3>
+        <h3 class="list-title lightmode">Correspondances :</h3>
         <div class="line-dots">
             <p class="line-dot line-t2">T2</p>
             <p class="line-dot line-l5">L5</p>
             <p class="line-dot line-8">8</p>
         </div>
+        <div class="line-dots">
+          <span class="line-dot line-ter">TER</span>
+          <span class="line-dot line-ter">TGV</span>
+          <span class="line-mobigo supersmall">Mobigo</span>
+        </div>
+        <h3 class="liste-title lightmode">Arrêts Proches :</h3>
+          <ul class="notable-list">
+            <li class="lightmode">Gare Viotte Nord (L5 et 8)</li>
+          </ul>
+          <h3 class="liste-title lightmode">Lieux notables :</h3>
+          <ul class="notable-list">
+            <li class="lightmode">Gare de Besançon-Viotte</li>
+            <li class="lightmode">Parc des Glacis</li>
+          </ul>
     </div>
 </body>
 </html>
