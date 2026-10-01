@@ -9,6 +9,22 @@ Contrairement à Optymo qui met en service des pages web dédiées aux horaires,
 Donc Biloba utilisera [l'API officielle de Ginko](https://api.ginko.voyage/#prez) pour recevoir les horaires. (oui j'ai appris le JavaScript uniquement pour ce projet... sinon ca va vous ?)
 ## Début du développement
 Le développement à commencé, avec une première [page fonctionelle](naxomega.github.io//Biloba/Beta/beta3.html). Elle ne le sera pas tout le temps, car pour le moment j'utilise des clés d'API temporaires. Je contacterais KBM pour en avoir une définitive une fois le projet plus avancé (avec une ligne complète par exemple).
+## Lignes Disponibles
+- Ligne T1 (Prochainement)
+- Ligne T2 (Prochainement)
+- Ligne L3 (En cours)
+- Ligne L4 (Prochainement)
+- Ligne L5 (Prochainement)
+- Ligne L6 (Prochainement)
+- Ligne 7 (Prochainement)
+- Ligne 8 (Prochainement)
+- Ligne 9 (Prochainement)
+- Ligne 10 (Prochainement)
+- Ligne 11 (Prochainement)
+- Ligne 12 (Prochainement)
+- Lignes Complémentaires (Prochainement)
+- Lignes Périurbaines (Prochainement)
+- Lignes Scolaires (Pas dans ma roadmap)
 # Mentions Légales
 Ginko, Les mobilités de Grand Besançon Métropole est une marque déposée par Grand Besançon Métropole, touts droits réservés
 ## Licence
