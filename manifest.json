@@ -1,0 +1,19 @@
+{
+  "background_color": "#ffffff",
+  "description": "Consultez les dernières horaires des bus de Besançon !",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Biloba",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Biloba",
+  "start_url": "/",
+  "theme_color": "#121212",
+  "id": "biloba_ginko",
+  "lang": "fr",
+  "categories": [
+    "transportation",
+    "travel",
+    "utilities"
+  ]
+}
