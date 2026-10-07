@@ -91,8 +91,8 @@
   const htmlCorrespondances = correspondances
   .map((num) => `<p class="line-dot line-${num.toLowerCase()}">${num}</p>`)
   .join("");
-  document.querySelector(".line-dots").innerHTML = htmlCorrespondances || "<p>Aucune correspondance directe</p>";
-  
+  document.querySelector(".line-dots").innerHTML = htmlCorrespondances || `<p class="lightmode">Aucune correspondance directe</p>`;
+  pagetitre.innerHTML = `Biloba - ${ligne} - ${nomArret}`
 };
 
 
