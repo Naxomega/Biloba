@@ -5,12 +5,25 @@
   "display": "standalone",
   "name": "Biloba",
   "orientation": "any",
-  "scope": "/",
+  "scope": ".io/Biloba/",
   "short_name": "Biloba",
-  "start_url": "/",
+  "start_url": ".io/Biloba/",
   "theme_color": "#121212",
-  "id": "biloba_ginko",
-  "lang": "fr",
+  "icons": [
+    {
+      "src": "https://naxomega.github.io/Biloba/favicon.ico",
+      "type": "image/x-icon",
+      "isSquare": false,
+      "isPng": false,
+      "isWebp": false,
+      "isJpg": false,
+      "width": 0,
+      "is512x512": false,
+      "is256x256": false,
+      "is192x192": false
+    }
+  ],
+  "id": "biloba",
   "categories": [
     "transportation",
     "travel",
