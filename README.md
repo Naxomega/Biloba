@@ -7,12 +7,23 @@ Futur site internet qui permettera d'avoir les horaires en temps réel des bus G
 ## Ce qui change par rapport à Optymo'Clock
 Contrairement à Optymo qui met en service des pages web dédiées aux horaires, ce n'est pas le cas pour Ginko.\
 Donc Biloba utilisera [l'API officielle de Ginko](https://api.ginko.voyage/#prez) pour recevoir les horaires. (oui j'ai appris le JavaScript uniquement pour ce projet... sinon ca va vous ?)
-## Début du développement
-Le développement à commencé, avec une première [page fonctionelle](naxomega.github.io//Biloba/Beta/beta3.html). Elle ne le sera pas tout le temps, car pour le moment j'utilise des clés d'API temporaires. Je contacterais KBM pour en avoir une définitive une fois le projet plus avancé (avec une ligne complète par exemple).
+## Avancement du développement
+J'ai donc ajouté une page "universelle" qui permet de visualiser n'importe quel arrêt, ligne et destination via des arguments en adresse [comme ici pour l'arrêt Temis de la ligne L3](https://naxomega.github.io/Biloba/horaires.html?arret=8%20Septembre&ligne=L3&destination=Pôle%20Temis&destinationalt=Campus%20%20Crous%20Université)
+
+La clé d'API est toujours temporaire, mais j'ai envoyé une demande à Keolis Besançon pour avoir accès à une clé définitive.
+## Roadmap
+- Terminer les TRAM et LIANES
+- Terminer les lignes urbaines
+- Améliorer l'ésthetique du site (via des librairies JS comme React ou Vue)
+- Système de localisation (page "Autour de moi" qui liste les arrêts à proximité)
+- Système de stockage persistant (pour des arrêts favoris notamment)
+- Interface plus adapté aux appareils mobile (Avec une navbar comme la plupart des applis mobile d'aujourd'hui)
+- Système d'information de chaque bus comme l'appli/site officiel (cependant, les données d'affluences sont pas systématiques dans l'API (elles renvoient -2) et sont des "informations complémentaires" mises en place au cas par cas (d'après ce que j'ai compris), en espérant y avoir accès :) )
+- Infos trafic pour chaque ligne
 ## Lignes Disponibles
 - Ligne T1 (Prochainement)
 - Ligne T2 (Prochainement)
-- Ligne L3 (En cours)
+- Ligne L3 (Fonctionelle)
 - Ligne L4 (Prochainement)
 - Ligne L5 (Prochainement)
 - Ligne L6 (Prochainement)
@@ -22,8 +33,8 @@ Le développement à commencé, avec une première [page fonctionelle](naxomega.
 - Ligne 10 (Prochainement)
 - Ligne 11 (Prochainement)
 - Ligne 12 (Prochainement)
-- Lignes Complémentaires (Prochainement)
-- Lignes Périurbaines (Prochainement)
+- Lignes Complémentaires (Eventuellement)
+- Lignes Périurbaines (Eventuellement)
 - Lignes Scolaires (Pas dans ma roadmap)
 # Mentions Légales
 Ginko, Les mobilités de Grand Besançon Métropole est une marque déposée par Grand Besançon Métropole, touts droits réservés
