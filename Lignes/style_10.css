@@ -109,48 +109,6 @@ body {
 .line-11 {background-color: #C592BE; color: white;}
 .line-12 {background-color: #7BC6BC; color: black;}
 .line-ter {background-color: #034ea2; color: white;}
-.line-20 {background-color: #5C6970; color: white;}
-.line-21 {background-color: #5C6970; color: white;}
-.line-22 {background-color: #5C6970; color: white;}
-.line-23 {background-color: #5C6970; color: white;}
-.line-24 {background-color: #5C6970; color: white;}
-.line-51 {background-color: white; color: #009EE0;}
-.line-52 {background-color: white; color: #009EE0;}
-.line-53 {background-color: white; color: #009EE0;}
-.line-54 {background-color: white; color: #009EE0;}
-.line-55 {background-color: white; color: #009EE0;}
-.line-56 {background-color: white; color: #009EE0;}
-.line-57 {background-color: white; color: #009EE0;}
-.line-58 {background-color: white; color: #009EE0;}
-.line-59 {background-color: white; color: #009EE0;}
-.line-61 {background-color: white; color: #EE7B00;}
-.line-62 {background-color: white; color: #EE7B00;}
-.line-63 {background-color: white; color: #EE7B00;}
-.line-64 {background-color: white; color: #EE7B00;}
-.line-65 {background-color: white; color: #EE7B00;}
-.line-66 {background-color: white; color: #EE7B00;}
-.line-67 {background-color: white; color: #EE7B00;}
-.line-68 {background-color: white; color: #EE7B00;}
-.line-71 {background-color: white; color: #D2528B;}
-.line-72 {background-color: white; color: #D2528B;}
-.line-73 {background-color: white; color: #D2528B;}
-.line-74 {background-color: white; color: #D2528B;}
-.line-75 {background-color: white; color: #D2528B;}
-.line-76 {background-color: white; color: #D2528B;}
-.line-81 {background-color: white; color: #009036;}
-.line-82 {background-color: white; color: #009036;}
-.line-83 {background-color: white; color: #009036;}
-.line-84 {background-color: white; color: #009036;}
-.line-85 {background-color: white; color: #009036;}
-.line-86 {background-color: white; color: #009036;}
-.line-87 {background-color: white; color: #009036;}
-
-
-
-
-
-
-
 .line-mobigo {
     background-color: #006528; color: white; display: flex;
     justify-content: center;
@@ -339,29 +297,31 @@ a,
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1 1 45%;      /* Prend 45% de la largeur du conteneur, s'adapte */
+    flex: 1 1 40%;      /* Prend 45% de la largeur du conteneur, s'adapte */
     max-width: 200px;   /* Largeur max pour éviter des boutons trop larges */
-    min-width: 120px;   /* Largeur min pour éviter des boutons trop petits */
+    min-width: 160px;   /* Largeur min pour éviter des boutons trop petits */
     height: 48px;
     color: white;
     font-weight: bold;
     text-decoration: none;
     text-align: center;
     border-radius: 10px;
-    background-color: var(--line-color, #d3414e);
+    background-color: var(--line-color, rgba(0, 0, 0, 0));
     transition: background-color 0.3s, transform 0.2s;
     font-size: 18px;
     box-sizing: border-box;
     outline: none;
     cursor: pointer;
-    overflow: hidden;
+    overflow:hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    border: solid rgba(255, 255, 255, 0.4) 1px;
 }
 
 .line-link:hover {
-    background-color: #b0303e;
+    background-color: #006AB3;
     transform: scale(1.05);
+    border: solid rgba(0, 0, 0, 0) 1px;
 }
 
 .line-link span {
