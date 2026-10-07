@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="60" >
+
+    <title class="pagetitle">Biloba - Horaires Ginko</title>
+    <link rel="stylesheet" href="style.css">
+    <base href="/Biloba/">
+    <script src="https://api.ginko.voyage/api.js?apiKey=ec9db29f48db860147dae515e3c04243"></script>
+    
+</head>
+<body>
+    <div class="header">
+        <h1 class="logo lightmode">Biloba (WIP)</h1>
+        <h2>Plus d'excuses pour rater votre bus !</h2>
+        <nav class="top-bar">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="arrets.html">Arrêts</a></li>
+                <li><a href="contribuer.html">Contribuer</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="content">
+        <h2 class="titre lightmode">Biloba</h2>
+        <br>
+        <div id="temps-reel">Chargement des horaires...</div>
+        <script>
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const sstop = urlParams.get('arret');
+    const line = urlParams.get('ligne');
+    const dest = urlParams.get('destination')
+    const destalt = urlParams.get('destinationalt')
+    const correspondances = []; // Tableau vide pour correspondances
+    const callGinko = (methodPath, args = {}) => {
+      return new Promise((resolve, reject) => {
+        ginkoAPI(
+          methodPath,
+          args,
+          (data) => resolve(data),
+          (err) => reject(err)
+        );
+      });
+    };
+
+    // 2. Fonction principale pour récupérer et afficher les horaires
+    const afficherHoraires = async (nomArret, ligne, destination, destinationalt) => {
+  const conteneur = document.querySelector("#temps-reel");
+  const titre = document.querySelector('.titre');
+  const pagetitre = document.querySelector('#pagetitle');
+
+  try {
+    const response = await callGinko("TR/getTempsLieu", { nom: nomArret });
+    
+    
+    console.log("Réponse de l'API :", response);
+
+    
+    const passages = response.listeTemps;
+    if (passages.length == 0) {
+      conteneur.innerHTML = "<p>Aucun passage trouvé pour cet arrêt.</p>";
+      return;
+    }
+    passages.forEach((p) => { // Correspondances
+
+  if (p.numLignePublic !== ligne && correspondances.indexOf(p.numLignePublic) === -1) {
+    correspondances.push(p.numLignePublic);
+  }
+});
+
+    // 3. Affichage
+    conteneur.innerHTML = passages.filter((a) => a.numLignePublic===ligne && (a.destination===destination || a.destination===destinationalt))
+      .map((p) => `
+        <div class="passage tile-${ligne.toLowerCase()} lightmode">
+          <strong><p class="line-dot line-${ligne.toLowerCase()} enlarge">${p.numLignePublic}</p></strong> <p>vers 
+         <strong>${p.destination || p.direction || "?"}</strong> : 
+          <em>${p.temps}</em></p>
+
+        </div><br>
+      `)
+      .join("");
+
+  } catch (erreur) {
+    console.error("Erreur :", erreur);
+    conteneur.innerHTML = `<p style="color:red">Erreur : ${erreur}</p>`;
+  }
+  titre.innerHTML = `Ligne ${ligne} vers ${destination}<br><br>${nomArret}`
+  const htmlCorrespondances = correspondances
+  .map((num) => `<p class="line-dot line-${num.toLowerCase()}">${num}</p>`)
+  .join("");
+  document.querySelector(".line-dots").innerHTML = htmlCorrespondances || "<p>Aucune correspondance directe</p>";
+  
+};
+
+
+    afficherHoraires(sstop, line, dest, destalt);
+  </script>
+  <h3 class="lightmode list-title">Correspondances : </h3>
+<div class="line-dots">
+
+        </div>
+
+    </div>
+</body>
+</html>
