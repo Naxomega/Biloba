@@ -92,7 +92,7 @@
     console.error("Erreur :", erreur);
     conteneur.innerHTML = `<p style="color:red">Erreur : ${erreur}</p>`;
   }
-  titre.innerHTML = `<h2>Ligne <p class="line-dot line-${ligne.toLowerCase()}>${ligne}</p> vers ${destination}<br><br>${nomArret}</h2>`;
+  titre.innerHTML = `<h2>Ligne ${ligne} vers ${destination}<br><br>${nomArret}</h2>`;
   const htmlCorrespondances = correspondances
   .map((num) => `<p class="line-dot line-${num.toLowerCase()}">${num}</p>`)
   .join("");
