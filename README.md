@@ -21,9 +21,9 @@ La clé d'API est toujours temporaire, mais j'ai envoyé une demande à Keolis B
 - Système d'information de chaque bus comme l'appli/site officiel (cependant, les données d'affluences sont pas systématiques dans l'API (elles renvoient -2) et sont des "informations complémentaires" mises en place au cas par cas (d'après ce que j'ai compris), en espérant y avoir accès :) )
 - Infos trafic pour chaque ligne
 ## Lignes Disponibles
-- Ligne T1 (Fonctionelle)
-- Ligne T2 (Prochainement)
-- Ligne L3 (Fonctionelle)
+- Ligne T1
+- Ligne T2
+- Ligne L3
 - Ligne L4 (Prochainement)
 - Ligne L5 (Prochainement)
 - Ligne L6 (Prochainement)

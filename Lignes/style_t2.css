@@ -298,8 +298,8 @@ a,
     justify-content: center;
     align-items: center;
     flex: 1 1 40%;      /* Prend 45% de la largeur du conteneur, s'adapte */
-    max-width: 200px;   /* Largeur max pour éviter des boutons trop larges */
-    min-width: 160px;   /* Largeur min pour éviter des boutons trop petits */
+    max-width: 100%;   
+    min-width: 100%;
     height: 48px;
     color: white;
     font-weight: bold;
@@ -319,7 +319,7 @@ a,
 }
 
 .line-link:hover {
-    background-color: #006AB3;
+    background-color: #006D78;
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
 }

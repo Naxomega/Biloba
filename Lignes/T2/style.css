@@ -297,9 +297,9 @@ a,
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1 1 40%;      /* Prend 45% de la largeur du conteneur, s'adapte */
-    max-width: 100%;   
-    min-width: 100%;
+    flex: 1 1 45%;      /* Prend 45% de la largeur du conteneur, s'adapte */
+    max-width: 200px;   /* Largeur max pour éviter des boutons trop larges */
+    min-width: 120px;   /* Largeur min pour éviter des boutons trop petits */
     height: 48px;
     color: white;
     font-weight: bold;
@@ -312,14 +312,14 @@ a,
     box-sizing: border-box;
     outline: none;
     cursor: pointer;
-    overflow:hidden;
+    overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     border: solid rgba(255, 255, 255, 0.4) 1px;
 }
 
 .line-link:hover {
-    background-color: #006AB3;
+    background-color: #00A5C2;
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
 }
