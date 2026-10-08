@@ -5,7 +5,7 @@ body {
     text-align: center;
     
 }
-/* { outline: 1px solid rgba(255, 0, 0, 1); } for debugging */
+/* * { outline: 1px solid rgba(255, 0, 0, 1); } */
 
 .top-bar {
     background-color: #333;
@@ -304,12 +304,17 @@ a,
     padding-right: 10px;
     border: white;
     flex: 1;
-    align-items: center;
+    align-items: left;
     justify-content: left;
     min-width: 95%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    
 
 }
+
 .tile-t2 {
     background-color:#006D78;
     border-radius: 15px;
@@ -317,10 +322,14 @@ a,
     padding-right: 10px;
     border: white;
     flex: 1;
-    align-items: center;
+    align-items: left;
     justify-content: left;
     min-width: 95%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    
 
 }
 .tile-l3 {
@@ -348,10 +357,14 @@ a,
     padding-right: 10px;
     border: white;
     flex: 1;
-    align-items: center;
+    align-items: left;
     justify-content: left;
     min-width: 95%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    
 
 }
 .tile-l5 {
@@ -361,24 +374,33 @@ a,
     padding-right: 10px;
     border: white;
     flex: 1;
-    align-items: center;
+    align-items: left;
     justify-content: left;
     min-width: 95%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    
 
 }
 .tile-l6 {
     background-color:#FFE500;
+    color: black;
     border-radius: 15px;
     padding-left: 10px;
     padding-right: 10px;
     border: white;
     flex: 1;
-    align-items: center;
+    align-items: left;
     justify-content: left;
     min-width: 95%;
     display: flex;
-    color: black;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    
+    
 
 }
 .tile-7 {
@@ -388,10 +410,14 @@ a,
     padding-right: 10px;
     border: white;
     flex: 1;
-    align-items: center;
+    align-items: left;
     justify-content: left;
     min-width: 95%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    
 
 }
 .tile-8 {
@@ -401,10 +427,14 @@ a,
     padding-right: 10px;
     border: white;
     flex: 1;
-    align-items: center;
+    align-items: left;
     justify-content: left;
     min-width: 95%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    
 
 }
 .tile-9 {
@@ -414,24 +444,33 @@ a,
     padding-right: 10px;
     border: white;
     flex: 1;
-    align-items: center;
+    align-items: left;
     justify-content: left;
     min-width: 95%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    
 
 }
 .tile-10 {
     background-color:#CECB00;
+    color: black;
     border-radius: 15px;
     padding-left: 10px;
     padding-right: 10px;
     border: white;
     flex: 1;
-    align-items: center;
+    align-items: left;
     justify-content: left;
     min-width: 95%;
     display: flex;
-    color: black;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    
+    
 
 
 }
@@ -442,24 +481,33 @@ a,
     padding-right: 10px;
     border: white;
     flex: 1;
-    align-items: center;
+    align-items: left;
     justify-content: left;
     min-width: 95%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    
 
 }
 .tile-12 {
     background-color:#7BC6BC;
+    color: black;
     border-radius: 15px;
     padding-left: 10px;
     padding-right: 10px;
     border: white;
     flex: 1;
-    align-items: center;
+    align-items: left;
     justify-content: left;
     min-width: 95%;
     display: flex;
-    color: black;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    
+    
 
 }
 

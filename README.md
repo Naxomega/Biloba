@@ -12,9 +12,9 @@ J'ai donc ajouté une page "universelle" qui permet de visualiser n'importe quel
 
 La clé d'API est toujours temporaire, mais j'ai envoyé une demande à Keolis Besançon pour avoir accès à une clé définitive.
 ## Roadmap
-- Terminer les TRAM et LIANES
-- Terminer les lignes urbaines
-- Améliorer l'ésthetique du site (via des librairies JS comme React ou Vue)
+- Terminer les TRAM et LIANES (voir en dessous)
+- Terminer les lignes urbaines (voir en dessous)
+- Améliorer l'ésthetique du site (via des librairies JS comme React ou Vue) (en cours, pour l'instant en CSS pur)
 - Système de localisation (page "Autour de moi" qui liste les arrêts à proximité)
 - Système de stockage persistant (pour des arrêts favoris notamment)
 - Interface plus adapté aux appareils mobile (Avec une navbar comme la plupart des applis mobile d'aujourd'hui)
