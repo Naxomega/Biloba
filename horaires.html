@@ -77,16 +77,25 @@
 });
 
     // 3. Affichage
-    conteneur.innerHTML = passages.filter((a) => a.numLignePublic===ligne && (a.destination===destination || a.destination===destinationalt))
+    let passagefiltre = passages.filter((a) => a.numLignePublic===ligne && (a.destination===destination || a.destination===destinationalt));
+    let tempsfiltre = passagefiltre.map((p) => p.temps).join(`</span></strong><strong><span class="bulle">`)
+    console.log(passagefiltre);
+    console.log(tempsfiltre);
+    let passageunique = passagefiltre.slice(0, 1)
+    if (tempsfiltre.length !== 0) {
+      conteneur.innerHTML = passageunique
       .map((p) => `
         <div class="passage tile-${ligne.toLowerCase()} lightmode">
           <strong><p class="line-dot line-${ligne.toLowerCase()} enlarge outline">${p.numLignePublic}</p></strong> <p> 
-         <strong>${p.destination || p.direction || "?"}</strong> 
-          <br><span class="bulle"><strong>${p.temps}</strong></span></p>
+         <strong>${p.destination}</strong>
+          <br><span class="bulle"><strong>${tempsfiltre}</strong></span></p>
 
         </div><br>
       `)
       .join("");
+    }
+    
+
 
   } catch (erreur) {
     console.error("Erreur :", erreur);
