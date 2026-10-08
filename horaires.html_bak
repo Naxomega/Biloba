@@ -37,10 +37,8 @@
     const urlParams = new URLSearchParams(window.location.search);
     const sstop = urlParams.get('arret');
     const line = urlParams.get('ligne');
-    const dest = urlParams.get('destination');
-    const destalt = urlParams.get('destinationalt');
-    let trajets = {};
-
+    const dest = urlParams.get('destination')
+    const destalt = urlParams.get('destinationalt')
     const correspondances = []; // Tableau vide pour correspondances
     const callGinko = (methodPath, args = {}) => {
       return new Promise((resolve, reject) => {
@@ -77,27 +75,25 @@
     correspondances.push(p.numLignePublic);
   }
 });
-    console.log(passages)
-for (let index = 0; index < passages.length; index++) {
-      let cletemp = passages[index]
-      let part1 = cletemp.numLignePublic
-      let part2 = cletemp.destination
-      let attente = cletemp.temps
-      let cle = part1+part2
-      if (!trajets[cle]) {
-          trajets[cle] = {ligne: part1, destination: part2, temps: [attente]}
-      }
-      else {
-        trajets[cle].temps.push(attente)
-      }
 
-}
-console.log(trajets)
     // 3. Affichage
-   conteneur.innerHTML = Object.values(trajets).map((p => `<div class="passage tile-${p.ligne.toLowerCase()}">
-          <strong><p class="line-dot line-${p.ligne.toLowerCase()} enlarge outline">${p.ligne}</p></strong> <p> 
+    let passagefiltre = passages.filter((a) => a.numLignePublic===ligne && (a.destination===destination || a.destination===destinationalt));
+    let tempsfiltre = passagefiltre.map((p) => p.temps).join(`</span></strong><strong><span class="bulle">`)
+    console.log(passagefiltre);
+    console.log(tempsfiltre);
+    let passageunique = passagefiltre.slice(0, 1)
+    if (tempsfiltre.length !== 0) {
+      conteneur.innerHTML = passageunique
+      .map((p) => `
+        <div class="passage tile-${ligne.toLowerCase()} lightmode">
+          <strong><p class="line-dot line-${ligne.toLowerCase()} enlarge outline">${p.numLignePublic}</p></strong> <p> 
          <strong>${p.destination}</strong>
-          <br><span class="bulle"><strong>${p.temps.join(`</span></strong><strong><span class="bulle">`)}</strong></span></p></div>`)).join("");
+          <br><span class="bulle"><strong>${tempsfiltre}</strong></span></p>
+
+        </div><br>
+      `)
+      .join("");
+    }
     
 
 
@@ -105,16 +101,18 @@ console.log(trajets)
     console.error("Erreur :", erreur);
     conteneur.innerHTML = `<p style="color:red">Erreur : ${erreur}</p>`;
   }
-  titre.innerHTML = `<h2>${nomArret}</h2>`;
-  
+  titre.innerHTML = `<h2>Ligne ${ligne} vers ${destination}<br><br>${nomArret}</h2>`;
+  const htmlCorrespondances = correspondances
+  .map((num) => `<p class="line-dot line-${num.toLowerCase()}">${num}</p>`)
+  .join("");
   document.querySelector(".line-dots").innerHTML = htmlCorrespondances || `<p class="lightmode">Aucune correspondance directe</p>`;
-  pagetitre.innerHTML = `Biloba - ${nomArret}`
+  pagetitre.innerHTML = `Biloba - ${ligne} - ${nomArret}`
 };
 
 
     afficherHoraires(sstop, line, dest, destalt);
   </script>
-
+  <h3 class="lightmode list-title">Correspondances : </h3>
 <div class="line-dots">
 
         </div>
