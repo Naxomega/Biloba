@@ -3,7 +3,9 @@ body {
     font-family: Arial, sans-serif;
     align-items: center;
     text-align: center;
+    
 }
+/* { outline: 1px solid rgba(255, 0, 0, 1); } for debugging */
 
 .top-bar {
     background-color: #333;
@@ -39,9 +41,10 @@ body {
     padding: 20px;
     display: flex; /* Use flexbox for layout */
     flex-direction: column; /* Stack headings vertically */
-    align-items: center; /* Center all content horizontally */
     gap: 20px; /* Add space between elements */
     text-align: center; /* Center text inside the container */
+    
+    
 }
 
 .link-container {
@@ -50,6 +53,7 @@ body {
     justify-content: center;
     gap: 12px;
     padding: 10px;
+    
 }
 
 .top-bar a::after {
@@ -91,10 +95,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-.line-1 {
-    background-color: #d3414e;
-    color: white;
-}
+
 
 .line-t1 {background-color: #00A5C2; color: white;}
 .line-t2 {background-color: #006D78; color: white;}
@@ -210,21 +211,27 @@ a,
 .tile-t1 {
     background-color:#00A5C2;
     border-radius: 15px;
-    max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;
-    min-width: 100%;
+    border: white;
+    flex: 1;
+    align-items: center;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
 
 }
 .tile-t2 {
     background-color:#006D78;
     border-radius: 15px;
-    max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;    
-    min-width: 100%;
+    border: white;
+    flex: 1;
+    align-items: center;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
 
 }
 .tile-l3 {
@@ -233,105 +240,134 @@ a,
     padding-left: 10px;
     padding-right: 10px;
     border: white;
-    flex: 1 1 100%;
+    flex: 1;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     min-width: 95%;
     display: flex;
-    flex-direction:row;
+    
+  
+    
 }
 .tile-l4 {
     background-color:#E2001A;
     border-radius: 15px;
-    max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;    
-    min-width: 100%;
+    border: white;
+    flex: 1;
+    align-items: center;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
 
 }
 .tile-l5 {
     background-color:#1FA22E;
     border-radius: 15px;
-    max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;    
-    min-width: 100%;
+    border: white;
+    flex: 1;
+    align-items: center;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
 
 }
 .tile-l6 {
     background-color:#FFE500;
     border-radius: 15px;
-    max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;
-    color: black;    
-    min-width: 100%;
+    border: white;
+    flex: 1;
+    align-items: center;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
+    color: black;
 
 }
 .tile-7 {
     background-color:#A74C21;
     border-radius: 15px;
-    max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;    
-    min-width: 100%;
+    border: white;
+    flex: 1;
+    align-items: center;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
 
 }
 .tile-8 {
     background-color:#00396B;
     border-radius: 15px;
-    max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;    
-    min-width: 100%;
+    border: white;
+    flex: 1;
+    align-items: center;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
 
 }
 .tile-9 {
     background-color:#F29400;
     border-radius: 15px;
-    max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;    
-    min-width: 100%;
+    border: white;
+    flex: 1;
+    align-items: center;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
 
 }
 .tile-10 {
     background-color:#CECB00;
     border-radius: 15px;
-    max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;
-    color: black;    
-    min-width: 100%;
+    border: white;
+    flex: 1;
+    align-items: center;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
+    color: black;
 
 
 }
 .tile-11 {
     background-color:#C592BE;
     border-radius: 15px;
-    max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;    
-    min-width: 100%;
+    border: white;
+    flex: 1;
+    align-items: center;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
 
 }
 .tile-12 {
     background-color:#7BC6BC;
     border-radius: 15px;
-    max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 15px;
-    color: black;   
-    min-width: 100%;
+    border: white;
+    flex: 1;
+    align-items: center;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
+    color: black;
 
 }
 
@@ -339,9 +375,9 @@ a,
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1 1 45%;      /* Prend 45% de la largeur du conteneur, s'adapte */
-    max-width: 200px;   /* Largeur max pour éviter des boutons trop larges */
-    min-width: 120px;   /* Largeur min pour éviter des boutons trop petits */
+    flex: 1 1 45%;      
+    max-width: 200px;   
+    min-width: 120px;   
     height: 48px;
     color: white;
     font-weight: bold;
@@ -357,6 +393,7 @@ a,
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    
 }
 
 .line-link:hover {
@@ -397,6 +434,7 @@ a,
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 20px;
   align-items: center;
+  
 }
 .list-title {
     margin-bottom: 1px; /* Brings the title closer to the list */
@@ -418,4 +456,24 @@ a,
     .lightmode{color: #fff;}
     .content{background-color: #333;}
     .logo{color:white;}
+}
+.bulle {
+    border: rgb(255, 255, 255);
+    border-radius: 7px;
+    display: flex;
+    justify-content: left;
+    background-color: white;
+    max-width: fit-content;
+    padding: 5px;
+    color: black;
+    flex: 1;
+    margin-top: 5px;
+    
+}
+#temps_reel{
+    align-self: stretch;
+}
+.outline {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
 }

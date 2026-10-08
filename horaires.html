@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="refresh" content="60" >
 
-    <title class="pagetitle">Biloba - Horaires Ginko</title>
+    <title>Biloba - Horaires Ginko</title>
     <link rel="stylesheet" href="style_horaires.css">
     <base href="/Biloba/">
     <script src="https://api.ginko.voyage/api.js?apiKey=1ca8f7cc8b9f96ddca225b8fc7ccecc8"></script>
@@ -29,7 +29,7 @@
         </nav>
     </div>
     <div class="content">
-        <h2 class="titre lightmode">Biloba</h2>
+      <div class="titre lightmode"><h2>Biloba</h2></div>
         <br>
         <div id="temps-reel">Chargement des horaires...</div>
         <script>
@@ -45,7 +45,7 @@
         ginkoAPI(
           methodPath,
           args,
-          (data) => resolve(data),
+          (data) => resolve(data), // Fonction API Ginko
           (err) => reject(err)
         );
       });
@@ -55,7 +55,7 @@
     const afficherHoraires = async (nomArret, ligne, destination, destinationalt) => {
   const conteneur = document.querySelector("#temps-reel");
   const titre = document.querySelector('.titre');
-  const pagetitre = document.querySelector('#pagetitle');
+  const pagetitre = document.querySelector('title');
 
   try {
     const response = await callGinko("TR/getTempsLieu", { nom: nomArret });
@@ -80,9 +80,9 @@
     conteneur.innerHTML = passages.filter((a) => a.numLignePublic===ligne && (a.destination===destination || a.destination===destinationalt))
       .map((p) => `
         <div class="passage tile-${ligne.toLowerCase()} lightmode">
-          <strong><p class="line-dot line-${ligne.toLowerCase()} enlarge">${p.numLignePublic}</p></strong> <p>vers 
-         <strong>${p.destination || p.direction || "?"}</strong> : 
-          <em>${p.temps}</em></p>
+          <strong><p class="line-dot line-${ligne.toLowerCase()} enlarge outline">${p.numLignePublic}</p></strong> <p> 
+         <strong>${p.destination || p.direction || "?"}</strong> 
+          <br><span class="bulle"><strong>${p.temps}</strong></span></p>
 
         </div><br>
       `)
@@ -92,7 +92,7 @@
     console.error("Erreur :", erreur);
     conteneur.innerHTML = `<p style="color:red">Erreur : ${erreur}</p>`;
   }
-  titre.innerHTML = `Ligne ${ligne} vers ${destination}<br><br>${nomArret}`
+  titre.innerHTML = `<h2>Ligne <p class="line-dot line-${ligne.toLowerCase()}>${ligne}</p> vers ${destination}<br><br>${nomArret}</h2>`;
   const htmlCorrespondances = correspondances
   .map((num) => `<p class="line-dot line-${num.toLowerCase()}">${num}</p>`)
   .join("");
