@@ -82,6 +82,7 @@ for (let index = 0; index < passages.length; index++) {
       let cletemp = passages[index]
       let part1 = cletemp.numLignePublic
       let part2 = cletemp.destination
+      if (part1==='Ginko Citadelle'){part1="Cit."}
       let attente = cletemp.temps
       let cle = part1+part2
       if (!trajets[cle]) {
@@ -95,7 +96,7 @@ for (let index = 0; index < passages.length; index++) {
 console.log(trajets)
     // 3. Affichage
    conteneur.innerHTML = Object.values(trajets).map((p => `<div class="passage tile-${p.ligne.toLowerCase()}">
-          <strong><p class="line-dot line-${p.ligne.toLowerCase()} enlarge outline">${p.ligne}</p></strong> <p> 
+          <strong><p class="line-dot line-${p.ligne.toLowerCase()} enlarge outline-${p.ligne.toLowerCase()}">${p.ligne}</p></strong> <p> 
          <strong>${p.destination}</strong>
           <br><span class="bulle"><strong>${p.temps.join(`</span></strong><strong><span class="bulle">`)}</strong></span></p></div>`)).join("");
     

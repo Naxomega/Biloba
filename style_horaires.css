@@ -1,3 +1,156 @@
+:root {
+  /* --- TRAMWAY --- */
+  --T1: #00A5C2;
+  --T2: #006D78;
+
+  /* --- LIANES --- */
+  --L3: #006AB3;
+  --L4: #E2001A;
+  --L5: #1FA22E;
+  --L6: #FFE500;
+
+  /* --- URBAINES & DESSERTES --- */
+  --7: #A74C21;
+  --8: #00396B;
+  --9: #F29400;
+  --10: #CECB00;
+  --11: #C592BE;
+  --12: #7BC6BC;
+  --TER: #034EA2;
+
+  --20: #5C6970;
+  --21: #5C6970;
+  --22: #5C6970;
+  --23: #5C6970;
+  --24: #5C6970;
+
+  /* --- PÉRIURBAINES (Couleurs de texte / contours) --- */
+  /* Série 50 (Bleu) */
+  --51: #009EE0;
+  --52: #009EE0;
+  --53: #009EE0;
+  --54: #009EE0;
+  --55: #009EE0;
+  --56: #009EE0;
+  --57: #009EE0;
+  --58: #009EE0;
+  --59: #009EE0;
+
+  /* Série 60 (Orange) */
+  --61: #EE7B00;
+  --62: #EE7B00;
+  --63: #EE7B00;
+  --64: #EE7B00;
+  --65: #EE7B00;
+  --66: #EE7B00;
+  --67: #EE7B00;
+  --68: #EE7B00;
+
+  /* Série 70 (Rose) */
+  --71: #D2528B;
+  --72: #D2528B;
+  --73: #D2528B;
+  --74: #D2528B;
+  --75: #D2528B;
+  --76: #D2528B;
+
+  /* Série 80 (Vert) */
+  --81: #009036;
+  --82: #009036;
+  --83: #009036;
+  --84: #009036;
+  --85: #009036;
+  --86: #009036;
+  --87: #009036;
+
+  /* --- DIABOLO / SCOLAIRES --- */
+  --D1: #E8526B;
+  --D2: #E8526B;
+  --D3: #E8526B;
+  --D4: #E8526B;
+  --D5: #E8526B;
+  --D6: #E8526B;
+  --D7: #E8526B;
+  --D8: #E8526B;
+  --D9: #E8526B;
+  --D10: #E8526B;
+  --D11: #E8526B;
+  --D101: #E8526B;
+  --D104: #E8526B;
+  --D110: #E8526B;
+  --D111: #E8526B;
+  --D112: #E8526B;
+  --D114: #E8526B;
+  --D122: #E8526B;
+  --D123: #E8526B;
+  --D124: #E8526B;
+  --D125: #E8526B;
+  --D126: #E8526B;
+  --D127: #E8526B;
+  --D128: #E8526B;
+  --D129: #E8526B;
+  --D201: #E8526B;
+  --D202: #E8526B;
+  --D203: #E8526B;
+  --D205: #E8526B;
+  --D206: #E8526B;
+  --D208: #E8526B;
+  --D210: #E8526B;
+  --D211: #E8526B;
+  --D212: #E8526B;
+  --D220: #E8526B;
+  --D221: #E8526B;
+  --D222: #E8526B;
+  --D223: #E8526B;
+  --D224: #E8526B;
+  --D225: #E8526B;
+  --D226: #E8526B;
+  --D227: #E8526B;
+  --D231: #E8526B;
+  --D232: #E8526B;
+  --D233: #E8526B;
+  --D234: #E8526B;
+  --D235: #E8526B;
+  --D236: #E8526B;
+  --D237: #E8526B;
+  --D238: #E8526B;
+  --D239: #E8526B;
+  --D240: #E8526B;
+  --D241: #E8526B;
+  --D242: #E8526B;
+  --D243: #E8526B;
+  --D244: #E8526B;
+  --D245: #E8526B;
+  --D246: #E8526B;
+  --D247: #E8526B;
+  --D248: #E8526B;
+  --D301: #E8526B;
+  --D310: #E8526B;
+  --D311: #E8526B;
+  --D312: #E8526B;
+  --D313: #E8526B;
+  --D314: #E8526B;
+  --D323: #E8526B;
+  --D324: #E8526B;
+  --D401: #E8526B;
+  --D402: #E8526B;
+  --D403: #E8526B;
+  --D404: #E8526B;
+  --D405: #E8526B;
+  --D406: #E8526B;
+  --D407: #E8526B;
+  --D410: #E8526B;
+  --D411: #E8526B;
+  --D412: #E8526B;
+  --D413: #E8526B;
+  --D414: #E8526B;
+  --D415: #E8526B;
+  --D416: #E8526B;
+  --D417: #E8526B;
+  --D418: #E8526B;
+  --D420: #E8526B;
+  --D421: #E8526B;
+}
 body {
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
@@ -313,8 +466,6 @@ a,
     flex-wrap: wrap;
     text-align: left;
     margin-top: 10px;
-    
-
 }
 
 .tile-t2 {
@@ -333,9 +484,6 @@ a,
     flex-wrap: wrap;
     text-align: left;
     margin-top: 10px;
-
-    
-
 }
 .tile-l3 {
     background-color:#006AB3;
@@ -352,11 +500,7 @@ a,
     flex-direction: row;
     flex-wrap: wrap;
     text-align: left;
-    margin-top: 10px;
-
-    
-  
-    
+    margin-top: 10px;  
 }
 .tile-l4 {
     background-color:#E2001A;
@@ -374,9 +518,6 @@ a,
     flex-wrap: wrap;
     text-align: left;
     margin-top: 10px;
-
-    
-
 }
 .tile-l5 {
     background-color:#1FA22E;
@@ -394,9 +535,6 @@ a,
     flex-wrap: wrap;
     text-align: left;
     margin-top: 10px;
-
-    
-
 }
 .tile-l6 {
     background-color:#FFE500;
@@ -414,10 +552,6 @@ a,
     flex-wrap: wrap;
     text-align: left;
     margin-top: 10px;
-
-    
-    
-
 }
 .tile-7 {
     background-color:#A74C21;
@@ -435,9 +569,6 @@ a,
     flex-wrap: wrap;
     text-align: left;
     margin-top: 10px;
-
-    
-
 }
 .tile-8 {
     background-color:#00396B;
@@ -455,9 +586,6 @@ a,
     flex-wrap: wrap;
     text-align: left;
     margin-top: 10px;
-
-    
-
 }
 .tile-9 {
     background-color:#F29400;
@@ -475,9 +603,6 @@ a,
     flex-wrap: wrap;
     text-align: left;
     margin-top: 10px;
-
-    
-
 }
 .tile-10 {
     background-color:#CECB00;
@@ -495,11 +620,6 @@ a,
     flex-wrap: wrap;
     text-align: left;    
     margin-top: 10px;
-
-    
-    
-
-
 }
 .tile-11 {
     background-color:#C592BE;
@@ -517,9 +637,6 @@ a,
     flex-wrap: wrap;
     text-align: left;    
     margin-top: 10px;
-
-    
-
 }
 .tile-12 {
     background-color:#7BC6BC;
@@ -537,11 +654,198 @@ a,
     flex-wrap: wrap;
     text-align: left;    
     margin-top: 10px;
-
-    
-    
-
 }
+.tile-cit\. {
+    background-color:#F26522;
+    color: white;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: white;
+    flex: 1;
+    align-items: left;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;    
+    margin-top: 10px;
+}
+.tile-20 {
+    background-color:#5C6970;
+    color: white;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: white;
+    flex: 1;
+    align-items: left;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.tile-21 {
+    background-color:#5C6970;
+    color: white;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: white;
+    flex: 1;
+    align-items: left;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    margin-top: 10px;
+}
+.tile-22 {
+    background-color:#5C6970;
+    color: white;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: white;
+    flex: 1;
+    align-items: left;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    margin-top: 10px;
+}
+.tile-23 {
+    background-color:#5C6970;
+    color: white;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: white;
+    flex: 1;
+    align-items: left;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    margin-top: 10px;
+}
+.tile-24 {
+    background-color:#5C6970;
+    color: white;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: white;
+    flex: 1;
+    align-items: left;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    margin-top: 10px;
+}
+
+[class*="tile-5"] {
+    background-color:#009EE0;
+    color: white;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: white;
+    flex: 1;
+    align-items: left;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    margin-top: 10px;
+}
+
+[class*="tile-6"] {
+    background-color:#EE7B00;
+    color: white;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: white;
+    flex: 1;
+    align-items: left;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    margin-top: 10px;
+}
+[class*="tile-7"]:not(.tile-7) {
+    background-color:#D2528B;
+    color: white;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: white;
+    flex: 1;
+    align-items: left;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    margin-top: 10px;
+}
+[class*="tile-8"]:not(.tile-8) {
+    background-color:#009036;
+    color: white;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: white;
+    flex: 1;
+    align-items: left;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    margin-top: 10px;
+}
+[class*="tile-d"] {
+    background-color:#E8526B;
+    color: white;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: white;
+    flex: 1;
+    align-items: left;
+    justify-content: left;
+    min-width: 95%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    margin-top: 10px;
+}
+
 
 .line-link {
     display: flex;
@@ -652,6 +956,110 @@ a,
 .outline {
     outline: 2px solid rgba(255, 255, 255, 0.5);
     margin-right: 10px;
+}
+.outline-t1 {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+.outline-t2 {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+.outline-l3 {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+.outline-l4 {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+.outline-l5 {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+.outline-l6 {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+.outline-7 {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+.outline-8 {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+.outline-9 {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+.outline-10 {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+.outline-11 {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+.outline-12 {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+.outline-20 {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+.outline-21 {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+.outline-22 {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+.outline-23 {outline: 2px solid rgba(255, 255, 255, 0.5);margin-right: 10px;}
+.outline-24 {outline: 2px solid rgba(255, 255, 255, 0.5); margin-right: 10px;}
+/* --- SÉRIE 50 (Bleu) --- */
+.outline-51 { outline: 2px solid var(--51); margin-right: 10px; }
+.outline-52 { outline: 2px solid var(--52); margin-right: 10px; }
+.outline-53 { outline: 2px solid var(--53); margin-right: 10px; }
+.outline-54 { outline: 2px solid var(--54); margin-right: 10px; }
+.outline-55 { outline: 2px solid var(--55); margin-right: 10px; }
+.outline-56 { outline: 2px solid var(--56); margin-right: 10px; }
+.outline-57 { outline: 2px solid var(--57); margin-right: 10px; }
+.outline-58 { outline: 2px solid var(--58); margin-right: 10px; }
+.outline-59 { outline: 2px solid var(--59); margin-right: 10px; }
+
+/* --- SÉRIE 60 (Orange) --- */
+.outline-61 { outline: 2px solid var(--61); margin-right: 10px; }
+.outline-62 { outline: 2px solid var(--62); margin-right: 10px; }
+.outline-63 { outline: 2px solid var(--63); margin-right: 10px; }
+.outline-64 { outline: 2px solid var(--64); margin-right: 10px; }
+.outline-65 { outline: 2px solid var(--65); margin-right: 10px; }
+.outline-66 { outline: 2px solid var(--66); margin-right: 10px; }
+.outline-67 { outline: 2px solid var(--67); margin-right: 10px; }
+.outline-68 { outline: 2px solid var(--68); margin-right: 10px; }
+
+/* --- SÉRIE 70 (Rose) --- */
+.outline-71 { outline: 2px solid var(--71); margin-right: 10px; }
+.outline-72 { outline: 2px solid var(--72); margin-right: 10px; }
+.outline-73 { outline: 2px solid var(--73); margin-right: 10px; }
+.outline-74 { outline: 2px solid var(--74); margin-right: 10px; }
+.outline-75 { outline: 2px solid var(--75); margin-right: 10px; }
+.outline-76 { outline: 2px solid var(--76); margin-right: 10px; }
+
+/* --- SÉRIE 80 (Vert) --- */
+.outline-81 { outline: 2px solid var(--81); margin-right: 10px; }
+.outline-82 { outline: 2px solid var(--82); margin-right: 10px; }
+.outline-83 { outline: 2px solid var(--83); margin-right: 10px; }
+.outline-84 { outline: 2px solid var(--84); margin-right: 10px; }
+.outline-85 { outline: 2px solid var(--85); margin-right: 10px; }
+.outline-86 { outline: 2px solid var(--86); margin-right: 10px; }
+.outline-87 { outline: 2px solid var(--87); margin-right: 10px; }
+.outline-cit\. { outline: 2px solid rgba(255, 255, 255, 0.5); margin-right: 10px; }
+[class*="outline-d"] {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  margin-right: 10px;
 }
 .bulles{
     flex-direction: column;
