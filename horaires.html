@@ -35,10 +35,8 @@
         <script>
 
     const urlParams = new URLSearchParams(window.location.search);
-    const sstop = urlParams.get('arret');
-    const line = urlParams.get('ligne');
-    const dest = urlParams.get('destination');
-    const destalt = urlParams.get('destinationalt');
+    const arretcible = urlParams.get('arret');
+    const arretalt = urlParams.get('arretalt');
     let trajets = {};
 
     const correspondances = []; // Tableau vide pour correspondances
@@ -54,29 +52,26 @@
     };
 
     // 2. Fonction principale pour récupérer et afficher les horaires
-    const afficherHoraires = async (nomArret, ligne, destination, destinationalt) => {
+    const afficherHoraires = async (nomArret) => {
   const conteneur = document.querySelector("#temps-reel");
   const titre = document.querySelector('.titre');
   const pagetitre = document.querySelector('title');
 
   try {
     const response = await callGinko("TR/getTempsLieu", { nom: nomArret });
+
     
     
     console.log("Réponse de l'API :", response);
 
     
-    const passages = response.listeTemps;
-    if (passages.length == 0) {
+    const passages = response.listeTemps
+
+    if (passages.length === 0) {
       conteneur.innerHTML = "<p>Aucun passage trouvé pour cet arrêt.</p>";
       return;
     }
-    passages.forEach((p) => { // Correspondances
-
-  if (p.numLignePublic !== ligne && correspondances.indexOf(p.numLignePublic) === -1) {
-    correspondances.push(p.numLignePublic);
-  }
-});
+    
     console.log(passages)
 for (let index = 0; index < passages.length; index++) {
       let cletemp = passages[index]
@@ -113,7 +108,7 @@ console.log(trajets)
 };
 
 
-    afficherHoraires(sstop, line, dest, destalt);
+    afficherHoraires(arretcible);
   </script>
 
 <div class="line-dots">
