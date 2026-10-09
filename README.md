@@ -24,7 +24,7 @@ La clé d'API est toujours temporaire, mais j'ai envoyé une demande à Keolis B
 - Ligne T1
 - Ligne T2
 - Ligne L3
-- Ligne L4 (Prochainement)
+- Ligne L4
 - Ligne L5 (Prochainement)
 - Ligne L6 (Prochainement)
 - Ligne 7 (Prochainement)
