@@ -40,7 +40,11 @@ const getLongitude = () => {
     return position.coords.longitude;
     },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
 };
-conteneur.innerHTML = "Latitude = " + getLatitude() + ", Longitude = " + getLongitude();
+conteneur.innerHTML = "Latitude = " + navigator.geolocation.getCurrentPosition(function(position) {
+    return position.coords.latitude;
+    },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }) + ", Longitude = " + navigator.geolocation.getCurrentPosition(function(position) {
+    return position.coords.longitude;
+    },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
    /* const urlParams = new URLSearchParams(window.location.search);
     const sstop = urlParams.get('arret');
     const line = urlParams.get('ligne');
