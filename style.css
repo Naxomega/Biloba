@@ -217,89 +217,29 @@ a,
     padding-top:10px;
     
 }
-/* =================================================
-    VVV STYLE DU WIDGET INFOS TRAFIC (MECATRAN) VVV
-   ================================================= */
-
-#view-mecatran-alerts {
-    background-color: #333 !important;
-    color: #ffffff !important;         
-    max-width: 600px;                  
-    margin: 20px auto;                 
-    padding: 20px;
-    text-align: center;                  
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
-    font-family: Arial, sans-serif;
-
-    border-radius: 15px !important;   
-    overflow: hidden !important;     
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
+/* Style the links inside the navigation bar */
+.top-bar {
+            background-color: #333;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
 
-#view-mecatran-alerts li,
-#view-mecatran-alerts div {
-    border-radius: 8px; 
-}
+            bottom: 10px;
+            width: 100%;
+            right: 0px;
+        }
+.selected {background-color: #00ABC4;padding: 5px;border-radius: 5px;}
+.bar:not(.selected){padding: 5px;}
 
+        
 
-#view-mecatran-alerts h1, 
-#view-mecatran-alerts h2, 
-#view-mecatran-alerts h3, 
-#view-mecatran-alerts h4 {
-    color: #ffcc00 !important;         
-    margin-top: 0;
-    font-size: 1.2rem;
-}
-
-#view-mecatran-alerts a {
-    color: #ffcc00 !important;         
-    text-decoration: none !important; 
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-#view-mecatran-alerts a:hover {
-    color: #ffffff !important;         
-    text-decoration: underline !important;
-}
-
-#view-mecatran-alerts ul {
-    list-style-type: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
-#view-mecatran-alerts li {
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-#view-mecatran-alerts li:last-child {
-    border-bottom: none;
-}
-
-
-#view-mecatran-alerts,
-#view-mecatran-alerts * {
-    font-family: Arial, sans-serif !important;
-}
-
-#view-mecatran-alerts div,
-#view-mecatran-alerts li,
-#view-mecatran-alerts p,
-#view-mecatran-alerts span {
-    text-align: center !important;
-    justify-content: center !important; 
-    float: none !important;             
-}
-
-#view-mecatran-alerts img,
-#view-mecatran-alerts svg,
-#view-mecatran-alerts [class*="badge"],
-#view-mecatran-alerts [class*="icon"],
-#view-mecatran-alerts [class*="line"] {
-    display: inline-block !important;   
-    margin-left: auto !important;
-    margin-right: auto !important;
-    float: none !important;
-}
+        
