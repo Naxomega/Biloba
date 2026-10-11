@@ -28,10 +28,11 @@
         <br>
         <div id="temps-reel">Chargement des horaires...</div>
         <script>
+          const conteneur = document.querySelector("#temps-reel");
           navigator.geolocation.getCurrentPosition(
   function(position) {
-    console.log("Latitude: " + position.coords.latitude);
-    console.log("Longitude: " + position.coords.longitude);
+    conteneur.innerHTML = position.coords.latitude + "et" + position.coords.longitude;
+    
   },
   function(error) {
     console.error("Error code: " + error.code + " - " + error.message);
@@ -58,7 +59,8 @@
 
     // 2. Fonction principale pour récupérer et afficher les horaires
     const afficherHoraires = async (nomArret, ligne, destination, destinationalt) => {
-  const conteneur = document.querySelector("#temps-reel");
+  */
+  /*
   const titre = document.querySelector('.titre');
   const pagetitre = document.querySelector('#pagetitle');
 
