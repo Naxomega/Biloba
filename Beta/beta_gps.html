@@ -33,13 +33,13 @@
 const getLatitude = () => {
   return navigator.geolocation.getCurrentPosition(function(position) {
     return position.coords.latitude;
-    },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 })
-}
+    },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
+};
 const getLongitude = () => {
   return navigator.geolocation.getCurrentPosition(function(position) {
     return position.coords.longitude;
-    },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 })
-}
+    },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
+};
 conteneur.innerHTML = "Latitude = " + getLatitude() + ", Longitude = " + getLongitude();
    /* const urlParams = new URLSearchParams(window.location.search);
     const sstop = urlParams.get('arret');
