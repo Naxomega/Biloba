@@ -31,12 +31,12 @@
           const conteneur = document.querySelector("#temps-reel");
           
 const getLatitude = () => {
-  navigator.geolocation.getCurrentPosition(function(position) {
+  return navigator.geolocation.getCurrentPosition(function(position) {
     return position.coords.latitude;
     },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 })
 }
 const getLongitude = () => {
-  navigator.geolocation.getCurrentPosition(function(position) {
+  return navigator.geolocation.getCurrentPosition(function(position) {
     return position.coords.longitude;
     },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 })
 }
