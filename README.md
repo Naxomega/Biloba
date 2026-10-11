@@ -1,25 +1,29 @@
 > [!WARNING]
 > Biloba n'est en AUCUN CAS affilié, ni maintenu de quelconque manière que ca soit par la Ville de Besançon, Grand Besançon Métropole, ou Keolis Besançon Mobilités (Ginko)
 # Biloba
-Il aurait pu aussi s'appeler Ginko'Clock, mais j'ai choisi Biloba (ginko biloba est le nom complet de la plante eponyme)\
+Il aurait pu aussi s'appeler Ginko'Clock, mais j'ai choisi Biloba (*Ginko Biloba* est le nom complet de la plante eponyme)\
 Futur site internet qui permettera d'avoir les horaires en temps réel des bus Ginko via une interface légère.\
 (En gros, Optymo'Clock mais pour Besançon)
 ## Ce qui change par rapport à Optymo'Clock
-Contrairement à Optymo qui met en service des pages web dédiées aux horaires, ce n'est pas le cas pour Ginko.\
+Contrairement à Optymo qui met en service des pages web dédiées aux horaires, ce n'est pas le cas pour Ginko.
+
 Donc Biloba utilisera [l'API officielle de Ginko](https://api.ginko.voyage/#prez) pour recevoir les horaires. (oui j'ai appris le JavaScript uniquement pour ce projet... sinon ca va vous ?)
 ## Avancement du développement
-J'ai donc ajouté une page "universelle" qui permet de visualiser n'importe quel arrêt, ligne et destination via des arguments en adresse [comme ici pour l'arrêt Temis de la ligne L3](https://naxomega.github.io/Biloba/horaires.html?arret=8%20Septembre&ligne=L3&destination=Pôle%20Temis&destinationalt=Campus%20%20Crous%20Université)
+J'ai donc ajouté une page "universelle" qui permet de visualiser n'importe quel arrêt, ligne et destination via des arguments en adresse [comme ici pour l'arrêt Temis](https://naxomega.github.io/Biloba/horaires.html?arret=Temis)
 
-La clé d'API est toujours temporaire, mais j'ai envoyé une demande à Keolis Besançon pour avoir accès à une clé définitive.
 ## Roadmap
-- Terminer les TRAM et LIANES (voir en dessous)
-- Terminer les lignes urbaines (voir en dessous)
-- Améliorer l'ésthetique du site (via des librairies JS comme React ou Vue) (en cours, pour l'instant en CSS pur)
-- Système de localisation (page "Autour de moi" qui liste les arrêts à proximité)
-- Système de stockage persistant (pour des arrêts favoris notamment)
-- Interface plus adapté aux appareils mobile (Avec une navbar comme la plupart des applis mobile d'aujourd'hui)
-- Système d'information de chaque bus comme l'appli/site officiel (cependant, les données d'affluences sont pas systématiques dans l'API (elles renvoient -2) et sont des "informations complémentaires" mises en place au cas par cas (d'après ce que j'ai compris), en espérant y avoir accès :) )
+- [ ] Terminer les TRAM et LIANES (voir en dessous)
+- [ ] Terminer les lignes urbaines (voir en dessous)
+- [ ] Améliorer l'ésthetique du site (via des librairies JS comme React ou Vue) (en cours, pour l'instant en CSS pur)
+- [ ] Système de localisation (page "Autour de moi" qui liste les arrêts à proximité)
+- [ ] Système de stockage persistant (pour des arrêts favoris notamment)
+- [x] Interface plus adapté aux appareils mobile (Avec une navbar comme la plupart des applis mobile d'aujourd'hui)
+- [ ] Système d'information de chaque bus comme l'appli/site officiel (cependant, les données d'affluences sont pas systématiques dans l'API (elles renvoient -2) et sont des "informations complémentaires" mises en place au cas par cas (d'après ce que j'ai compris), en espérant y avoir accès :) )
 - Infos trafic pour chaque ligne
+## Fonctionnalités
+- Interface simple et élegante
+- Utilisable sur des appareils peu puissants
+- Visualise chaque arrêt (des lignes implémentées) avec toutes les lignes qui y passent
 ## Lignes Disponibles
 - Ligne T1
 - Ligne T2
