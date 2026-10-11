@@ -29,17 +29,18 @@
         <div id="temps-reel">Chargement des horaires...</div>
         <script>
           const conteneur = document.querySelector("#temps-reel");
-          navigator.geolocation.getCurrentPosition(
-  function(position) {
-    conteneur.innerHTML = position.coords.latitude + "et" + position.coords.longitude;
-    
-  },
-  function(error) {
-    console.error("Error code: " + error.code + " - " + error.message);
-  },
-  { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
-);
-
+          
+const getLatitude = () => {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    return position.coords.latitude;
+    },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 })
+}
+const getLongitude = () => {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    return position.coords.longitude;
+    },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 })
+}
+conteneur.innerHTML = "Latitude = " + getLatitude() + ", Longitude = " + getLongitude();
    /* const urlParams = new URLSearchParams(window.location.search);
     const sstop = urlParams.get('arret');
     const line = urlParams.get('ligne');
