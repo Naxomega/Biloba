@@ -88,7 +88,7 @@ const chargerPositionGPS = async () => {
           arret.latitude <= Latitude+deltaLat &&
           arret.longitude >= Longitude-deltaLon &&
           arret.longitude <= Longitude+deltaLon
-        )}).map((a) => `<a href="horaires.html?arret=${a.nom}?provenance="GPS" class="line-link"><span>${a.nom}</span></a><br>`).join("");  
+        )}).map((a) => `<a href="horaires.html?arret=${a.nom}?provenance=GPS" class="line-link"><span>${a.nom}</span></a><br>`).join("");  
         conteneur.innerHTML = arretsproches
         document.querySelector(".titre").innerHTML = "<h2>Arrêts Proches</h2>"
     } catch {conteneur.innerHTML = "Impossible de récupérer les arrêts.";
