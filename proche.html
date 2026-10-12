@@ -33,8 +33,8 @@
           const debugLat = 47.24878;
           const debugLon = 6.01815;
           let listearretsproche = {};
-          const deltaLat = 0.0027; // envir. 300m
-          const deltaLon = 0.00396; // envir. 300m
+          const deltaLat = 0.0045; // envir. 300m
+          const deltaLon = 0.00663; // envir. 300m
           // donc (300+300)x2 = recherche d'arrêt dans un carré de 600m de côté centré sur la position de l'utilisateur
           //    600m
           // +---------+
@@ -88,7 +88,7 @@ const chargerPositionGPS = async () => {
           arret.latitude <= Latitude+deltaLat &&
           arret.longitude >= Longitude-deltaLon &&
           arret.longitude <= Longitude+deltaLon
-        )}).map((a) => `<a href="horaires.html?arret=${a.nom}" class="line-link"><span>${a.nom}</span></a><br>`).join("");  
+        )}).map((a) => `<a href="horaires.html?arret=${a.nom}?provenance="GPS" class="line-link"><span>${a.nom}</span></a><br>`).join("");  
         conteneur.innerHTML = arretsproches
         document.querySelector(".titre").innerHTML = "<h2>Arrêts Proches</h2>"
     } catch {conteneur.innerHTML = "Impossible de récupérer les arrêts.";
@@ -110,8 +110,9 @@ chargerPositionGPS();
     </div>
     <nav class="top-bar">
             <ul>
-                <li class="selected bar"><a href="index.html">Lignes</a></li>
+                <li class=" bar"><a href="index.html">Lignes</a></li>
                 <li class="bar"><a href="Autres/infos.html">Infos trafic</a></li>
+                <li class="bar selected"><a href="proche.html">Autour de moi</a></li>
             </ul>
         </nav>
 </body>

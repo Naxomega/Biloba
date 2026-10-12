@@ -32,6 +32,8 @@
     const urlParams = new URLSearchParams(window.location.search);
     const arretcible = urlParams.get('arret');
     const arretalt = urlParams.get('arretalt');
+    const provenance = urlParams.get("provenance");
+    const bar = document.querySelector(".insert");
     let trajets = {};
 
     const correspondances = []; // Tableau vide pour correspondances
@@ -100,6 +102,16 @@ console.log(trajets)
   
   document.querySelector(".line-dots").innerHTML = htmlCorrespondances || `<p class="lightmode">Aucune correspondance directe</p>`;
   pagetitre.innerHTML = `Biloba - ${nomArret}`
+  if (provenance==="GPS"){
+    bar.innerHTML=`<li class="bar"><a href="index.html">Lignes</a></li>
+                <li class="bar"><a href="Autres/infos.html">Infos trafic</a></li>
+                <li class="bar selected"><a href="proche.html">Autour de moi</a></li>`
+  }
+  else {
+    bar.innerHTML=`<li class="selected bar"><a href="index.html">Lignes</a></li>
+                <li class="bar"><a href="Autres/infos.html">Infos trafic</a></li>
+                <li class="bar"><a href="proche.html">Autour de moi</a></li>`
+  }
 };
 
 
@@ -112,7 +124,7 @@ console.log(trajets)
 
     </div>
     <nav class="top-bar">
-            <ul>
+            <ul class="insert">
                 <li class="selected bar"><a href="index.html">Lignes</a></li>
                 <li class="bar"><a href="Autres/infos.html">Infos trafic</a></li>
             </ul>
