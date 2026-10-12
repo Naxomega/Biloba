@@ -29,12 +29,35 @@
         <div id="temps-reel">Chargement des horaires...</div>
         <script>
           const conteneur = document.querySelector("#temps-reel");
-          const position = async () => {
-            const Latitude = await navigator.geolocation.getCurrentPosition(function(position) {position.coords.latitude},function(error){},{enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
-          const Longitude = await navigator.geolocation.getCurrentPosition(function(position) {position.coords.longitude},function(error){},{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
-          conteneur.innerHTML = "Latitude = " + Latitude + " Longitude = " + Longitude;
-          }
-          position()
+          // promise
+const getPosition = () => {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject, {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    });
+  });
+};
+
+// fonction async principale
+const chargerPositionGPS = async () => {
+  try {
+
+    const pos = await getPosition();
+    
+    const Latitude = pos.coords.latitude;
+    const Longitude = pos.coords.longitude;
+    
+    conteneur.innerHTML = `Latitude = ${Latitude} Longitude = ${Longitude}`;
+  } catch (error) {
+    conteneur.innerHTML = "Impossible de récupérer votre position.";
+    console.error(error);
+  }
+};
+
+
+chargerPositionGPS();
           
      
     
