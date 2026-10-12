@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="60" >
+
+    <title>Biloba - Horaires Ginko</title>
+    <link rel="stylesheet" href="style_proche.css">
+    <base href="/Biloba/">
+    <script src="https://api.ginko.voyage/api.js?apiKey=r8B7t6Hgd7vF9V3VV9PQ4vc2a"></script>
+    <meta name="theme-color" content="#121212">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes"> 
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    
+</head>
+<body>
+    <div class="header">
+        <h1 class="logo lightmode">Biloba</h1>
+        <h3>Aussi léger qu'une feuille de Ginko</h3>
+        
+    </div>
+    <div class="content">
+      <div class="titre lightmode"><h2>Biloba</h2></div>
+        <br>
+        <div class="line-container">Chargement des arrêts...</div>
+        <script>
+          // var globales
+          const conteneur = document.querySelector(".line-container");
+          const debugLat = 47.24878;
+          const debugLon = 6.01815;
+          let listearretsproche = {};
+          const deltaLat = 0.0027; // envir. 300m
+          const deltaLon = 0.00396; // envir. 300m
+          // donc (300+300)x2 = recherche d'arrêt dans un carré de 600m de côté centré sur la position de l'utilisateur
+          //    600m
+          // +---------+
+          // |         |
+          // |    O    | 600m | O = utilisateur
+          // |         |
+          // +---------+
+          //
+          // promise gps
+const getPosition = () => {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject, {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    });
+  });
+}; // promise api ginko
+const callGinko = (methodPath, args = {}) => {
+      return new Promise((resolve, reject) => {
+        ginkoAPI(
+          methodPath,
+          args,
+          (data) => resolve(data),
+          (err) => reject(err)
+        );
+      });
+    };
+
+// fonction async principale
+const chargerPositionGPS = async () => {
+  try {
+
+    const pos = await getPosition();
+    
+    const Latitude = pos.coords.latitude;
+    const Longitude = pos.coords.longitude;
+    try {
+      const arrets = await callGinko("DR/getArrets");
+      for (let index = 0; index < arrets.length; index++) {
+      let cletemp = arrets[index]
+      let cle = cletemp.nom
+      let lat = cletemp.latitude
+      let lon = cletemp.longitude
+      if (!listearretsproche[cle]) {
+          listearretsproche[cle] = {nom: cle, latitude: lat, longitude: lon};
+       }}
+      const arretsproches = Object.values(listearretsproche).filter(arret => {
+        return (
+          arret.latitude >= Latitude-deltaLat &&
+          arret.latitude <= Latitude+deltaLat &&
+          arret.longitude >= Longitude-deltaLon &&
+          arret.longitude <= Longitude+deltaLon
+        )}).map((a) => `<a href="horaires.html?arret=${a.nom}" class="line-link"><span>${a.nom}</span></a><br>`).join("");  
+        conteneur.innerHTML = arretsproches
+        document.querySelector(".titre").innerHTML = "<h2>Arrêts Proches</h2>"
+    } catch {conteneur.innerHTML = "Impossible de récupérer les arrêts.";
+    }
+
+  } catch (error) {
+    conteneur.innerHTML = "Impossible de récupérer votre position.";
+    console.error(error);
+  }
+};
+
+
+chargerPositionGPS();
+
+  </script>
+  
+
+    </div>
+    </div>
+    <nav class="top-bar">
+            <ul>
+                <li class="selected bar"><a href="index.html">Lignes</a></li>
+                <li class="bar"><a href="Autres/infos.html">Infos trafic</a></li>
+            </ul>
+        </nav>
+</body>
+</html>
