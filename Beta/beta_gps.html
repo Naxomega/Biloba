@@ -8,7 +8,7 @@
     <title class="pagetitle">Biloba - Horaires Ginko</title>
     <link rel="stylesheet" href="style.css">
     <base href="/Biloba/">
-    <script src="https://api.ginko.voyage/api.js?apiKey=ec9db29f48db860147dae515e3c04243"></script>
+    <script src="https://api.ginko.voyage/api.js?apiKey=r8B7t6Hgd7vF9V3VV9PQ4vc2a"></script>
     
 </head>
 <body>
@@ -26,10 +26,21 @@
     <div class="content">
         <h2 class="titre lightmode">Biloba</h2>
         <br>
-        <div id="temps-reel">Chargement des horaires...</div>
+        <div class="line-container">Chargement des horaires...</div>
         <script>
-          const conteneur = document.querySelector("#temps-reel");
-          // promise
+          // var globales
+          const conteneur = document.querySelector(".line-container");
+          const deltaLat = 0.0027; // envir. 300m
+          const deltaLon = 0.00396; // envir. 300m
+          // donc (300+300)x2 = recherche d'arrêt dans un carré de 600m de côté centré sur la position de l'utilisateur
+          //    600m
+          // +---------+
+          // |         |
+          // |    O    | 600m | O = utilisateur
+          // |         |
+          // +---------+
+          //
+          // promise gps
 const getPosition = () => {
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(resolve, reject, {
@@ -38,7 +49,17 @@ const getPosition = () => {
       maximumAge: 0
     });
   });
-};
+}; // promise api ginko
+const callGinko = (methodPath, args = {}) => {
+      return new Promise((resolve, reject) => {
+        ginkoAPI(
+          methodPath,
+          args,
+          (data) => resolve(data),
+          (err) => reject(err)
+        );
+      });
+    };
 
 // fonction async principale
 const chargerPositionGPS = async () => {
@@ -48,8 +69,21 @@ const chargerPositionGPS = async () => {
     
     const Latitude = pos.coords.latitude;
     const Longitude = pos.coords.longitude;
-    
-    conteneur.innerHTML = `Latitude = ${Latitude} Longitude = ${Longitude}`;
+    try {
+      const arrets = await callGinko("DR/getArrets");
+      const arretsproches = arrets.filter(arret => {
+        return (
+          arret.latitude >= Latitude-deltaLat &&
+          arret.latitude <= Latitude+deltaLat &&
+          arret.longitude >= Longitude-deltaLon &&
+          arret.longitude <= Longitude+deltaLon
+        )
+      }).map((a) => `<a href="horaires.html?arret=${a.nom}" class="line-link line-1">
+                <span>${a.nom}</span>
+            </a>`);
+    } catch {conteneur.innerHTML = "Impossible de récupérer les arrêts.";
+    console.error(error);}
+
   } catch (error) {
     conteneur.innerHTML = "Impossible de récupérer votre position.";
     console.error(error);
