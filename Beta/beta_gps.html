@@ -30,7 +30,14 @@
         <script>
           const conteneur = document.querySelector("#temps-reel");
           
-const getLatitude = () => {
+          const Latitude = navigator.geolocation.getCurrentPosition(function(position) {
+    return position.coords.latitude;
+    },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 })
+    const Longitude = navigator.geolocation.getCurrentPosition(function(position) {
+    return position.coords.longitude;
+    },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 })
+    conteneur.innerHTML = "Latitude = " + Latitude + " Longitude = " + Longitude;
+          /*const getLatitude = () => {
   return navigator.geolocation.getCurrentPosition(function(position) {
     return position.coords.latitude;
     },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
@@ -44,7 +51,7 @@ conteneur.innerHTML = "Latitude = " + navigator.geolocation.getCurrentPosition(f
     return position.coords.latitude;
     },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }) + ", Longitude = " + navigator.geolocation.getCurrentPosition(function(position) {
     return position.coords.longitude;
-    },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
+    },{ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });*/
    /* const urlParams = new URLSearchParams(window.location.search);
     const sstop = urlParams.get('arret');
     const line = urlParams.get('ligne');
