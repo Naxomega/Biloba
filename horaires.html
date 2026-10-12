@@ -102,20 +102,35 @@ console.log(trajets)
   
   document.querySelector(".line-dots").innerHTML = htmlCorrespondances || `<p class="lightmode">Aucune correspondance directe</p>`;
   pagetitre.innerHTML = `Biloba - ${nomArret}`
-  if (provenance==="GPS"){
-    bar.innerHTML=`<li class="bar"><a href="index.html">Lignes</a></li>
-                <li class="bar"><a href="Autres/infos.html">Infos trafic</a></li>
-                <li class="bar selected"><a href="proche.html">Autour de moi</a></li>`
+};
+const bottomBar = () => {
+  document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const provenance = urlParams.get("provenance");
+  const bar = document.querySelector(".insert");
+
+  // Sécurité : si l'élément n'existe pas, on le signale dans la console
+  
+
+  if (provenance === "GPS") {
+    bar.innerHTML = `
+      <li class="bar"><a href="index.html">Lignes</a></li>
+      <li class="bar"><a href="Autres/infos.html">Infos trafic</a></li>
+      <li class="bar selected"><a href="proche.html">Autour de moi</a></li>
+    `;
+  } else {
+    bar.innerHTML = `
+      <li class="selected bar"><a href="index.html">Lignes</a></li>
+      <li class="bar"><a href="Autres/infos.html">Infos trafic</a></li>
+      <li class="bar"><a href="proche.html">Autour de moi</a></li>
+    `;
   }
-  else {
-    bar.innerHTML=`<li class="selected bar"><a href="index.html">Lignes</a></li>
-                <li class="bar"><a href="Autres/infos.html">Infos trafic</a></li>
-                <li class="bar"><a href="proche.html">Autour de moi</a></li>`
-  }
+});
 };
 
 
     afficherHoraires(arretcible);
+    bottomBar();
   </script>
 
 <div class="line-dots">
@@ -125,8 +140,7 @@ console.log(trajets)
     </div>
     <nav class="top-bar">
             <ul class="insert">
-                <li class="selected bar"><a href="index.html">Lignes</a></li>
-                <li class="bar"><a href="Autres/infos.html">Infos trafic</a></li>
+                
             </ul>
         </nav>
 </body>
