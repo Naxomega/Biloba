@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="60" >
+
+    <title class="pagetitle">Biloba - Horaires Ginko</title>
+    <link rel="stylesheet" href="style.css">
+    <base href="/Biloba/">
+    <script src="https://api.ginko.voyage/api.js?apiKey=r8B7t6Hgd7vF9V3VV9PQ4vc2a"></script>
+    
+</head>
+<body>
+    <div class="header">
+        <h1 class="logo lightmode">Biloba beta</h1>
+        <h2>Plus d'excuses pour rater votre bus !</h2>
+        <nav class="top-bar">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="arrets.html">Arrêts</a></li>
+                <li><a href="contribuer.html">Contribuer</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="content">
+        <h2 class="titre lightmode">Biloba</h2>
+        <br>
+        <div class="line-container">Chargement des arrêts...</div>
+        <script>
+          // var globales
+          const urlParams = new URLSearchParams(window.location.search);
+          let conteneur = document.querySelector(".line-container");
+          const destination = urlParams.get("destination");
+          const ligne = urlParams.get("ligne");
+
+          const callGinko = (methodPath, args = {}) => {
+      return new Promise((resolve, reject) => {
+        ginkoAPI(
+          methodPath,
+          args,
+          (data) => resolve(data),
+          (err) => reject(err)
+        );
+      });
+    };
+
+// fonction async principale
+const recupArrets = async (dest, ligne) => {
+  try {
+    const reponse = await callGinko("DR/getDetailsVariante", {idLigne: ligne, idVariante: dest})
+    console.log(reponse)
+    conteneur = reponse.map((a) => {`<a href="horaires.html?arret=${a.nom}" class="line-link line-1">
+                <span>${a.nom}</span>
+            </a>`})
+  } catch (error) {
+    conteneur.innerHTML = `<p style="color:red">Erreur : ${error}</p>`;
+  }
+}
+  
+
+
+
+recupArrets(destination, ligne);
+
+  </script>
+  
+
+    </div>
+</body>
+</html>
