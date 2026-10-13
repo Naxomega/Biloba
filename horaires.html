@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="refresh" content="30" >
-
     <title>Biloba - Horaires Ginko</title>
     <link rel="stylesheet" href="style_horaires.css">
     <base href="/Biloba/">
@@ -127,10 +125,10 @@ const bottomBar = () => {
   }
 });
 };
-
-
-    afficherHoraires(arretcible);
-    bottomBar();
+bottomBar();
+setTimeout(() => {afficherHoraires(arretcible);}, 20000) // Rafraîchit les résultats tout les 20s
+    
+  
   </script>
 
 <div class="line-dots">
