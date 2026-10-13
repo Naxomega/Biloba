@@ -79,8 +79,8 @@ const chargerPositionGPS = async () => {
       let cle = cletemp.nom
       let lat = cletemp.latitude
       let lon = cletemp.longitude
-      let proxilat = math.abs(Latitude-lat)
-      let proxilon = math.abs(Longitude-lon)
+      let proxilat = Math.abs(Latitude-lat)
+      let proxilon = Math.abs(Longitude-lon)
       let proxi = proxilat+proxilon
       let indiceProxi = proxi/2
       if (!listearretsproche[cle]) {
