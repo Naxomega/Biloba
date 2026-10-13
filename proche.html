@@ -68,10 +68,10 @@ const callGinko = (methodPath, args = {}) => {
 const chargerPositionGPS = async () => {
   try {
 
-    //const pos = await getPosition();
+    const pos = await getPosition();
     
-    const Latitude = debugLat//pos.coords.latitude;
-    const Longitude = debugLon//pos.coords.longitude;
+    const Latitude = pos.coords.latitude;
+    const Longitude = pos.coords.longitude;
     try {
       const arrets = await callGinko("DR/getArrets");
       for (let index = 0; index < arrets.length; index++) {
