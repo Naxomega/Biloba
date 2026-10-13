@@ -68,10 +68,10 @@ const callGinko = (methodPath, args = {}) => {
 const chargerPositionGPS = async () => {
   try {
 
-    const pos = await getPosition();
+    //const pos = await getPosition();
     
-    const Latitude = pos.coords.latitude;
-    const Longitude = pos.coords.longitude;
+    const Latitude = debugLat//pos.coords.latitude;
+    const Longitude = debugLon//pos.coords.longitude;
     try {
       const arrets = await callGinko("DR/getArrets");
       for (let index = 0; index < arrets.length; index++) {
@@ -79,10 +79,14 @@ const chargerPositionGPS = async () => {
       let cle = cletemp.nom
       let lat = cletemp.latitude
       let lon = cletemp.longitude
+      let proxilat = math.abs(Latitude-lat)
+      let proxilon = math.abs(Longitude-lon)
+      let proxi = proxilat+proxilon
+      let indiceProxi = proxi/2
       if (!listearretsproche[cle]) {
-          listearretsproche[cle] = {nom: cle, latitude: lat, longitude: lon};
+          listearretsproche[cle] = {nom: cle, latitude: lat, longitude: lon, proxi : indiceProxi};
        }}
-      const arretsproches = Object.values(listearretsproche).filter(arret => {
+      const arretsproches = Object.values(listearretsproche).sort((a, b) => a.proxi - b.proxi).filter(arret => {
         return (
           arret.latitude >= Latitude-deltaLat &&
           arret.latitude <= Latitude+deltaLat &&
