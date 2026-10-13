@@ -13,12 +13,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta http-equiv="Cache-Control" content="no-cache">
-    
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <body>
     <div class="header">
         <h1 class="logo lightmode">Biloba</h1>
-        <h3>Aussi léger qu'une feuille de Ginko</h3>
+        <h3 class="">Aussi léger qu'une feuille de Ginko</h3>
         
     </div>
     <div class="content">
@@ -75,7 +74,12 @@ for (let index = 0; index < passages.length; index++) {
       let part2 = cletemp.destination
       if (part1==='Ginko Citadelle'){part1="Cit."}
       let attente = cletemp.temps
-      let cle = part1+part2
+      let statut = ""
+      let moyen = ""
+      if (part1==="T1"||part1==="T2") {moyen="tram"} else {moyen="bus"}
+      if (attente==="0 min" && moyen==="bus"){attente=`<i class="fa-solid fa-bus-simple imminent"></i>`} // Affiche une icone de bus/tram
+      if (attente==="0 min" && moyen==="tram"){attente=`<i class="fa-solid fa-train-tram imminent"></i>`}// lorsque l'arrivée est imminente
+      let cle = part1+part2                                                                              // comme les écrans à quai
       if (!trajets[cle]) {
           trajets[cle] = {ligne: part1, destination: part2, temps: [attente]}
       }
@@ -127,7 +131,7 @@ const bottomBar = () => {
 });
 };
 bottomBar(); afficherHoraires(arretcible);
-setInterval(() => {afficherHoraires(arretcible);}, 20000) // Rafraîchit les résultats tout les 20s
+setInterval(() => {afficherHoraires(arretcible);}, 10000) // Rafraîchit les résultats tout les 10s selon les recommandations de Ginko
     
   
   </script>
