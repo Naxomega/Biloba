@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="60" >
+
+    <title>Biloba - Horaires Ginko</title>
+    <link rel="stylesheet" href="style_horaires.css">
+    <base href="/Biloba/">
+    <script src="https://api.ginko.voyage/api.js?apiKey=r8B7t6Hgd7vF9V3VV9PQ4vc2a"></script>
+    <meta name="theme-color" content="#121212">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes"> 
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    
+</head>
+<body>
+    <div class="header">
+        <h1 class="logo lightmode">Biloba</h1>
+        <h3>Aussi léger qu'une feuille de Ginko</h3>
+        
+    </div>
+    <div class="content">
+      <div class="titre lightmode"><h2>Biloba</h2></div>
+        <br>
+        <div id="temps-reel">Chargement des horaires...</div>
+        <script>
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const ligne = urlParams.get('ligne');
+    const bar = document.querySelector(".insert");
+    const callGinko = (methodPath, args = {}) => {
+      return new Promise((resolve, reject) => {
+        ginkoAPI(
+          methodPath,
+          args,
+          (data) => resolve(data), // Fonction API Ginko
+          (err) => reject(err)
+        );
+      });
+    };
+      try { const response = await callGinko()
+        
+      } catch (error) {
+        
+      }
+    // 2. Fonction principale pour récupérer et afficher les horaires
+   /* const afficherHoraires = async (nomArret) => {
+  const conteneur = document.querySelector("#temps-reel");
+  const titre = document.querySelector('.titre');
+  const pagetitre = document.querySelector('title');
+
+  try {
+    const response = await callGinko("TR/getTempsLieu", { nom: nomArret });
+
+    
+    
+    console.log("Réponse de l'API :", response);
+
+    
+    const passages = response.listeTemps
+
+    if (passages.length === 0) {
+      conteneur.innerHTML = "<p>Aucun passage trouvé pour cet arrêt.</p>";
+      return;
+    }
+    
+    console.log(passages)
+for (let index = 0; index < passages.length; index++) {
+      let cletemp = passages[index]
+      let part1 = cletemp.numLignePublic
+      let part2 = cletemp.destination
+      if (part1==='Ginko Citadelle'){part1="Cit."}
+      let attente = cletemp.temps
+      let cle = part1+part2
+      if (!trajets[cle]) {
+          trajets[cle] = {ligne: part1, destination: part2, temps: [attente]}
+      }
+      else {
+        trajets[cle].temps.push(attente)
+      }
+
+}
+console.log(trajets)
+    // 3. Affichage
+   conteneur.innerHTML = Object.values(trajets).map((p => `<div class="passage tile-${p.ligne.toLowerCase()}">
+          <strong><p class="line-dot line-${p.ligne.toLowerCase()} enlarge outline-${p.ligne.toLowerCase()}">${p.ligne}</p></strong> <p> 
+         <strong>${p.destination}</strong>
+          <br><span class="bulle"><strong>${p.temps.join(`</span></strong><strong><span class="bulle">`)}</strong></span></p></div>`)).join("");
+    
+
+
+  } catch (erreur) {
+    console.error("Erreur :", erreur);
+    conteneur.innerHTML = `<p style="color:red">Erreur : ${erreur}</p>`;
+  }
+  titre.innerHTML = `<h2>${nomArret}</h2>`;
+  
+  document.querySelector(".line-dots").innerHTML = htmlCorrespondances || `<p class="lightmode">Aucune correspondance directe</p>`;
+  pagetitre.innerHTML = `Biloba - ${nomArret}`
+};
+const bottomBar = () => {
+  document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const provenance = urlParams.get("provenance");
+  const bar = document.querySelector(".insert");
+
+  // Sécurité : si l'élément n'existe pas, on le signale dans la console
+  
+
+  if (provenance === "GPS") {
+    bar.innerHTML = `
+      <li class="bar"><a href="index.html">Lignes</a></li>
+      <li class="bar"><a href="Autres/infos.html">Infos trafic</a></li>
+      <li class="bar selected"><a href="proche.html">Autour de moi</a></li>
+    `;
+  } else {
+    bar.innerHTML = `
+      <li class="selected bar"><a href="index.html">Lignes</a></li>
+      <li class="bar"><a href="Autres/infos.html">Infos trafic</a></li>
+      <li class="bar"><a href="proche.html">Autour de moi</a></li>
+    `;
+  }
+});
+};
+
+
+    afficherHoraires(arretcible);
+    bottomBar(); */
+  </script>
+
+<div class="line-dots">
+
+        </div>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="bar-container">
+    <nav class="top-bar">
+            <ul class="insert">
+                
+            </ul>
+        </nav>
+        </div>
+</body>
+</html>
