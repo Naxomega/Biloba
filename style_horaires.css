@@ -151,6 +151,9 @@
   --D420: #E8526B;
   --D421: #E8526B;
 }
+html {
+  scroll-behavior: smooth;
+}
 body {
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
@@ -1069,14 +1072,27 @@ a,
 .top-bar {
             background-color: #111;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-evenly;
             align-items: center;
-            position: fixed;
+            text-align: center;
+            flex: 1 1 100%;
+            
+            
+            
+                outline: 2px solid #444;
 
-            bottom: 10px;
-            width: 100%;
-            right: 0px;
         }
 .selected {background-color: #00ABC4;padding: 5px;border-radius: 5px;}
-.bar:not(.selected){padding: 5px;}
+.bar-container {
+    position: fixed;
+    bottom: 15px;
+    width: 90%;          
+    max-width: 450px;    
+    left: 0;
+    right: 0;
+    margin: 0 auto;      
+    
+    display: flex;
+    align-items: center;
+}
 

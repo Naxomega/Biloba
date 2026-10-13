@@ -217,6 +217,10 @@ a,
     padding-top:10px;
     
 }
+.poppins{
+     font-family:'Poppins Custom';
+   
+}
 .navbar {
   background-color: #333;
   overflow: hidden;
