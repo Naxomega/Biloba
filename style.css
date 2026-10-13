@@ -240,7 +240,11 @@ a,
         }
 .selected {background-color: #00ABC4;padding: 5px;border-radius: 5px;}
 .bar:not(.selected){padding: 5px;}
-
+.information {
+    background-color: red;
+    border-radius: 25px;
+    padding: 1px;
+}
         
 
         
