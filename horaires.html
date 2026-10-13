@@ -48,6 +48,7 @@
 
     // 2. Fonction principale pour récupérer et afficher les horaires
     const afficherHoraires = async (nomArret) => {
+      let trajets = {};
   const conteneur = document.querySelector("#temps-reel");
   const titre = document.querySelector('.titre');
   const pagetitre = document.querySelector('title');
@@ -125,7 +126,7 @@ const bottomBar = () => {
   }
 });
 };
-bottomBar();
+bottomBar(); afficherHoraires(arretcible);
 setInterval(() => {afficherHoraires(arretcible);}, 20000) // Rafraîchit les résultats tout les 20s
     
   
