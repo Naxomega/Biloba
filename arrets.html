@@ -45,49 +45,88 @@
     };
 
     // 2. Fonction principale pour récupérer et afficher les horaires
-    const afficherHoraires = async (idLigne, idDest) => {
+const afficherHoraires = async (numligne, dest) => {
       let trajets = {};
   const conteneur = document.querySelector("#temps-reel");
   const titre = document.querySelector('.titre');
   const pagetitre = document.querySelector('title');
 
   try {
-    const response = await callGinko("DR/getDetailsVariantes", { idLigne:idLigne, idVariante:idDest  });
+    const getLignes = await callGinko("DR/getLignes", {});
+    let listeligne = {};
+    console.log(getLignes)
+    for (let index = 0; index < getLignes.length; index++) {
+      const ligneselect = getLignes[index]
+      const nompublic = ligneselect.numLignePublic
+      const id = ligneselect.id
+
+      listeligne[nompublic] = {id: id}
+    }
+    let listevariantes = {};
+    for (let index = 0; index < getLignes.length; index++) {
+      const variantes = getLignes[index].variantes
+      const ligneselect = getLignes[index]
+      const nompublic = ligneselect.numLignePublic
+      const idligne = ligneselect.id
+      for (let index = 0; index < variantes.length; index++) {
+        const destsel = variantes[index].destination
+        const id = variantes[index].id
+        
+        
+        if (!listevariantes[destsel]) {
+          listevariantes[destsel] = {id : id, ligne: nompublic, idligne : idligne}
+          
+      }
+      else if (listevariantes[destsel]) {
+          if (await (callGinko("DR/getDetailsVariante", { idLigne: idligne, idVariante: id})).length >= await (callGinko("DR/getDetailsVariante", { idLigne: listevariantes[destsel].idligne, idVariante: listevariantes[destsel].id})).length) {
+            console.log("OK")
+            const longueurActuelle = await callGinko("DR/getDetailsVariante", { idLigne: idligne, idVariante: id }).length;
+            const longueurStockee = await callGinko("DR/getDetailsVariante", { idLigne: listevariantes[destsel].idligne, idVariante: listevariantes[destsel].id }).length;
+            console.log(`Comparaison pour ${destsel} : Actuelle (${longueurActuelle}) vs Stockée (${longueurStockee})`);
+            listevariantes[destsel] = {id : id, ligne: nompublic, idligne : idligne}
+          }
+      }
+        
+      }
+      
+    }
+    /*  Exemple syntaxe conversion :  listeligne["L3"].id
+                                      retourne "3"          
+        Exemple syntaxe variantes :   listeligne["L3"].variantes.find(variante => variante.destination === "Pôle Temis") 
+        Syntaxe variantes :           listeligne[numligne].variantes.find(variante => variante.destination === dest)*/
+        
+    console.log(listeligne)
+    console.log(listevariantes)
+    //console.log(listeligne[numligne].variantes.find(variante => variante.destination === dest))
+   //const response = await callGinko("DR/getDetailsVariante", { idLigne: listeligne[numligne].id, idVariante: listeligne[numligne].variantes.find(variante => variante.destination === dest).id });
+
 
     
     
-    console.log("Réponse de l'API :", response);
+    console.log("Réponse de l'API (arrets) :", response);
+    console.log("Réponse de l'API (lignes) :", );
 
     
-    const passages = response.listeTemps;
+    const passages = response;
 
     if (passages.length === 0) {
       conteneur.innerHTML = "<p>Aucun passage trouvé pour cet arrêt.</p>";
       return;
     }
-    
-    console.log(passages);
-
-
-} catch (erreur) {console.log(erreur)};
-/*console.log(trajets)
+    console.log(trajets)
     // 3. Affichage
    conteneur.innerHTML = Object.values(trajets).map((p => `<div class="passage tile-${p.ligne.toLowerCase()}">
           <strong><p class="line-dot line-${p.ligne.toLowerCase()} enlarge outline-${p.ligne.toLowerCase()}">${p.ligne}</p></strong> <p> 
          <strong>${p.destination}</strong>
           <br><span class="bulle"><strong>${p.temps.join(`</span></strong><strong><span class="bulle">`)}</strong></span></p></div>`)).join("");
-    
-
-
-  } catch (erreur) {
+    } catch (erreur) {
     console.error("Erreur :", erreur);
     conteneur.innerHTML = `<p style="color:red">Erreur : ${erreur}</p>`;
   }
   titre.innerHTML = `<h2>${nomArret}</h2>`;
   
   document.querySelector(".line-dots").innerHTML = htmlCorrespondances || `<p class="lightmode">Aucune correspondance directe</p>`;
-  pagetitre.innerHTML = `Biloba - ${nomArret}`
-};*/}
+  pagetitre.innerHTML = `Biloba - ${nomArret}`}
 const bottomBar = () => {
   document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
