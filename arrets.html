@@ -77,12 +77,10 @@ const afficherHoraires = async (numligne, dest) => {
           listevariantes[destsel] = {id : id, ligne: nompublic, idligne : idligne}
           
       }
-      else if (listevariantes[destsel]) {
+      else  {
           if (await (callGinko("DR/getDetailsVariante", { idLigne: idligne, idVariante: id})).length >= await (callGinko("DR/getDetailsVariante", { idLigne: listevariantes[destsel].idligne, idVariante: listevariantes[destsel].id})).length) {
             console.log("OK")
-            const longueurActuelle = await callGinko("DR/getDetailsVariante", { idLigne: idligne, idVariante: id }).length;
-            const longueurStockee = await callGinko("DR/getDetailsVariante", { idLigne: listevariantes[destsel].idligne, idVariante: listevariantes[destsel].id }).length;
-            console.log(`Comparaison pour ${destsel} : Actuelle (${longueurActuelle}) vs Stockée (${longueurStockee})`);
+            
             listevariantes[destsel] = {id : id, ligne: nompublic, idligne : idligne}
           }
       }
