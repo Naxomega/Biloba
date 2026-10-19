@@ -45,49 +45,32 @@
     };
 
     // 2. Fonction principale pour récupérer et afficher les horaires
-    const afficherHoraires = async (nomArret) => {
+    const afficherHoraires = async (idLigne, idDest) => {
       let trajets = {};
   const conteneur = document.querySelector("#temps-reel");
   const titre = document.querySelector('.titre');
   const pagetitre = document.querySelector('title');
 
   try {
-    const response = await callGinko("TR/getTempsLieu", { nom: nomArret });
+    const response = await callGinko("DR/getDetailsVariantes", { idLigne:idLigne, idVariante:idDest  });
 
     
     
     console.log("Réponse de l'API :", response);
 
     
-    const passages = response.listeTemps
+    const passages = response.listeTemps;
 
     if (passages.length === 0) {
       conteneur.innerHTML = "<p>Aucun passage trouvé pour cet arrêt.</p>";
       return;
     }
     
-    console.log(passages)
-for (let index = 0; index < passages.length; index++) {
-      let cletemp = passages[index]
-      let part1 = cletemp.numLignePublic
-      let part2 = cletemp.destination
-      if (part1==='Ginko Citadelle'){part1="Cit."}
-      let attente = cletemp.temps
-      let statut = ""
-      let moyen = ""
-      if (part1==="T1"||part1==="T2") {moyen="tram"} else {moyen="bus"}
-      if (attente==="0 min" && moyen==="bus"){attente=`<i class="fa-solid fa-bus-simple imminent"></i>`} // Affiche une icone de bus/tram
-      if (attente==="0 min" && moyen==="tram"){attente=`<i class="fa-solid fa-train-tram imminent"></i>`}// lorsque l'arrivée est imminente
-      let cle = part1+part2                                                                              // comme les écrans à quai
-      if (!trajets[cle]) {
-          trajets[cle] = {ligne: part1, destination: part2, temps: [attente]}
-      }
-      else {
-        trajets[cle].temps.push(attente)
-      }
+    console.log(passages);
 
-}
-console.log(trajets)
+
+} catch (erreur) {console.log(erreur)};
+/*console.log(trajets)
     // 3. Affichage
    conteneur.innerHTML = Object.values(trajets).map((p => `<div class="passage tile-${p.ligne.toLowerCase()}">
           <strong><p class="line-dot line-${p.ligne.toLowerCase()} enlarge outline-${p.ligne.toLowerCase()}">${p.ligne}</p></strong> <p> 
@@ -104,7 +87,7 @@ console.log(trajets)
   
   document.querySelector(".line-dots").innerHTML = htmlCorrespondances || `<p class="lightmode">Aucune correspondance directe</p>`;
   pagetitre.innerHTML = `Biloba - ${nomArret}`
-};
+};*/}
 const bottomBar = () => {
   document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -129,11 +112,8 @@ const bottomBar = () => {
   }
 });
 };
-bottomBar(); afficherHoraires(arretcible);
-setInterval(() => {afficherHoraires(arretcible);}, 10000) // Rafraîchit les résultats tout les 10s selon les recommandations de Ginko
-    
-  
-  </script>
+bottomBar(); afficherHoraires(ligne, destination);
+</script>
 
 <div class="line-dots">
 
