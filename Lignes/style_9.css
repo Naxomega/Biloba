@@ -134,7 +134,7 @@ body {
 }
 .logo {
     font-family:'Poppins Custom';
-    background-color: #00ABC4;
+    background-color: #F29400;
     border-radius: 10px;
     max-width: 100%;
     min-width: 100%;
@@ -319,7 +319,7 @@ a,
 }
 
 .line-link:hover {
-    background-color: #006AB3;
+    background-color: #F29400;
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
 }

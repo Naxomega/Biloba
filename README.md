@@ -11,7 +11,7 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 - Voir les arrêts proches de vous
 ## Roadmap
 - [x] Terminer les TRAM et LIANES (voir en dessous)
-- [ ] Terminer les lignes urbaines (voir en dessous)
+- [x] Terminer les lignes urbaines (voir en dessous)
 - [ ] Améliorer l'ésthetique du site (via des librairies JS comme React ou Vue) (en cours, pour l'instant en CSS pur)
 - [x] Système de localisation (page "Autour de moi" qui liste les arrêts à proximité)
 - [ ] Système de stockage persistant (pour des arrêts favoris notamment)
@@ -27,15 +27,15 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 - Ligne L4
 - Ligne L5
 - Ligne L6
-- Ligne 7 (Prochainement)
-- Ligne 8 (Prochainement)
-- Ligne 9 (Prochainement)
-- Ligne 10 (Prochainement)
-- Ligne 11 (Prochainement)
-- Ligne 12 (Prochainement)
+- Ligne 7
+- Ligne 8
+- Ligne 9
+- Ligne 10
+- Ligne 11
+- Ligne 12
 - Lignes Complémentaires (Eventuellement)
 - Lignes Périurbaines (Eventuellement)
-- Lignes Scolaires (Prochainement)
+- Lignes Scolaires (Eventuellement)
 ## Implémentation des fonctionnalités
 Quelque chose codé "en dur", c'est qu'il est implémenté de manière fixe dans le code (par exemple un bouton T1 en html sur la page "Lignes"). Et le but c'est d'éliminer au maximum les fonctionnalités codées en dur (donc demander à l'API les lignes, et alors créer un bouton T1 avec les infos de l'API), car si Keolis changent les lignes ou autre infos, le site sera immédiatement obsolète, et de plus, ca réduit la charge de travail en termes de maintenance et d'amélioration (par exemple, si je veut modifier le design de la page des horaires, j'ai qu'un seul fichier à modifier au lieu des multiples autrefois)
 

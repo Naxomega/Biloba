@@ -134,13 +134,13 @@ body {
 }
 .logo {
     font-family:'Poppins Custom';
-    background-color: #00ABC4;
+    background-color: #CECB00;
     border-radius: 10px;
     max-width: 100%;
     min-width: 100%;
     display: flex;
     justify-content: center;
-    color: white;
+    color: black;
     min-width: fit-content;
     padding-top:10px;
     
@@ -319,9 +319,10 @@ a,
 }
 
 .line-link:hover {
-    background-color: #006AB3;
+    background-color: #CECB00;
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: black;
 }
 
 .line-link span {
@@ -377,7 +378,7 @@ a,
     }
     .lightmode{color: #fff;}
     .content{background-color: #333;}
-    .logo{color:white;}
+    .logo{color:black;}
 }
 .top-bar {
             background-color: #111;
