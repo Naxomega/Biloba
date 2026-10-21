@@ -789,7 +789,7 @@ a,
     border: solid rgba(0, 0, 0, 0) 1px;
 }
 .line-link-l6:hover {
-    background-color:var(--l6);
+    background-color:var(--L6);
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
     color: black;
