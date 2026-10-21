@@ -31,6 +31,7 @@
     const destination = urlParams.get("dest")
     const provenance = urlParams.get("provenance");
     const bar = document.querySelector(".insert");
+    const logo = document.querySelector(".header")
     let trajets = {};
 
     const callGinko = (methodPath, args = {}) => {
@@ -124,7 +125,7 @@ const afficherHoraires = async (numligne, dest) => {
       return;
     }
     // 3. Affichage
-   conteneur.innerHTML = Object.values(arrets).map((p => `<a href="horaires.html?arret=${p.nom}" class="line-link line-1">
+   conteneur.innerHTML = Object.values(arrets).map((p => `<a href="horaires.html?arret=${p.nom}" class="line-link-${numligne.toLowerCase()} line-1">
                 <span>${p.nom}</span>
             </a>`)).join("");
     } catch (erreur) {
@@ -134,6 +135,8 @@ const afficherHoraires = async (numligne, dest) => {
   titre.innerHTML = `<h2>${ligne} vers ${dest}</h2>`;
   
   pagetitre.innerHTML = `Biloba - ${ligne} > ${dest}`}
+  logo.innerHTML = `<h1 class="logo line-${ligne.toLowerCase()}">Biloba</h1><h3 class="">Aussi léger qu'une feuille de Ginko</h3>`
+
 const bottomBar = () => {
   document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
