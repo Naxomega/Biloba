@@ -10,7 +10,7 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 - Visualise chaque arrêt (des lignes implémentées) avec toutes les lignes qui y passent
 - Voir les arrêts proches de vous
 ## Roadmap
-- [ ] Terminer les TRAM et LIANES (voir en dessous)
+- [x] Terminer les TRAM et LIANES (voir en dessous)
 - [ ] Terminer les lignes urbaines (voir en dessous)
 - [ ] Améliorer l'ésthetique du site (via des librairies JS comme React ou Vue) (en cours, pour l'instant en CSS pur)
 - [x] Système de localisation (page "Autour de moi" qui liste les arrêts à proximité)
@@ -25,8 +25,8 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 - Ligne T2
 - Ligne L3
 - Ligne L4
-- Ligne L5 (Prochainement)
-- Ligne L6 (Prochainement)
+- Ligne L5
+- Ligne L6
 - Ligne 7 (Prochainement)
 - Ligne 8 (Prochainement)
 - Ligne 9 (Prochainement)
@@ -42,7 +42,7 @@ Quelque chose codé "en dur", c'est qu'il est implémenté de manière fixe dans
 Voici une checklist ce de qui est en dur ou non (coché = pas en dur)
 - [ ] Page des lignes
 - [ ] Page de sélection des directions
-- [ ] Page de sélection des arrêts (WIP)
+- [x] Page de sélection des arrêts
 - [x] Page des horaires
 Vous noterez que c'est un peu comme une arborescence. Et mon objectif c'est de remonter dans cet arbre pour éliminer progressivement les implémentation en dur.
 
