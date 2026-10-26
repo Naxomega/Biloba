@@ -1120,9 +1120,38 @@ a,
   50% { opacity: 0; }
   100% { opacity: 1; }
 }
+@keyframes clignote_circle1 {
+  0% { opacity: 0; }  /* 0s */
+  10% { opacity: 0; } /* Début fade in */
+  30% { opacity: 1; } /* On */
+  30% { opacity: 1; } /* Début fade out */
+  50% { opacity: 0; } /* Off */
+  100% { opacity: 0; }/* 3s */
+
+}
+@keyframes clignote_circle2 {
+  0% { opacity: 0; }  /* 0s */
+  30% { opacity: 0; } /* Début fade in */
+  60% { opacity: 1; } /* On */
+  60% { opacity: 1; } /* Début fade out */
+  90% { opacity: 0; } /* Off */
+  100% { opacity: 0; }/* 3s */
+}
+@keyframes clignote_circle3 {
+  0% { opacity: 0; }  /* 0s */
+  50% { opacity: 0; } /* Début fade in */
+  80% { opacity: 1; } /* On */
+  80% { opacity: 1; } /* Début fade out */
+  100% { opacity: 0; } /* Off */
+  100% { opacity: 0; }/* 3s */
+
+}
 
 .imminent {
   animation: clignote 1s infinite;
 
 }
+.circle1 {animation: clignote_circle1 3s infinite;}
+.circle2 {animation: clignote_circle2 3s infinite;}
+.circle3 {animation: clignote_circle3 3s infinite;}
 
