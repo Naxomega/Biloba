@@ -40,7 +40,7 @@ body {
     display: flex; /* Use flexbox for layout */
     flex-direction: column; /* Stack headings vertically */
     align-items: center; /* Center all content horizontally */
-    gap: 20px; /* Add space between elements */
+    gap: 10px; /* Add space between elements */
     text-align: center; /* Center text inside the container */
 }
 
@@ -405,4 +405,52 @@ a,
     
     display: flex;
     align-items: center;
+}
+.etat0{
+    background-color: #575757;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+}
+.etat1{
+    background-color: #017F27;
+    padding: 5px;
+    border-radius: 5px;
+        color: white;
+
+}
+.etat2{
+    background-color: #006FC6;
+    padding: 5px;
+    border-radius: 5px;
+        color: white;
+
+}
+.etat3{
+    background-color: #575757;
+    padding: 5px;
+    border-radius: 5px;
+        color: white;
+
+}
+.etat4{
+    background-color: #575757;
+    padding: 5px;
+    border-radius: 5px;
+        color: white;
+
+}
+.etat5{
+    background-color: #CB6106;
+    padding: 5px;
+    border-radius: 5px;
+        color: white;
+
+}
+.etat6{
+    background-color: red;
+    padding: 5px;
+    border-radius: 5px;
+        color: white;
+
 }

@@ -10,6 +10,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes"> 
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script src="https://api.ginko.voyage/api.js?apiKey=r8B7t6Hgd7vF9V3VV9PQ4vc2a"></script>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
@@ -29,6 +30,8 @@
                 <p class="notbold">Vers&nbsp;</p><br><p class="">Citadelle</p>
             </a>
         </div>
+        <h3 class="lightmode">Etat de la ligne</h3>
+        <div class="etat"></div>
         
     </div>
     <div class="bar-container">
@@ -41,5 +44,83 @@
             </ul>
         </nav>
         </div>
+        <script>
+    const champetat = document.querySelector(".etat")
+    const urlParams = new URLSearchParams(window.location.search);
+    const provenance = urlParams.get("provenance")
+    const bar = document.querySelector(".insert");
+    const callGinko = (methodPath, args = {}) => {
+      return new Promise((resolve, reject) => {
+        ginkoAPI(
+          methodPath,
+          args,
+          (data) => resolve(data), // Fonction API Ginko
+          (err) => reject(err)
+        );
+      });
+    };
+    const getInfos = async () => {
+      
+    
+      try { const response = await callGinko("TR/getMessages");
+        console.log(response);
+        const texte = Object.values(response).map((a => a.texte)).join("")
+        conteneur.innerHTML = texte
+        
+        /* 
+        Liste Etats : 
+                  0 = X / Aucune Information
+                  1 = Vert / Fonctionnement normal
+                  2 = Bleu / Information
+                  3 = Gris / Ne fonctionne pas (lignes urbaines (7-12) le week-end par exemple)
+                  4 = Gris / Perturbation à venir
+                  5 = Orange / Perturbation en cours
+                  6 = Rouge / Circulation interrompue (gros problème/travaux comme le tram l'été 2026)    
+        */
+        for (let index = 0; index < response.length; index++) {
+      let liste = response[index] // Etats : 4=Gris, 2=Bleu, 5=Orange
+      let ligne = liste.lignes
+      let titre = liste.titre
+      if (ligne==='Ginko Citadelle'){ligne="Cit."}
+      let attente = cletemp.temps
+      let statut = ""
+      let moyen = ""
+      let cle = part1+part2                                                                              
+      if (!trajets[cle]) {
+          trajets[cle] = {ligne: part1, destination: part2, temps: [attente]}
+      }
+      else {
+        trajets[cle].temps.push(attente)
+      }
+      }} catch (error) { // fin try et début catch
+        console.log(error);
+      }
+    }
+    const getEtats = async (numLigne) => {
+        try {
+            const response = await callGinko("TR/getEtatLignes");
+            console.log(response)
+            const etat = Object.values(response).filter(a => a.numLignePublic === numLigne)
+            console.log(etat)
+            console.log("La ligne", numLigne, "est à l'état :", etat[0].etat)
+            let etattxt = ""
+            if (etat[0].etat === 0) {etattxt = "Aucune information"}
+            if (etat[0].etat === 1) {etattxt = "Fonctionnement normal"}
+            if (etat[0].etat === 2) {etattxt = "Information (voir en plus bas)"}
+            if (etat[0].etat === 3) {etattxt = "Ne fonctionne pas"}
+            if (etat[0].etat === 4) {etattxt = "Perturbation à venir (voir plus bas)"}
+            if (etat[0].etat === 5) {etattxt = "Perturbation en cours (voir plus bas)"}
+            if (etat[0].etat === 6) {etattxt = "Circulation interrompue (voir plus bas)"}
+
+            champetat.innerHTML = `<p class="etat${etat[0].etat} lightmode">${etattxt}</p>`
+
+        } catch (erreur) {console.log(erreur)}
+    }
+    //getInfos();
+    getEtats("Ginko Citadelle");
+
+    
+    
+  </script>
 </body>
 </html>
