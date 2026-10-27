@@ -375,6 +375,7 @@ a,
     .header {
         color: #DDD;
     }
+    .gk-mivMessage {color: white;}
     .lightmode{color: #fff;}
     .content{background-color: #333;}
     .logo{color:white;}
@@ -451,5 +452,64 @@ a,
     padding: 5px;
     border-radius: 5px;
         color: white;
-
+}
+.gk-mivMessage a {
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 40%;      
+    max-width: 100%;   
+    min-width: 100%;   
+    height: 48px;
+    color: white;
+    
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    background-color: var(--line-color, rgba(0, 0, 0, 0));
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 18px;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border: solid rgba(255, 255, 255, 0.4) 1px;
+}
+.tileetat1 .gk-mivMessage a:hover {
+    background-color: #017F27;
+    transform: scale(1.05);
+    border: solid rgba(0, 0, 0, 0) 1px;
+}
+.tileetat2 .gk-mivMessage a:hover {
+    background-color: #006FC6;
+    transform: scale(1.05);
+    border: solid rgba(0, 0, 0, 0) 1px;
+}
+.tileetat3 .gk-mivMessage a:hover {
+    background-color: #575757;
+    transform: scale(1.05);
+    border: solid rgba(0, 0, 0, 0) 1px;
+}
+.tileetat4 .gk-mivMessage a:hover {
+    background-color: #575757;
+    transform: scale(1.05);
+    border: solid rgba(0, 0, 0, 0) 1px;
+}
+.tileetat5 .gk-mivMessage a:hover {
+    background-color: #CB6106;
+    transform: scale(1.05);
+    border: solid rgba(0, 0, 0, 0) 1px;
+}
+.tileetat6 .gk-mivMessage a:hover {
+    background-color: red;
+    transform: scale(1.05);
+    border: solid rgba(0, 0, 0, 0) 1px;
+}
+.tileetat0 .gk-mivMessage a:hover {
+    background-color: #575757;
+    transform: scale(1.05);
+    border: solid rgba(0, 0, 0, 0) 1px;
 }
