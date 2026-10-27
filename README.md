@@ -18,7 +18,7 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 - [x] Interface plus adapté aux appareils mobile (Avec une navbar comme la plupart des applis mobile d'aujourd'hui)
 - [ ] Système d'information de chaque bus comme l'appli/site officiel
 - [ ] Documentation complète sur l'implémentation de l'API et la logique derrière
-- [ ] Infos trafic pour chaque ligne
+- [x] Infos trafic pour chaque ligne
 - [ ] Retirer un maximum de choses codées en dur (voir en dessous)
 ## Lignes Disponibles
 - Ligne T1
@@ -40,7 +40,7 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 Quelque chose codé "en dur", c'est qu'il est implémenté de manière fixe dans le code (par exemple un bouton T1 en html sur la page "Lignes"). Et le but c'est d'éliminer au maximum les fonctionnalités codées en dur (donc demander à l'API les lignes, et alors créer un bouton T1 avec les infos de l'API), car si Keolis changent les lignes ou autre infos, le site sera immédiatement obsolète, et de plus, ca réduit la charge de travail en termes de maintenance et d'amélioration (par exemple, si je veut modifier le design de la page des horaires, j'ai qu'un seul fichier à modifier au lieu des multiples autrefois)
 
 Voici une checklist ce de qui est en dur ou non (coché = pas en dur)
-- [ ] Page des lignes
+- [ ] Onglet "Lignes"
 - [ ] Page de sélection des directions
 - [x] Page de sélection des arrêts
 - [x] Page des horaires
