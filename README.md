@@ -44,6 +44,8 @@ Voici une checklist ce de qui est en dur ou non (coché = pas en dur)
 - [ ] Page de sélection des directions
 - [x] Page de sélection des arrêts
 - [x] Page des horaires
+
+- [ ] Style et couleurs
 Vous noterez que c'est un peu comme une arborescence. Et mon objectif c'est de remonter dans cet arbre pour éliminer progressivement les implémentation en dur.
 
 Ma priorité est la page de selection des arrêts car une fois fait, l'implémentation (en dur, je sais mais c'est en attendant) d'autres lignes sera bien plus simple car j'aurais juste a faire la page de sélection de direction et y mettre un lien dans la page lignes. Alors que sans il faut que je remplisse manuellement chaque arrêt à la main. Mais je m'attaquerais aux autres pages quand le reste sera terminé.
