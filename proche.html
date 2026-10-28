@@ -15,6 +15,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta http-equiv="Cache-Control" content="no-cache">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     
 </head>
 <body>
@@ -26,7 +28,7 @@
     <div class="content">
       <div class="titre lightmode"><h2>Biloba</h2></div>
         <br>
-        <div class="line-container">Chargement des arrêts...</div>
+        <div class="line-container"><i class="fa-solid fa-circle lightmode circle1"></i> <i class="fa-solid fa-circle lightmode circle2"></i> <i class="fa-solid fa-circle lightmode circle3"></i></div>
         <script>
           // var globales
           const conteneur = document.querySelector(".line-container");
@@ -94,12 +96,19 @@ const chargerPositionGPS = async () => {
           arret.longitude <= Longitude+deltaLon
         )}).map((a) => `<a href="horaires.html?arret=${a.nom}&provenance=GPS" class="line-link"><span>${a.nom}</span></a><br>`).join("");  
         conteneur.innerHTML = arretsproches
+        if (arretsproches === "") {conteneur.innerHTML = `<p class="lightmode">Aucun arrêts proche n'a été trouvé. Vous êtes bien dans le Grand Besançon ?</p>`}
+        console.log(arretsproches)
         document.querySelector(".titre").innerHTML = "<h2>Arrêts Proches</h2>"
-    } catch {conteneur.innerHTML = "Impossible de récupérer les arrêts.";
+    } catch {
+      document.querySelector(".titre").innerHTML = "<h2>Erreur</h2>"
+      conteneur.innerHTML = `<p class="lightmode">Impossible de récupérer les arrêts</p>`;
+    
     }
 
   } catch (error) {
-    conteneur.innerHTML = "Impossible de récupérer votre position.";
+    document.querySelector(".titre").innerHTML = "<h2>Erreur</h2>"
+    conteneur.innerHTML = `<p class="lightmode">Impossible de vous localiser.</p>
+    <p class="lightmode">Assurez-vous d'avoir autorisé Biloba et votre navigateur à accéder à votre position</p>`;
     console.error(error);
   }
 };
