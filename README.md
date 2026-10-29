@@ -10,8 +10,7 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 - Visualise chaque arrêt (des lignes implémentées) avec toutes les lignes qui y passent
 - Voir les arrêts proches de vous
 ## Roadmap
-- [x] Terminer les TRAM et LIANES (voir en dessous)
-- [x] Terminer les lignes urbaines (voir en dessous)
+- [x] Implémenter toutes les lignes (hors Proxi et spéciales)
 - [ ] Améliorer l'ésthetique du site (via des librairies JS comme React ou Vue) (en cours, pour l'instant en CSS pur)
 - [x] Système de localisation (page "Autour de moi" qui liste les arrêts à proximité)
 - [ ] Système de stockage persistant (pour des arrêts favoris notamment)
@@ -20,22 +19,7 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 - [ ] Documentation complète sur l'implémentation de l'API et la logique derrière
 - [x] Infos trafic pour chaque ligne
 - [ ] Retirer un maximum de choses codées en dur (voir en dessous)
-## Lignes Disponibles
-- Ligne T1
-- Ligne T2
-- Ligne L3
-- Ligne L4
-- Ligne L5
-- Ligne L6
-- Ligne 7
-- Ligne 8
-- Ligne 9
-- Ligne 10
-- Ligne 11
-- Ligne 12
-- Lignes Complémentaires
-- Lignes Périurbaines
-- Lignes Scolaires (Eventuellement)
+
 ## Implémentation des fonctionnalités
 Quelque chose codé "en dur", c'est qu'il est implémenté de manière fixe dans le code (par exemple un bouton T1 en html sur la page "Lignes"). Et le but c'est d'éliminer au maximum les fonctionnalités codées en dur (donc demander à l'API les lignes, et alors créer un bouton T1 avec les infos de l'API), car si Keolis changent les lignes ou autre infos, le site sera immédiatement obsolète, et de plus, ca réduit la charge de travail en termes de maintenance et d'amélioration (par exemple, si je veut modifier le design de la page des horaires, j'ai qu'un seul fichier à modifier au lieu des multiples autrefois)
 
