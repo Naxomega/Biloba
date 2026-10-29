@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biloba - Horaires Ginko</title>
+    <link rel="stylesheet" href="style_dest.css">
+    <base href="/Biloba/">
+    <script src="https://api.ginko.voyage/api.js?apiKey=r8B7t6Hgd7vF9V3VV9PQ4vc2a"></script>
+    <meta name="theme-color" content="#121212">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes"> 
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<body>
+    <div class="header">
+        <h1 class="logo">Biloba</h1>
+
+        
+    </div>
+    <div class="content">
+      <div class="titre lightmode"><h2>Biloba</h2></div>
+        <br>
+        <h3 class="lightmode">Dans quelle direction ?</h3>
+        <div class="link-container"><i class="fa-solid fa-circle lightmode circle1"></i> <i class="fa-solid fa-circle lightmode circle2"></i> <i class="fa-solid fa-circle lightmode circle3"></i></div>
+        <h3 class="lightmode">Etat de la ligne</h3>
+        <div class="etat"></div>
+        <h3 class="lightmode textetrafic">Info Trafic</h3>
+        <div class="infotrafic"></div>
+        <script>
+// arguments en url : ligne=(T1, T2, L3...)&provenance=(GPS ou rien)
+    const urlParams = new URLSearchParams(window.location.search);
+    const ligne = urlParams.get("ligne");
+    const champetat = document.querySelector(".etat")
+    const champinfo = document.querySelector(".infotrafic")
+    const textetrafic = document.querySelector(".textetrafic")
+    const provenance = urlParams.get("provenance");
+    const bar = document.querySelector(".insert");
+    const logo = document.querySelector(".header")
+    let trajets = {};
+
+    const callGinko = (methodPath, args = {}) => {
+      return new Promise((resolve, reject) => {
+        ginkoAPI(
+          methodPath,
+          args,
+          (data) => resolve(data), // Fonction API Ginko
+          (err) => reject(err)
+        );
+      });
+    };
+
+    // 2. Fonction principale pour récupérer et afficher les arrêts
+const afficherHoraires = async (numligne) => {
+      let trajets = {};
+  const conteneur = document.querySelector(".link-container");
+  const titre = document.querySelector('.titre');
+  const pagetitre = document.querySelector('title');
+
+  try {
+    const getLignes = await callGinko("DR/getLignes", {});  // Création d'un dico de "traduction" de lignes
+    let listeligne = {};                                    // Num Public -> Identifiant
+    console.log(getLignes)                                  // 3 -> L3
+    for (let index = 0; index < getLignes.length; index++) {
+      const ligneselect = getLignes[index]
+      const nompublic = ligneselect.numLignePublic
+      const id = ligneselect.id
+
+      listeligne[nompublic] = {id: id}
+    }
+    let listevariantes = {};                                      // Création d'un dico qui liste tout les destinations
+    for (let index = 0; index < getLignes.length; index++) {      // Voir syntaxe plus bas
+      const variantes = getLignes[index].variantes
+      const ligneselect = getLignes[index]
+      const nompublic = ligneselect.numLignePublic
+      const idligne = ligneselect.id
+      for (let index = 0; index < variantes.length; index++) {
+        const destinationpublic = variantes[index].destination
+        const destsel = destinationpublic + nompublic
+        const id = variantes[index].id
+        
+        
+        if (!listevariantes[destsel]) {
+          listevariantes[destsel] = {id : id, ligne: nompublic, idligne : idligne, destination: destinationpublic}
+          
+      }
+      else  {
+        const ligneactuelle = await (callGinko("DR/getDetailsVariante", { idLigne: idligne, idVariante: id }));
+        const lignestockee = await (callGinko("DR/getDetailsVariante", { idLigne: listevariantes[destsel].idligne, idVariante: listevariantes[destsel].id }));
+        
+        const longactuelle = ligneactuelle ? ligneactuelle.length : "Invalide";
+        const longstockee = lignestockee ? lignestockee.length : "Invalide";
+        
+          if (typeof longactuelle === "number" && typeof longstockee === "number" && longactuelle >= longstockee) {
+            
+            
+            listevariantes[destsel] = {id : id, ligne: nompublic, idligne : idligne, destination: destinationpublic}
+          }
+         
+      }
+        
+      }
+      
+    }
+    /*  Syntaxe conversion :  listeligne["Ligne public (ex. L3)"].id
+                                      retourne "3"   
+        Syntaxe destination : listevariantes["Destination publique (ex. Gare Viotte)"+"Ligne Public (ex. T2)"].id (ID variante)
+                                                                                                              .ligne (Nom public ligne)
+                                                                                                              .idLigne (ID ligne)
+                                                                                                              .destination (Nom public destination)
+    */
+    console.log(listeligne)
+    console.log(listevariantes)
+    
+    console.log(listeligne[numligne].id)
+    
+   
+    // 3. Affichage
+   /*conteneur.innerHTML = Object.values(arrets).map((p => `<a href="horaires.html?arret=${p.nom}" class="line-link-${numligne.toLowerCase()} line-1">
+                <span>${p.nom}</span>
+            </a>`)).join("");*/
+      
+      conteneur.innerHTML = Object.values(listevariantes).filter(a => {
+        return (
+          a.ligne === numligne
+        )
+      }).map(a => {if (a.destination.length >= 28) {
+        return `<a href="arrets.html?ligne=${a.ligne}&dest=${a.destination}" class="line-link-${numligne.toLowerCase()} line-1">
+               <p class="notbold">Vers&nbsp;</p><br><p class="notbold">${a.destination}</p>
+            </a>`
+          }
+          else {
+            return `<a href="arrets.html?ligne=${a.ligne}&dest=${a.destination}" class="line-link-${numligne.toLowerCase()} line-1">
+                <p class="notbold">Vers&nbsp;</p><br><p class="">${a.destination}</p>
+            </a>`
+          }
+        }).join("")
+      console.log(conteneur)
+    } catch (erreur) {
+    console.error("Erreur :", erreur);
+    conteneur.innerHTML = `<p style="color:red">Erreur : ${erreur}</p>`;
+  }
+  titre.innerHTML = `<h2>Ligne ${ligne}</h2>`;
+  
+  pagetitre.innerHTML = `Biloba - ${ligne}`}
+  logo.innerHTML = `<h1 class="logo line-${ligne.toLowerCase()}">Biloba</h1>`
+
+const bottomBar = () => {
+  document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const provenance = urlParams.get("provenance");
+  const bar = document.querySelector(".insert");
+
+  // Sécurité : si l'élément n'existe pas, on le signale dans la console
+  
+
+  if (provenance === "GPS") {
+    bar.innerHTML = `
+      <li class="bar"><a href="index.html">Lignes</a></li>
+      <li class="bar"><a href="infos.html">Infos trafic</a></li>
+      <li class="bar selected"><a href="proche.html">Autour de moi</a></li>
+    `;
+  } else {
+    bar.innerHTML = `
+      <li class="selected bar"><a href="index.html">Lignes</a></li>
+      <li class="bar"><a href="infos.html">Infos trafic</a></li>
+      <li class="bar"><a href="proche.html">Autour de moi</a></li>
+    `;
+  }
+});
+};
+const getInfos = async (numLigne) => {
+      
+    
+      try { 
+        const getLignes = await callGinko("DR/getLignes", {});  // Création d'un dico de "traduction" de lignes
+        let listeligne = {};                                    // Num Public -> Identifiant
+        console.log(getLignes)                                  // 3 -> L3
+        for (let index = 0; index < getLignes.length; index++) {
+          const ligneselect = getLignes[index]
+          const nompublic = ligneselect.numLignePublic
+          const id = ligneselect.id
+          listeligne[nompublic] = {id: id}
+        } // Syntaxe conversion :  listeligne["Ligne public (ex. L3)"].id (retourne "3")
+        const response = await callGinko("TR/getMessages", {idLignes:listeligne[numLigne].id});
+        console.log("Info trafic :",response);
+        if (response.length) {
+          const infos = Object.values(response).map(a => `<div class="tileetat${a.etat}"><h4 class="lightmode etat${a.etat}">${a.titre}</h4>${a.texte}</div>`).join("")
+        champinfo.innerHTML = infos
+        
+        }
+        else {textetrafic.innerHTML = ""}
+        
+        
+        /* 
+        Liste Etats : 
+                  0 = X / Aucune Information
+                  1 = Vert / Fonctionnement normal
+                  2 = Bleu / Information
+                  3 = Gris / Ne fonctionne pas (lignes urbaines (7-12) le week-end par exemple)
+                  4 = Gris / Perturbation à venir
+                  5 = Orange / Perturbation en cours
+                  6 = Rouge / Circulation interrompue (gros problème/travaux comme le tram l'été 2026)    
+        */
+        
+      } catch (error) { // fin try et début catch
+        console.log(error);
+      }
+    }
+    const getEtats = async (numLigne) => {
+        try {
+            const response = await callGinko("TR/getEtatLignes");
+            console.log(response)
+            const etat = Object.values(response).filter(a => a.numLignePublic === numLigne)
+            console.log(etat)
+            console.log("La ligne", numLigne, "est à l'état :", etat[0].etat)
+            let etattxt = ""
+            if (etat[0].etat === 0) {etattxt = "Aucune information"}
+            if (etat[0].etat === 1) {etattxt = "Fonctionnement normal"}
+            if (etat[0].etat === 2) {etattxt = "Information (voir plus bas)"}
+            if (etat[0].etat === 3) {etattxt = "Ne fonctionne pas"}
+            if (etat[0].etat === 4) {etattxt = "Perturbation à venir (voir plus bas)"}
+            if (etat[0].etat === 5) {etattxt = "Perturbation en cours (voir plus bas)"}
+            if (etat[0].etat === 6) {etattxt = "Circulation interrompue (voir plus bas)"}
+
+            champetat.innerHTML = `<p class="etat${etat[0].etat} lightmode">${etattxt}</p>`
+
+        } catch (erreur) {console.log(erreur)}
+    }
+    getInfos(ligne);
+    getEtats(ligne);
+bottomBar(); afficherHoraires(ligne);
+</script>
+
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="bar-container">
+    <nav class="top-bar">
+            <ul class="insert">
+                
+            </ul>
+        </nav>
+        </div>
+</body>
+</html>
