@@ -41,7 +41,7 @@ Quelque chose codé "en dur", c'est qu'il est implémenté de manière fixe dans
 
 Voici une checklist ce de qui est en dur ou non (coché = pas en dur)
 - [ ] Onglet "Lignes"
-- [ ] Page de sélection des directions
+- [x] Page de sélection des directions
 - [x] Page de sélection des arrêts
 - [x] Page des horaires
 
