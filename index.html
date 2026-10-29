@@ -43,6 +43,7 @@
         
         <br>
         <script>
+            const barre = document.querySelector("#recherche")
             const callGinko = (methodPath, args = {}) => {
       return new Promise((resolve, reject) => {
         ginkoAPI(
@@ -55,7 +56,26 @@
     };
             const conteneur = document.querySelector(".lines")
             const boutons = document.querySelector(".buttonbar")
-            
+            const  recherchescolaire = async () => {
+            const barre = document.querySelector("#recherche")
+                const getLignes = await callGinko("DR/getLignes", {});  // Création d'un dico de "traduction" de lignes
+    let listeligne = {};                                    // Num Public -> Identifiant
+    console.log(getLignes)                                  // 3 -> L3
+    for (let index = 0; index < getLignes.length; index++) {
+      const ligneselect = getLignes[index]
+      const nompublic = ligneselect.numLignePublic
+      const id = ligneselect.id
+
+      listeligne[nompublic] = {id: id, ligne: nompublic}
+    }
+    console.log(listeligne)
+    const cible = barre.value.trim()
+    const dcible = "D"+barre.value.trim()
+    console.log(dcible)
+    if (listeligne[cible]) {window.location.href=`dest.html?ligne=${cible}`}
+    else if (listeligne[dcible]) {window.location.href = `dest.html?ligne=${dcible}`}
+
+            }
             const drawUrbaines = () => {
                 conteneur.innerHTML = `<h3 class="lightmode">TRAM & LIANES</h3>
         <div class="line-dots">
@@ -146,32 +166,17 @@
         <a onclick="drawScolaires(); return true"><p>Scolaires</p></a>`
             }
             const drawScolaires = () => {
-                conteneur.innerHTML = `<br><div class="buttonok"><input type="text" id="recherche" placeholder="Entrez la ligne ici..."><a  onclick="recherchescolaire(); return true"><p>OK</p></a></div>`
+                
+                const barre = document.querySelector("#recherche")
+                conteneur.innerHTML = `<br><div class="buttonok"><input type="text" id="recherche" placeholder="Entrez la ligne ici..." onKeyDown="if (event.key === 'Enter') recherchescolaire()"><a  onclick="recherchescolaire(); return true"><p>OK</p></a></div>`
         boutons.innerHTML = `<a class="" onclick="drawUrbaines(); return true"><p>Urbaines</p></a>
         <a  onclick="drawPeriurbaines(); return true"><p>Périurbaines</p></a>
         <a class="selected" onclick="drawScolaires(); return true"><p>Scolaires</p></a>`
-            }
-            const  recherchescolaire = async () => {
-                const barre = document.querySelector("#recherche")
-                const getLignes = await callGinko("DR/getLignes", {});  // Création d'un dico de "traduction" de lignes
-    let listeligne = {};                                    // Num Public -> Identifiant
-    console.log(getLignes)                                  // 3 -> L3
-    for (let index = 0; index < getLignes.length; index++) {
-      const ligneselect = getLignes[index]
-      const nompublic = ligneselect.numLignePublic
-      const id = ligneselect.id
-
-      listeligne[nompublic] = {id: id, ligne: nompublic}
-    }
-    console.log(listeligne)
-    const cible = barre.value.trim()
-    const dcible = "D"+barre.value.trim()
-    console.log(dcible)
-    if (listeligne[cible]) {window.location.href=`dest.html?ligne=${cible}`}
-    else if (listeligne[dcible]) {window.location.href = `dest.html?ligne=${dcible}`}
-
-            }
-            drawUrbaines()
+        
+            
+        }
+            
+drawUrbaines();
         </script>
         
         <div class="bar-container">
