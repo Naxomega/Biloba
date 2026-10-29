@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biloba - 7</title>
+    <link rel="stylesheet" href="style_7.css">
+    <base href="/Biloba/">
+    <meta name="theme-color" content="#121212">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes"> 
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script src="https://api.ginko.voyage/api.js?apiKey=r8B7t6Hgd7vF9V3VV9PQ4vc2a"></script>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <div class="header">
+        <h1 class="logo lightmode">Biloba</h1>
+
+        
+    </div>
+    <div class="content">
+        <h2 class="lightmode">Ligne 7</h2>
+        <h3 class="lightmode">Dans quelle direction ?</h3>
+        <div class="link-container">
+            <a href="arrets.html?ligne=7&dest=Hauts du Chazal" class="line-link line-l3">
+                <p class="notbold">Vers&nbsp;</p><p class="">Hauts du Chazal</p>
+            </a>
+            <a href="arrets.html?ligne=7&dest=Palente Espace Industriel" class="line-link">
+                <p class="notbold">Vers&nbsp;</p><br><p class="">Palente Espace Industriel</p>
+            </a>
+        </div>
+        <h3 class="lightmode">Etat de la ligne</h3>
+        <div class="etat"></div>
+        <h3 class="lightmode">Fréquence des bus (en journée)</h3>
+        <span class="lightmode">Toute les 8 à 15 minutes</span>
+        <h3 class="lightmode textetrafic">Info Trafic</h3>
+        <div class="infotrafic"></div>
+    </div>
+    <div class="bar-container">
+    <nav class="top-bar">
+            <ul class="insert">
+                <li class="selected bar"><a href="index.html">Lignes</a></li>
+                <li class="bar"><a href="infos.html">Infos trafic</a></li>
+                <li class="bar"><a href="proche.html">Autour de moi</a></li>
+
+            </ul>
+        </nav>
+        </div>
+        <script>
+    const champetat = document.querySelector(".etat")
+    const champinfo = document.querySelector(".infotrafic")
+    const textetrafic = document.querySelector(".textetrafic")
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const provenance = urlParams.get("provenance")
+    const bar = document.querySelector(".insert");
+    const callGinko = (methodPath, args = {}) => {
+      return new Promise((resolve, reject) => {
+        ginkoAPI(
+          methodPath,
+          args,
+          (data) => resolve(data), // Fonction API Ginko
+          (err) => reject(err)
+        );
+      });
+    };
+    const getInfos = async (numLigne) => {
+      
+    
+      try { 
+        const getLignes = await callGinko("DR/getLignes", {});  // Création d'un dico de "traduction" de lignes
+        let listeligne = {};                                    // Num Public -> Identifiant
+        console.log(getLignes)                                  // 3 -> L3
+        for (let index = 0; index < getLignes.length; index++) {
+          const ligneselect = getLignes[index]
+          const nompublic = ligneselect.numLignePublic
+          const id = ligneselect.id
+          listeligne[nompublic] = {id: id}
+        } // Syntaxe conversion :  listeligne["Ligne public (ex. L3)"].id (retourne "3")
+        const response = await callGinko("TR/getMessages", {idLignes:listeligne[numLigne].id});
+        console.log("Info trafic :",response);
+        if (response.length) {
+          const infos = Object.values(response).map(a => `<div class="tileetat${a.etat}"><h4 class="lightmode etat${a.etat}">${a.titre}</h4>${a.texte}</div>`).join("")
+        champinfo.innerHTML = infos
+        
+        }
+        else {textetrafic.innerHTML = ""}
+        
+        
+        /* 
+        Liste Etats : 
+                  0 = X / Aucune Information
+                  1 = Vert / Fonctionnement normal
+                  2 = Bleu / Information
+                  3 = Gris / Ne fonctionne pas (lignes urbaines (7-12) le week-end par exemple)
+                  4 = Gris / Perturbation à venir
+                  5 = Orange / Perturbation en cours
+                  6 = Rouge / Circulation interrompue (gros problème/travaux comme le tram l'été 2026)    
+        */
+        
+      } catch (error) { // fin try et début catch
+        console.log(error);
+      }
+    }
+    const getEtats = async (numLigne) => {
+        try {
+            const response = await callGinko("TR/getEtatLignes");
+            console.log(response)
+            const etat = Object.values(response).filter(a => a.numLignePublic === numLigne)
+            console.log(etat)
+            console.log("La ligne", numLigne, "est à l'état :", etat[0].etat)
+            let etattxt = ""
+            if (etat[0].etat === 0) {etattxt = "Aucune information"}
+            if (etat[0].etat === 1) {etattxt = "Fonctionnement normal"}
+            if (etat[0].etat === 2) {etattxt = "Information (voir plus bas)"}
+            if (etat[0].etat === 3) {etattxt = "Ne fonctionne pas"}
+            if (etat[0].etat === 4) {etattxt = "Perturbation à venir (voir plus bas)"}
+            if (etat[0].etat === 5) {etattxt = "Perturbation en cours (voir plus bas)"}
+            if (etat[0].etat === 6) {etattxt = "Circulation interrompue (voir plus bas)"}
+
+            champetat.innerHTML = `<p class="etat${etat[0].etat} lightmode">${etattxt}</p>`
+
+        } catch (erreur) {console.log(erreur)}
+    }
+    getInfos("7");
+    getEtats("7");
+
+    
+    
+  </script>
+  <br>
+  <br>
+  <br>
+  <br>
+</body>
+</html>

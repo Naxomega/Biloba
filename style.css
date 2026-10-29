@@ -440,5 +440,39 @@ a,
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+.buttonok a {
+    
+    min-width: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 10%;
+    max-width: 50px;
+       
+
+    height: 25px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    background-color: var(--line-color, #333);
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 13px;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-left: 5px;
+}
+.buttonok {
+    display: flex;
+    justify-content: center;
+}
+.buttonok input{
+    border-radius: 10px;
+}
 
         

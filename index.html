@@ -13,6 +13,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="manifest" href="naxomega.github.io/Biloba/manifest.json">
+        <script src="https://api.ginko.voyage/api.js?apiKey=r8B7t6Hgd7vF9V3VV9PQ4vc2a"></script>
+
     <meta http-equiv="Cache-Control" content="no-cache">
    <!-- <script>if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
@@ -41,8 +43,19 @@
         
         <br>
         <script>
+            const callGinko = (methodPath, args = {}) => {
+      return new Promise((resolve, reject) => {
+        ginkoAPI(
+          methodPath,
+          args,
+          (data) => resolve(data), // Fonction API Ginko
+          (err) => reject(err)
+        );
+      });
+    };
             const conteneur = document.querySelector(".lines")
             const boutons = document.querySelector(".buttonbar")
+            
             const drawUrbaines = () => {
                 conteneur.innerHTML = `<h3 class="lightmode">TRAM & LIANES</h3>
         <div class="line-dots">
@@ -133,13 +146,32 @@
         <a onclick="drawScolaires(); return true"><p>Scolaires</p></a>`
             }
             const drawScolaires = () => {
-                conteneur.innerHTML = `<h3 class="lightmode">Pas encore implémenté, désolé</h3>`
+                conteneur.innerHTML = `<br><div class="buttonok"><input type="text" id="recherche" placeholder="Entrez la ligne ici..."><a  onclick="recherchescolaire(); return true"><p>OK</p></a></div>`
         boutons.innerHTML = `<a class="" onclick="drawUrbaines(); return true"><p>Urbaines</p></a>
         <a  onclick="drawPeriurbaines(); return true"><p>Périurbaines</p></a>
         <a class="selected" onclick="drawScolaires(); return true"><p>Scolaires</p></a>`
             }
+            const  recherchescolaire = async () => {
+                const barre = document.querySelector("#recherche")
+                const getLignes = await callGinko("DR/getLignes", {});  // Création d'un dico de "traduction" de lignes
+    let listeligne = {};                                    // Num Public -> Identifiant
+    console.log(getLignes)                                  // 3 -> L3
+    for (let index = 0; index < getLignes.length; index++) {
+      const ligneselect = getLignes[index]
+      const nompublic = ligneselect.numLignePublic
+      const id = ligneselect.id
 
-            drawUrbaines()
+      listeligne[nompublic] = {id: id, ligne: nompublic}
+    }
+    console.log(listeligne)
+    const cible = barre.value.trim()
+    const dcible = "D"+barre.value.trim()
+    console.log(dcible)
+    if (listeligne[cible]) {window.location.href=`dest.html?ligne=${cible}`}
+    else if (listeligne[dcible]) {window.location.href = `dest.html?ligne=${dcible}`}
+
+            }
+            drawScolaires()
         </script>
         
         <div class="bar-container">
