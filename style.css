@@ -83,11 +83,11 @@ a,
     transform: scale(1.2); /* Slightly enlarge the dot on hover */
 }
 
-.line-t1 {background-color: #00A5C2;}
-.line-t2 {background-color: #006D78;}
-.line-l3 {background-color: #006AB3;}
-.line-l4 {background-color: #E2001A;}
-.line-l5 {background-color: #1FA22E;}
+.line-t1 {background-color: #00A5C2; color: white;}
+.line-t2 {background-color: #006D78; color: white;}
+.line-l3 {background-color: #006AB3; color: white;}
+.line-l4 {background-color: #E2001A; color: white;}
+.line-l5 {background-color: #1FA22E; color: white;}
 .line-l6 {background-color: #FFE500; color: black;}
 .line-7 {background-color: #A74C21; color: white;}
 .line-8 {background-color: #00396B; color: white;}
@@ -95,6 +95,127 @@ a,
 .line-10 {background-color: #CECB00; color: black;}
 .line-11 {background-color: #C592BE; color: white;}
 .line-12 {background-color: #7BC6BC; color: black;}
+.line-20 {background-color: #5C6970; color: white;}
+.line-21 {background-color: #5C6970; color: white;}
+.line-22 {background-color: #5C6970; color: white;}
+.line-23 {background-color: #5C6970; color: white;}
+.line-24 {background-color: #5C6970; color: white;}
+.line-51 {background-color: white; color: #009EE0;}
+.line-52 {background-color: white; color: #009EE0;}
+.line-53 {background-color: white; color: #009EE0;}
+.line-54 {background-color: white; color: #009EE0;}
+.line-55 {background-color: white; color: #009EE0;}
+.line-56 {background-color: white; color: #009EE0;}
+.line-57 {background-color: white; color: #009EE0;}
+.line-58 {background-color: white; color: #009EE0;}
+.line-59 {background-color: white; color: #009EE0;}
+.line-61 {background-color: white; color: #EE7B00;}
+.line-62 {background-color: white; color: #EE7B00;}
+.line-63 {background-color: white; color: #EE7B00;}
+.line-64 {background-color: white; color: #EE7B00;}
+.line-65 {background-color: white; color: #EE7B00;}
+.line-66 {background-color: white; color: #EE7B00;}
+.line-67 {background-color: white; color: #EE7B00;}
+.line-68 {background-color: white; color: #EE7B00;}
+.line-71 {background-color: white; color: #D2528B;}
+.line-72 {background-color: white; color: #D2528B;}
+.line-73 {background-color: white; color: #D2528B;}
+.line-74 {background-color: white; color: #D2528B;}
+.line-75 {background-color: white; color: #D2528B;}
+.line-76 {background-color: white; color: #D2528B;}
+.line-81 {background-color: white; color: #009036;}
+.line-82 {background-color: white; color: #009036;}
+.line-83 {background-color: white; color: #009036;}
+.line-84 {background-color: white; color: #009036;}
+.line-85 {background-color: white; color: #009036;}
+.line-86 {background-color: white; color: #009036;}
+.line-87 {background-color: white; color: #009036;}
+.line-d1 {background-color: #E8526B; color: white;}
+.line-d2 {background-color: #E8526B; color: white;}
+.line-d3 {background-color: #E8526B; color: white;}
+.line-d4 {background-color: #E8526B; color: white;}
+.line-d5 {background-color: #E8526B; color: white;}
+.line-d6 {background-color: #E8526B; color: white;}
+.line-d7 {background-color: #E8526B; color: white;}
+.line-d8 {background-color: #E8526B; color: white;}
+.line-d9 {background-color: #E8526B; color: white;}
+.line-d10 {background-color: #E8526B; color: white;}
+.line-d11 {background-color: #E8526B; color: white;}
+.line-d101 {background-color: #E8526B; color: white;}
+.line-d104 {background-color: #E8526B; color: white;}
+.line-d110 {background-color: #E8526B; color: white;}
+.line-d111 {background-color: #E8526B; color: white;}
+.line-d112 {background-color: #E8526B; color: white;}
+.line-d114 {background-color: #E8526B; color: white;}
+.line-d122 {background-color: #E8526B; color: white;}
+.line-d123 {background-color: #E8526B; color: white;}
+.line-d124 {background-color: #E8526B; color: white;}
+.line-d125 {background-color: #E8526B; color: white;}
+.line-d126 {background-color: #E8526B; color: white;}
+.line-d127 {background-color: #E8526B; color: white;}
+.line-d128 {background-color: #E8526B; color: white;}
+.line-d129 {background-color: #E8526B; color: white;}
+.line-d201 {background-color: #E8526B; color: white;}
+.line-d202 {background-color: #E8526B; color: white;}
+.line-d203 {background-color: #E8526B; color: white;}
+.line-d205 {background-color: #E8526B; color: white;}
+.line-d206 {background-color: #E8526B; color: white;}
+.line-d208 {background-color: #E8526B; color: white;}
+.line-d210 {background-color: #E8526B; color: white;}
+.line-d211 {background-color: #E8526B; color: white;}
+.line-d212 {background-color: #E8526B; color: white;}
+.line-d220 {background-color: #E8526B; color: white;}
+.line-d221 {background-color: #E8526B; color: white;}
+.line-d222 {background-color: #E8526B; color: white;}
+.line-d223 {background-color: #E8526B; color: white;}
+.line-d224 {background-color: #E8526B; color: white;}
+.line-d225 {background-color: #E8526B; color: white;}
+.line-d226 {background-color: #E8526B; color: white;}
+.line-d227 {background-color: #E8526B; color: white;}
+.line-d231 {background-color: #E8526B; color: white;}
+.line-d232 {background-color: #E8526B; color: white;}
+.line-d233 {background-color: #E8526B; color: white;}
+.line-d234 {background-color: #E8526B; color: white;}
+.line-d235 {background-color: #E8526B; color: white;}
+.line-d236 {background-color: #E8526B; color: white;}
+.line-d237 {background-color: #E8526B; color: white;}
+.line-d238 {background-color: #E8526B; color: white;}
+.line-d239 {background-color: #E8526B; color: white;}
+.line-d240 {background-color: #E8526B; color: white;}
+.line-d241 {background-color: #E8526B; color: white;}
+.line-d242 {background-color: #E8526B; color: white;}
+.line-d243 {background-color: #E8526B; color: white;}
+.line-d244 {background-color: #E8526B; color: white;}
+.line-d245 {background-color: #E8526B; color: white;}
+.line-d246 {background-color: #E8526B; color: white;}
+.line-d247 {background-color: #E8526B; color: white;}
+.line-d248 {background-color: #E8526B; color: white;}
+.line-d301 {background-color: #E8526B; color: white;}
+.line-d310 {background-color: #E8526B; color: white;}
+.line-d311 {background-color: #E8526B; color: white;}
+.line-d312 {background-color: #E8526B; color: white;}
+.line-d313 {background-color: #E8526B; color: white;}
+.line-d314 {background-color: #E8526B; color: white;}
+.line-d323 {background-color: #E8526B; color: white;}
+.line-d324 {background-color: #E8526B; color: white;}
+.line-d401 {background-color: #E8526B; color: white;}
+.line-d402 {background-color: #E8526B; color: white;}
+.line-d403 {background-color: #E8526B; color: white;}
+.line-d404 {background-color: #E8526B; color: white;}
+.line-d405 {background-color: #E8526B; color: white;}
+.line-d406 {background-color: #E8526B; color: white;}
+.line-d407 {background-color: #E8526B; color: white;}
+.line-d410 {background-color: #E8526B; color: white;}
+.line-d411 {background-color: #E8526B; color: white;}
+.line-d412 {background-color: #E8526B; color: white;}
+.line-d413 {background-color: #E8526B; color: white;}
+.line-d414 {background-color: #E8526B; color: white;}
+.line-d415 {background-color: #E8526B; color: white;}
+.line-d416 {background-color: #E8526B; color: white;}
+.line-d417 {background-color: #E8526B; color: white;}
+.line-d418 {background-color: #E8526B; color: white;}
+.line-d420 {background-color: #E8526B; color: white;}
+.line-d421 {background-color: #E8526B; color: white;}
 .line-citadelle {background-color: #F26522; color: white;}
 .line-b {background-color: #111; color: yellow;}
 
@@ -264,6 +385,60 @@ a,
     border-radius: 25px;
     padding: 1px;
 }
-        
+.buttonbar {
+    display: flex;
+    justify-content: space-evenly;
+
+}
+.buttonbar a {
+    max-width: max-content;
+    min-width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 45%;
+       
+
+    height: 25px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    background-color: var(--line-color, #333);
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 13px;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.buttonbar a.selected {
+    max-width: max-content;
+    min-width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 45%;
+       
+
+    height: 25px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    background-color: var(--line-color, #666);
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 13px;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
         

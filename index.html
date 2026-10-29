@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biloba - Accueil</title>
+    <title>Biloba - Lignes</title>
     <link rel="stylesheet" href="style.css">
     <base href="/Biloba/">
     <meta name="description" content="Consultez les dernières horaires des bus de Besançon !" />
@@ -29,11 +29,22 @@
 <body>
     <div class="header">
         <h1 class="logo lightmode">Biloba</h1>
-        <h3>Aussi léger qu'une feuille de Ginko</h3>
-        <!--<div class="information"><h3 class="lightmode">INFORMATION</h3><h4 class="lightmode">En raison d'un dyscfonctionnement de l'API Ginko, les horaires ne sont pas disponible</h4></div>-->
+        
+        <!--<div class="information">
+            <h3 class="lightmode">INFORMATION</h3>
+            <h4 class="lightmode">En raison d'un dyscfonctionnement de l'API Ginko, les horaires ne sont pas disponible</h4>
+        </div>-->
     </div>
-    <div class="content">
-        <h3 class="lightmode">TRAM & LIANES</h3>
+    
+        <div class="buttonbar"></div>
+        <div class="content"><div class="lines"></div>
+        
+        <br>
+        <script>
+            const conteneur = document.querySelector(".lines")
+            const boutons = document.querySelector(".buttonbar")
+            const drawUrbaines = () => {
+                conteneur.innerHTML = `<h3 class="lightmode">TRAM & LIANES</h3>
         <div class="line-dots">
             <a href="Lignes/T1.html" class="line-dot line-t1">T1</a>
             <a href="Lignes/T2.html" class="line-dot line-t2">T2</a>
@@ -58,17 +69,26 @@
             <a href="Lignes/Citadelle.html" class="line-dot line-citadelle">Cit.</a>
             <a href="Lignes/PlanB.html" class="line-dot line-b">B</a>
             
-        </div>
-        
-        <br>
-        <div class="line-container">
-            <a href="Lignes/Secondaire.html" class="line-link"><h3>Lignes Complémentaires</h3></a>
-            <br>
-        <a href="Lignes/Suburbain.html" class="line-link"><h3>Lignes Périurbaines</h3></a>
-        </div>
-        <br>
-        <a href="https://github.com/Naxomega/Biloba" class="line-link"><h3>Dépôt Github</h3></a>
-        </div>
+        </div>`
+        boutons.innerHTML = `<a class="selected" onclick="drawUrbaines(); return true"><p>Urbaines</p></a>
+        <a onclick="drawPeriurbaines(); return true"><p>Périurbaines</p></a>
+        <a onclick="drawScolaires(); return true"><p>Scolaires</p></a>`
+            }
+        const drawPeriurbaines = () => {
+                conteneur.innerHTML = `<h3 class="lightmode">Pas encore implémenté, désolé</h3>`
+        boutons.innerHTML = `<a  onclick="drawUrbaines(); return true"><p>Urbaines</p></a>
+        <a class="selected" onclick="drawPeriurbaines(); return true"><p>Périurbaines</p></a>
+        <a onclick="drawScolaires(); return true"><p>Scolaires</p></a>`
+            }
+            const drawScolaires = () => {
+                conteneur.innerHTML = `<h3 class="lightmode">Pas encore implémenté, désolé</h3>`
+        boutons.innerHTML = `<a class="" onclick="drawUrbaines(); return true"><p>Urbaines</p></a>
+        <a  onclick="drawPeriurbaines(); return true"><p>Périurbaines</p></a>
+        <a class="selected" onclick="drawScolaires(); return true"><p>Scolaires</p></a>`
+            }
+
+            drawUrbaines()
+        </script>
         
         <div class="bar-container">
     <nav class="top-bar">
@@ -79,7 +99,10 @@
 
             </ul>
         </nav>
+        </div><br>
+<div class="line-container">
+            
+        <a href="https://github.com/Naxomega/Biloba" class="line-link"><h3>Dépôt Github</h3></a>
         </div><br><br>
-
 </body>
 </html>
