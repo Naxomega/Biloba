@@ -33,8 +33,8 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 - Ligne 10
 - Ligne 11
 - Ligne 12
-- Lignes Complémentaires (Eventuellement)
-- Lignes Périurbaines (Eventuellement)
+- Lignes Complémentaires
+- Lignes Périurbaines
 - Lignes Scolaires (Eventuellement)
 ## Implémentation des fonctionnalités
 Quelque chose codé "en dur", c'est qu'il est implémenté de manière fixe dans le code (par exemple un bouton T1 en html sur la page "Lignes"). Et le but c'est d'éliminer au maximum les fonctionnalités codées en dur (donc demander à l'API les lignes, et alors créer un bouton T1 avec les infos de l'API), car si Keolis changent les lignes ou autre infos, le site sera immédiatement obsolète, et de plus, ca réduit la charge de travail en termes de maintenance et d'amélioration (par exemple, si je veut modifier le design de la page des horaires, j'ai qu'un seul fichier à modifier au lieu des multiples autrefois)
