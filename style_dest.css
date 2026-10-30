@@ -80,7 +80,7 @@ body {
 .content {
     margin-top: 20px;
     border-radius: 25px;
-    background-color: #AAA; /* Warm rose for Line 1 */
+    background-color: #CCC; /* Warm rose for Line 1 */
     padding: 20px;
     display: flex; /* Use flexbox for layout */
     flex-direction: column; /* Stack headings vertically */
@@ -754,7 +754,7 @@ a,
     text-align: center;
     border-radius: 10px;
     background-color: var(rgba(0, 0, 0, 0));
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s, transform 0.2s, color 0.2s;
     font-size: 18px;
     box-sizing: border-box;
     outline: none;
@@ -762,7 +762,8 @@ a,
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-        border: solid rgba(255, 255, 255, 0.4) 1px;
+        border: solid rgba(0, 0, 0, 0.4) 1px;
+    color: black;
 
     
 }
@@ -771,26 +772,31 @@ a,
     background-color:var(--T1);
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: white;
 }
 .line-link-t2:hover {
     background-color:var(--T2);
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: white;
 }
 .line-link-l3:hover {
     background-color:var(--L3);
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: white;
 }
 .line-link-l4:hover {
     background-color:var(--L4);
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: white;
 }
 .line-link-l5:hover {
     background-color:var(--L5);
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: white;
 }
 .line-link-l6:hover {
     background-color:var(--L6);
@@ -802,16 +808,19 @@ a,
     background-color:var(--7);
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: white;
 }
 .line-link-8:hover {
     background-color:var(--8);
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: white;
 }
 .line-link-9:hover {
     background-color:var(--9);
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: white;
 }
 .line-link-10:hover {
     background-color:var(--10);
@@ -823,6 +832,7 @@ a,
     background-color:var(--11);
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: white;
 }
 .line-link-12:hover {
     background-color:var(--12);
@@ -834,6 +844,7 @@ a,
     background-color:var(--CITADELLE);
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: white;
 }
 .line-link-plan.b:hover {
     background-color:var(--Bbg);
@@ -845,31 +856,37 @@ a,
     background-color:var(--2x);
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: white;
 }
 [class*="line-link-5"]:hover {
-    background-color:var(--5x);
+    background-color:white;
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: var(--5x);
 }
 [class*="line-link-6"]:hover {
-    background-color:var(--6x);
+    background-color:white;
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: var(--6x);
 }
 [class*="line-link-7"]:not(.line-link-7):hover {
-    background-color:var(--7x);
+    background-color:white;
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: var(--7x);
 }
 [class*="line-link-8"]:not(.line-link-8):hover {
-    background-color:var(--8x);
+    background-color:white;
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: var(--8x);
 }
 [class*="line-link-d"]:hover {
     background-color:var(--Dx);
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: white;
 }
 
 
@@ -928,6 +945,10 @@ a,
     .lightmode{color: #fff;}
     .content{background-color: #333;}
     .gk-mivMessage {color: white;}
+    [class*="line-link-"] {
+    border: solid rgba(255, 255, 255, 0.4) 1px;
+    color: white;
+    }
     
 }
 .bulle {

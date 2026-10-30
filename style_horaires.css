@@ -195,7 +195,7 @@ body {
 .content {
     margin-top: 20px;
     border-radius: 25px;
-    background-color: #AAA; /* Warm rose for Line 1 */
+    background-color: #CCC; /* Warm rose for Line 1 */
     padding: 20px;
     display: flex; /* Use flexbox for layout */
     flex-direction: column; /* Stack headings vertically */

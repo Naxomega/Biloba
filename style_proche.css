@@ -190,7 +190,7 @@ body {
 .content {
     margin-top: 20px;
     border-radius: 25px;
-    background-color: #AAA; /* Warm rose for Line 1 */
+    background-color: #CCC; /* Warm rose for Line 1 */
     padding: 20px;
     display: flex; /* Use flexbox for layout */
     flex-direction: column; /* Stack headings vertically */
@@ -861,7 +861,7 @@ a,
     text-align: center;
     border-radius: 10px;
     background-color: var(rgba(0, 0, 0, 0));
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s, transform 0.2s, color 0.2s;
     font-size: 18px;
     box-sizing: border-box;
     outline: none;
@@ -869,7 +869,8 @@ a,
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-        border: solid rgba(255, 255, 255, 0.4) 1px;
+        border: solid rgba(0, 0, 0, 0.4) 1px;
+    color: black;
 
     
 }
@@ -878,6 +879,7 @@ a,
     background-color:#00ABC4;
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+    color: white;
 }
 
 .line-link span {
@@ -935,6 +937,11 @@ a,
     .lightmode{color: #fff;}
     .content{background-color: #333;}
     .logo{color:white;}
+    .line-link {
+    border: solid rgba(255, 255, 255, 0.4) 1px;
+    color: white;
+    }
+
 }
 .bulle {
     border: rgb(255, 255, 255);
