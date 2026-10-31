@@ -56,7 +56,7 @@
     };
             const conteneur = document.querySelector(".lines")
             const boutons = document.querySelector(".buttonbar")
-            const  recherchescolaire = async () => {
+    const  recherchescolaire = async () => {
             const barre = document.querySelector("#recherche")
                 const getLignes = await callGinko("DR/getLignes", {});  // Création d'un dico de "traduction" de lignes
     let listeligne = {};                                    // Num Public -> Identifiant
@@ -72,8 +72,9 @@
     const cible = barre.value.trim()
     const dcible = "D"+barre.value.trim()
     console.log(dcible)
-    if (listeligne[cible]) {window.location.href=`dest.html?ligne=${cible}`}
-    else if (listeligne[dcible]) {window.location.href = `dest.html?ligne=${dcible}`}
+    if (listeligne[dcible]) {window.location.href = `dest.html?ligne=${dcible}`}
+    else if (listeligne[cible]) {window.location.href=`dest.html?ligne=${cible}`}
+    
 
             }
             const drawUrbaines = () => {
