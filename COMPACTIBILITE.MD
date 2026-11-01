@@ -18,3 +18,5 @@ Chromium 153.0.8010.52, Windows 11 26H2
 WebKit, Horizon OS 23.0.1 (Nintendo Switch 2) (si vous avez envie de voir les horaires sur votre switch, ben vous pouvez, je ne juge pas moi...)
 <img src="Assets/biloba-webkitns2.png" alt="WebKit NS2" width="25%">
 
+Samsung Browser 5.2.00.8 (Chromium), WearOS 6.0 (Android 16) (Oui Biloba fonctionne sur montre, vous pouvez pas imaginer à quel point c'est pratique. Cepandant, la localisation et le mode sombre ne sont pas fonctionnels)
+

@@ -60,7 +60,7 @@
             const barre = document.querySelector("#recherche")
                 const getLignes = await callGinko("DR/getLignes", {});  // Création d'un dico de "traduction" de lignes
     let listeligne = {};                                    // Num Public -> Identifiant
-    console.log(getLignes)                                  // 3 -> L3
+    console.log(getLignes)                                  // L3 -> 3
     for (let index = 0; index < getLignes.length; index++) {
       const ligneselect = getLignes[index]
       const nompublic = ligneselect.numLignePublic
