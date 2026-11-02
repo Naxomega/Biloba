@@ -1258,3 +1258,20 @@ a,
     border: solid rgba(0, 0, 0, 0) 1px;
 }
 
+.infotrafic { /* Toutes les champs juste apres sont la pour regler les éventuelles
+    bourdes de KBM, ca peut arriver :) */
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+
+.infotrafic table {
+    width: max-content !important; 
+    max-width: none !important;
+}
+
+
+.infotrafic td, .infotrafic th {
+    white-space: nowrap; 
+    padding: 8px 12px;
+} /* Fin de l'anti bourde */
