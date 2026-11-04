@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="60" >
+
+    <title>Biloba - A Proximité</title>
+    <link rel="stylesheet" href="style_carte.css">
+    <base href="/Biloba/">
+    <script src="https://api.ginko.voyage/api.js?apiKey=r8B7t6Hgd7vF9V3VV9PQ4vc2a"></script>
+    <meta name="theme-color" content="#121212">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes"> 
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta http-equiv="Cache-Control" content="no-cache">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@2.0.0-beta.1/dist/leaflet.css"
+	integrity="sha256-RwBOaSN3kFqUIUAZaMmmo5grrEMRXwBCe0sCRJgqydk=" crossorigin="anonymous">
+<script type="importmap">
+{
+	"imports": {
+		"leaflet": "https://cdn.jsdelivr.net/npm/leaflet@2.0.0-beta.1/dist/leaflet.js"
+	},
+	"integrity": {
+		"https://cdn.jsdelivr.net/npm/leaflet@2.0.0-beta.1/dist/leaflet.js": "sha256-KSSQ64wnHC2i4zVNU79jUjWmdKCIJjLj/gkifFEluvo="
+	}
+}
+</script>
+    
+</head>
+<body>
+    <div class="header">
+        <h1 class="logo lightmode">Biloba</h1>
+
+        
+    </div>
+    <div id="map">
+      
+        <!--<script>
+          // var globales
+          const conteneur = document.querySelector(".line-container");
+          const debugLat = 47.24878;
+          const debugLon = 6.01815;
+          let listearretsproche = {};
+          const deltaLat = 0.0045; // envir. 300m
+          const deltaLon = 0.00663; // envir. 300m
+          // donc (300+300)x2 = recherche d'arrêt dans un carré de 600m de côté centré sur la position de l'utilisateur
+          //    600m
+          // +---------+
+          // |         |
+          // |    O    | 600m | O = utilisateur
+          // |         |
+          // +---------+
+          //
+          // promise gps
+const getPosition = () => {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject, {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    });
+  });
+}; // promise api ginko
+const callGinko = (methodPath, args = {}) => {
+      return new Promise((resolve, reject) => {
+        ginkoAPI(
+          methodPath,
+          args,
+          (data) => resolve(data),
+          (err) => reject(err)
+        );
+      });
+    };
+
+// fonction async principale
+const chargerPositionGPS = async () => {
+  try {
+
+    const pos = await getPosition();
+    
+    const Latitude = pos.coords.latitude;
+    const Longitude = pos.coords.longitude;
+    try {
+      const arrets = await callGinko("DR/getArrets");
+      for (let index = 0; index < arrets.length; index++) {
+      let cletemp = arrets[index]
+      let cle = cletemp.nom
+      let lat = cletemp.latitude
+      let lon = cletemp.longitude
+      let proxilat = Math.abs(Latitude-lat)
+      let proxilon = Math.abs(Longitude-lon)
+      let proxi = proxilat+proxilon
+      let indiceProxi = proxi/2
+      if (!listearretsproche[cle]) {
+          listearretsproche[cle] = {nom: cle, latitude: lat, longitude: lon, proxi : indiceProxi};
+       }}
+      const arretsproches = Object.values(listearretsproche).sort((a, b) => a.proxi - b.proxi).filter(arret => {
+        return (
+          arret.latitude >= Latitude-deltaLat &&
+          arret.latitude <= Latitude+deltaLat &&
+          arret.longitude >= Longitude-deltaLon &&
+          arret.longitude <= Longitude+deltaLon
+        )}).map((a) => `<a href="horaires.html?arret=${a.nom}&provenance=GPS" class="line-link"><span>${a.nom}</span></a><br>`).join("");  
+        conteneur.innerHTML = arretsproches
+        if (arretsproches === "") {conteneur.innerHTML = `<p class="lightmode">Aucun arrêts proche n'a été trouvé. Vous êtes bien dans le Grand Besançon ?</p>`}
+        console.log(arretsproches)
+        document.querySelector(".titre").innerHTML = "<h2>Arrêts Proches</h2>"
+    } catch {
+      document.querySelector(".titre").innerHTML = "<h2>Erreur</h2>"
+      conteneur.innerHTML = `<p class="lightmode">Impossible de récupérer les arrêts</p>`;
+    
+    }
+
+  } catch (error) {
+    document.querySelector(".titre").innerHTML = "<h2>Erreur</h2>"
+    conteneur.innerHTML = `<p class="lightmode">Impossible de vous localiser.</p>
+    <p class="lightmode">Assurez-vous d'avoir autorisé Biloba et votre navigateur à accéder à votre position</p>`;
+    console.error(error);
+  }
+};
+
+
+chargerPositionGPS();
+
+  </script>-->
+  
+
+    </div>
+    <script type="module">
+      const callGinko = (methodPath, args = {}) => {
+      return new Promise((resolve, reject) => {
+        ginkoAPI(
+          methodPath,
+          args,
+          (data) => resolve(data),
+          (err) => reject(err)
+        );
+      });
+    };
+    let listearret = {};
+    const arrets = await callGinko("DR/getArrets");
+    for (let index = 0; index < arrets.length; index++) {
+      let cletemp = arrets[index]
+      let cle = cletemp.nom
+      let lat = cletemp.latitude
+      let lon = cletemp.longitude
+    if (!listearret[cle]) {
+          listearret[cle] = {nom: cle, latitude: lat, longitude: lon};
+       }}
+   
+  import {LeafletMap, TileLayer, Marker, Circle, Polygon} from 'leaflet';
+	const map = new LeafletMap('map').setView([47.250000, 6.033330], 13);
+  new TileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+console.log(Object.values(listearret))
+Object.values(listearret).forEach(arret => {
+  console.log("Arret : ", arret.nom)
+        const lat = arret.latitude;
+        const lon = arret.longitude;
+        const nomArret = arret.nom;
+        if (lat && lon) {
+          const nomArret = new Marker([lat, lon]).addTo(map);
+        }
+})
+
+</script>
+    <div class="bar-container">
+    <nav class="top-bar">
+            <ul class="insert">
+                <li class="bar"><a href="index.html">Lignes</a></li>
+                <li class="bar selected"><a href="carte.html">Carte</a></li>
+                <li class="bar"><a href="proche.html">Autour de moi</a></li>
+
+            </ul>
+        </nav>
+        </div><br><br>
+</body>
+</html>
