@@ -163,9 +163,22 @@ Object.values(listearret).forEach(arret => {
         const lat = arret.latitude;
         const lon = arret.longitude;
         const nomArret = arret.nom;
+        const nom = arret.nom;
         if (lat && lon) {
+
           const nomArret = new Marker([lat, lon]).addTo(map);
+          const popupContent = `
+                <div style="font-family: sans-serif;">
+                    <b>${nom}</b><br>
+                    <a href="horaires.html?arret=${nom}&provenance=Carte" style="color: #0066cc; text-decoration: none;">
+                        Voir les détails →
+                    </a>
+                </div>
+            `;
+            
+            nomArret.bindPopup(popupContent);
         }
+        
 })
 
 </script>
