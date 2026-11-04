@@ -9,6 +9,7 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 - Utilisable sur des appareils peu puissants
 - Visualise chaque arrêt (des lignes implémentées) avec toutes les lignes qui y passent
 - Voir les arrêts proches de vous
+- Une carte pour voir les autres arrêts (fonctionne avec Leaflet)
 ## Roadmap
 - [x] Implémenter toutes les lignes (hors Proxi et spéciales)
 - [ ] Améliorer l'ésthetique du site (via des librairies JS comme React ou Vue) (en cours, pour l'instant en CSS pur)
