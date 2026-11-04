@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="refresh" content="60" >
 
-    <title>Biloba - A Proximité</title>
+    <title>Biloba - Carte</title>
     <link rel="stylesheet" href="style_carte.css">
     <base href="/Biloba/">
     <script src="https://api.ginko.voyage/api.js?apiKey=r8B7t6Hgd7vF9V3VV9PQ4vc2a"></script>
@@ -163,24 +163,61 @@ Object.values(listearret).forEach(arret => {
         const lat = arret.latitude;
         const lon = arret.longitude;
         const nomArret = arret.nom;
+        const nomSansEspace = nomArret.split(" ").join("")
         const nom = arret.nom;
         if (lat && lon) {
 
-          const nomArret = new Marker([lat, lon]).addTo(map);
+          const popup = new Marker([lat, lon], {customData: nom}).addTo(map);
           const popupContent = `
-                <div style="font-family: sans-serif;">
-                    <b>${nom}</b><br>
-                    <a href="horaires.html?arret=${nom}&provenance=Carte" style="color: #0066cc; text-decoration: none;">
-                        Voir les détails →
-                    </a>
-                </div>
+          <p>${nomArret}</p><div class="horaires-${nomSansEspace}""></div><br><a class="line-link" href="horaires.html?arret=${nom}&provenance=Carte">Voir plus</a>   
+          
             `;
             
-            nomArret.bindPopup(popupContent);
+            popup.bindPopup(popupContent);
         }
         
 })
+map.on('popupopen', async (e) => {
+  let trajets = {};
+  const marqueur = e.popup._source;
+  if (marqueur && marqueur.options && marqueur.options.customData) {
+    const arretcible = marqueur.options.customData;
+    const arretSansEspace = arretcible.split(" ").join("")
+    const conteneur = document.querySelector(`.horaires-${arretSansEspace}`)
+    const response = await callGinko("TR/getTempsLieu", { nom: arretcible, nb:2 });
+    console.log(response)
+     const passages = response.listeTemps
 
+    
+    
+    console.log(passages)
+for (let index = 0; index < passages.length; index++) {
+      let cletemp = passages[index]
+      let part1 = cletemp.numLignePublic
+      let part2 = cletemp.destination
+      if (part1==='Ginko Citadelle'){part1="Cit."}
+      if (part1==='Plan B'){part1="B"}
+      let attente = cletemp.temps
+      let statut = ""
+      let moyen = ""
+      if (part1==="T1"||part1==="T2") {moyen="tram"} else {moyen="bus"}
+      if (attente==="0 min" && moyen==="bus"){attente=`<i class="fa-solid fa-bus-simple imminent"></i>`} // Affiche une icone de bus/tram
+      if (attente==="0 min" && moyen==="tram"){attente=`<i class="fa-solid fa-train-tram imminent"></i>`}// lorsque l'arrivée est imminente
+      let cle = part1+part2                                                                              // comme les écrans à quai
+      if (!trajets[cle]) {
+          trajets[cle] = {ligne: part1, destination: part2, temps: [attente]}
+      }
+      else {
+        trajets[cle].temps.push(attente)
+      }
+      
+  }console.log(trajets)
+  conteneur.innerHTML = Object.values(trajets).map((p => `<div class="passage tile-${p.ligne.toLowerCase()}">
+          <strong><p class="line-dot line-${p.ligne.toLowerCase()} enlarge outline-${p.ligne.toLowerCase()}">${p.ligne}</p></strong> <p> 
+         <strong>${p.destination}</strong>
+          <br><span class="bulle"><strong>${p.temps.join(`</span></strong><strong><span class="bulle">`)}</strong></span></p></div>`)).join("");
+  }
+  })
 </script>
     <div class="bar-container">
     <nav class="top-bar">
