@@ -213,10 +213,10 @@ for (let index = 0; index < passages.length; index++) {
       }
       
   }console.log(trajets)
-  conteneur.innerHTML = Object.values(trajets).map((p => `
-            <div class="passage tile-${p.ligne.toLowerCase()}">
-            <p><strong>${p.ligne} | ${p.destination}</strong>
-            <br><span class="bulle"><strong>${p.temps.join(`</span></strong><strong><span class="bulle">`)}</strong></span></p></div>`)).join("");
+  conteneur.innerHTML = Object.values(trajets).map((p => `<div class="passage tile-${p.ligne.toLowerCase()}">
+          <strong><p class="line-dot line-${p.ligne.toLowerCase()} enlarge ">${p.ligne}</p></strong> <p> 
+         <strong>${p.destination}</strong>
+          <br><span class="bulle"><strong>${p.temps.join(`</span></strong><strong><span class="bulle">`)}</strong></span></p></div>`)).join("");
   }
   })
 </script>
