@@ -944,7 +944,9 @@ a,
     }
     .lightmode{color: #fff;}
     .content{background-color: #333;}
-    .gk-mivMessage {color: white;}
+    .gk-mivMessage {background-color: #CCC !important;}
+    .infotrafic {background-color: #CCC !important;}
+
     [class*="line-link-"] {
     border: solid rgba(255, 255, 255, 0.4) 1px;
     color: white;
@@ -1160,6 +1162,8 @@ a,
     padding: 5px;
     border-radius: 5px;
         color: white;
+    margin-left: 10px;
+    margin-right: 10px;
 
 }
 .etat2{
@@ -1167,35 +1171,42 @@ a,
     padding: 5px;
     border-radius: 5px;
         color: white;
-
+margin-left: 10px;
+    margin-right: 10px;
 }
 .etat3{
     background-color: #575757;
     padding: 5px;
     border-radius: 5px;
         color: white;
-
+margin-left: 10px;
+    margin-right: 10px;
 }
 .etat4{
     background-color: #575757;
     padding: 5px;
     border-radius: 5px;
         color: white;
-
+    margin-left: 10px;
+    margin-right: 10px;
+margin-left: 10px;
+    margin-right: 10px;
 }
 .etat5{
     background-color: #CB6106;
     padding: 5px;
     border-radius: 5px;
         color: white;
-
+margin-left: 10px;
+    margin-right: 10px;
 }
 .etat6{
     background-color: red;
     padding: 5px;
     border-radius: 5px;
         color: white;
-
+margin-left: 10px;
+    margin-right: 10px;
 }
 .gk-mivMessage a {
     display: flex;
@@ -1258,10 +1269,16 @@ a,
     border: solid rgba(0, 0, 0, 0) 1px;
 }
 
+.gk-mivMessage {
+    border-radius: 10px;
+    padding: 5px;
+}
+
 .infotrafic { /* Toutes les champs juste apres sont la pour regler les éventuelles
     bourdes de KBM, ca peut arriver :) */
     overflow-x: auto;
     max-width: 100%;
+    border-radius: 10px;
 }
 
 
