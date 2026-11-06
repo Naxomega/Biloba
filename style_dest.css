@@ -1279,11 +1279,12 @@ margin-left: 10px;
     padding: 5px;
 }
 
-.infotrafic { /* Toutes les champs juste apres sont la pour regler les éventuelles
-    bourdes de KBM, ca peut arriver :) */
+.infotrafic { 
     overflow-x: auto;
     max-width: 100%;
     border-radius: 10px;
+    padding: 10px;
+
 }
 
 
@@ -1296,4 +1297,4 @@ margin-left: 10px;
 .infotrafic td, .infotrafic th {
     white-space: nowrap; 
     padding: 8px 12px;
-} /* Fin de l'anti bourde */
+} 

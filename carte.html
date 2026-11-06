@@ -169,7 +169,7 @@ Object.values(listearret).forEach(arret => {
 
           const popup = new Marker([lat, lon], {customData: nom}).addTo(map);
           const popupContent = `
-          <p>${nomArret}</p><div class="horaires-${nomSansEspace}""></div><br><a class="line-link" href="horaires.html?arret=${nom}&provenance=Carte">Voir plus</a>   
+          <strong><p>${nomArret}</p></strong><div class="horaires-${nomSansEspace}""></div><br><a class="line-link" href="horaires.html?arret=${nom}&provenance=Carte">Voir plus</a>   
           
             `;
             
@@ -213,10 +213,10 @@ for (let index = 0; index < passages.length; index++) {
       }
       
   }console.log(trajets)
-  conteneur.innerHTML = Object.values(trajets).map((p => `<div class="passage tile-${p.ligne.toLowerCase()}">
-          <strong><p class="line-dot line-${p.ligne.toLowerCase()} enlarge outline-${p.ligne.toLowerCase()}">${p.ligne}</p></strong> <p> 
-         <strong>${p.destination}</strong>
-          <br><span class="bulle"><strong>${p.temps.join(`</span></strong><strong><span class="bulle">`)}</strong></span></p></div>`)).join("");
+  conteneur.innerHTML = Object.values(trajets).map((p => `
+            <div class="passage tile-${p.ligne.toLowerCase()}">
+            <p><strong>${p.ligne} | ${p.destination}</strong>
+            <br><span class="bulle"><strong>${p.temps.join(`</span></strong><strong><span class="bulle">`)}</strong></span></p></div>`)).join("");
   }
   })
 </script>
