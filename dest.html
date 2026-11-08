@@ -199,7 +199,10 @@ const getInfos = async (numLigne) => {
         champinfo.innerHTML = infos
         
         }
-        else {textetrafic.innerHTML = ""}
+        else {
+  champinfo.remove();
+  textetrafic.innerHTML = "";
+}}
         
         
         /* 
