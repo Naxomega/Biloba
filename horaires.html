@@ -110,38 +110,71 @@ console.log(trajets)
   
   pagetitre.innerHTML = `Biloba - ${nomArret}`
 };
-const bottomBar = () => {
-  document.addEventListener("DOMContentLoaded", () => {
+
+const bottomBarExpanded = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const provenance = urlParams.get("provenance");
   const bar = document.querySelector(".insert");
-
-  // Sécurité : si l'élément n'existe pas, on le signale dans la console
-  
-
   if (provenance === "GPS") {
     bar.innerHTML = `
       <li class="bar"><a href="index.html">Lignes</a></li>
       <li class="bar"><a href="carte.html">Carte</a></li>
-      <li class="bar selected"><a href="proche.html">Autour de moi</a></li>
+      <li class="bar selected"><a href="proche.html">Proches</a></li>
+      <li class="bar"><a id="moins">Moins</a></li>
     `;
   } 
   else if (provenance === "Carte") {
     bar.innerHTML = `
       <li class="bar"><a href="index.html">Lignes</a></li>
       <li class="selected bar"><a href="carte.html">Carte</a></li>
-      <li class="bar"><a href="proche.html">Autour de moi</a></li>
+      <li class="bar"><a href="proche.html">Proches</a></li>
+      <li class="bar"><a id="moins">Moins</a></li>
     `;
   }
   else {
     bar.innerHTML = `
       <li class="selected bar"><a href="index.html">Lignes</a></li>
       <li class="bar"><a href="carte.html">Carte</a></li>
-      <li class="bar"><a href="proche.html">Autour de moi</a></li>
+      <li class="bar"><a href="proche.html">Proches</a></li>
+      <li class="bar"><a id="moins">Moins</a></li>
     `;
+  } document.getElementById("moins").addEventListener('click', bottomBar())
+}
+
+const bottomBar = () => {
+  document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const provenance = urlParams.get("provenance");
+  const bar = document.querySelector(".insert");  
+
+  if (provenance === "GPS") {
+    bar.innerHTML = `
+      <li class="bar"><a href="index.html">Lignes</a></li>
+      <li class="bar"><a href="carte.html">Carte</a></li>
+      <li class="bar selected"><a href="proche.html">Proches</a></li>
+      
+    `;//<li class="bar"><a id="plus">Plus</a></li>
+  } 
+  else if (provenance === "Carte") {
+    bar.innerHTML = `
+      <li class="bar"><a href="index.html">Lignes</a></li>
+      <li class="selected bar"><a href="carte.html">Carte</a></li>
+      <li class="bar"><a href="proche.html">Proches</a></li>
+      
+    `;//<li class="bar"><a id="plus">Plus</a></li>
   }
+  else {
+    bar.innerHTML = `
+      <li class="selected bar"><a href="index.html">Lignes</a></li>
+      <li class="bar"><a href="carte.html">Carte</a></li>
+      <li class="bar"><a href="proche.html">Proches</a></li>
+      
+    `;
+  }//<li class="bar"><a id="plus">Plus</a></li>
 });
-};
+document.getElementById("plus").addEventListener('click', bottomBarExpanded());};
+
+
 bottomBar(); afficherHoraires(arretcible);
 if (isRunning){setInterval(() => {afficherHoraires(arretcible);}, 10000)}
  // Rafraîchit les résultats tout les 10s selon les recommandations de Ginko
