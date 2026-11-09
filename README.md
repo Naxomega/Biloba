@@ -7,7 +7,7 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 ## Fonctionnalités
 - Interface simple et élegante
 - Utilisable sur des appareils peu puissants
-- Visualise chaque arrêt (des lignes implémentées) avec toutes les lignes qui y passent
+- Visualise chaque arrêt avec toutes les lignes qui y passent
 - Voir les arrêts proches de vous
 - Une carte pour voir les autres arrêts (fonctionne avec Leaflet)
 ## Roadmap
@@ -19,8 +19,11 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 - [ ] Système d'information de chaque bus comme l'appli/site officiel
 - [ ] Documentation complète sur l'implémentation de l'API et la logique derrière
 - [x] Infos trafic pour chaque ligne
-- [ ] Retirer un maximum de choses codées en dur (voir en dessous)
-
+- [x] Retirer un maximum de choses codées en dur (partiel, voir plus bas)
+- [ ] Mode Kiosque qui imite les écrans à quai (par exemple pour mettre un vieux télephone à l'entrée de chez vous pour voir les horaires)
+- [ ] Annonces des bus/trams à haute voix (comme aux stations de tram)
+- [ ] Priorités sur certaines lignes (par exemple, si je consulte la page Gare Viotte en venant de la ligne L3, les L3 remonteront en haut de la liste)
+- [ ] Menu paramètres qui permettera de modifier les paramètres de l'app (vous l'avez pas vue venir celle la) (annonces TTS, nombre d'horaires affichées en une fois, etc...)
 ## Implémentation des fonctionnalités
 Quelque chose codé "en dur", c'est qu'il est implémenté de manière fixe dans le code (par exemple un bouton T1 en html sur la page "Lignes"). Et le but c'est d'éliminer au maximum les fonctionnalités codées en dur (donc demander à l'API les lignes, et alors créer un bouton T1 avec les infos de l'API), car si Keolis changent les lignes ou autre infos, le site sera immédiatement obsolète, et de plus, ca réduit la charge de travail en termes de maintenance et d'amélioration (par exemple, si je veut modifier le design de la page des horaires, j'ai qu'un seul fichier à modifier au lieu des multiples autrefois)
 
@@ -34,7 +37,7 @@ Voici une checklist ce de qui est en dur ou non (coché = pas en dur)
 
 Vous noterez que c'est un peu comme une arborescence. Et mon objectif c'est de remonter dans cet arbre pour éliminer progressivement les implémentation en dur.
 
-Ma priorité est la page de selection des arrêts car une fois fait, l'implémentation (en dur, je sais mais c'est en attendant) d'autres lignes sera bien plus simple car j'aurais juste a faire la page de sélection de direction et y mettre un lien dans la page lignes. Alors que sans il faut que je remplisse manuellement chaque arrêt à la main. Mais je m'attaquerais aux autres pages quand le reste sera terminé.
+Je vais pour l'instant laisser tout comme c'est actuellement, car cela me permet d'avoir une forme de contrôle sur les données, et de pouvoir plus facilement réparer des éventuelles erreurs faites par moi ou KBM.
 # Mentions Légales
 Ginko, Les mobilités de Grand Besançon Métropole est une marque déposée par Grand Besançon Métropole, touts droits réservés
 ## Licence
