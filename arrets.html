@@ -125,7 +125,7 @@ const afficherHoraires = async (numligne, dest) => {
       return;
     }
     // 3. Affichage
-   conteneur.innerHTML = Object.values(arrets).map((p => `<a href="horaires.html?arret=${p.nom}" class="line-link-${numligne.toLowerCase()} line-1">
+   conteneur.innerHTML = Object.values(arrets).map((p => `<a href="horaires.html?arret=${p.nom}&ligne=${numligne}" class="line-link-${numligne.toLowerCase()} line-1">
                 <span>${p.nom}</span>
             </a>`)).join("");
     } catch (erreur) {
