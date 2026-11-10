@@ -150,21 +150,21 @@ const bottomBar = () => {
     bar.innerHTML = `
       <li class="bar"><a href="index.html">Lignes</a></li>
       <li class="bar"><a href="carte.html">Carte</a></li>
-      <li class="bar selected"><a href="proche.html">Autour de moi</a></li>
+      <li class="bar selected"><a href="proche.html">Proches</a></li>
     `;
   } 
   else if (provenance === "Carte") {
     bar.innerHTML = `
       <li class="bar"><a href="index.html">Lignes</a></li>
       <li class="selected bar"><a href="carte.html">Carte</a></li>
-      <li class="bar"><a href="proche.html">Autour de moi</a></li>
+      <li class="bar"><a href="proche.html">Proches</a></li>
     `;
   }
   else {
     bar.innerHTML = `
       <li class="selected bar"><a href="index.html">Lignes</a></li>
       <li class="bar"><a href="carte.html">Carte</a></li>
-      <li class="bar"><a href="proche.html">Autour de moi</a></li>
+      <li class="bar"><a href="proche.html">Proches</a></li>
     `;
   }
 });
