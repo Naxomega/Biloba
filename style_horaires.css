@@ -673,35 +673,15 @@ a,
     outline: 2px solid rgba(255, 255, 255, 0.5);
     margin-right: 10px;
 }
-[class*="outline-t"] {
-    outline: 2px solid rgba(255, 255, 255, 0.5);
-    margin-right: 10px;
-}
-[class*="outline-l"] {
-    outline: 2px solid rgba(255, 255, 255, 0.5);
-    margin-right: 10px;
-}
-.outline-7 {
-    outline: 2px solid rgba(255, 255, 255, 0.5);
-    margin-right: 10px;
-}
-.outline-8 {
-    outline: 2px solid rgba(255, 255, 255, 0.5);
-    margin-right: 10px;
-}
-.outline-9 {
-    outline: 2px solid rgba(255, 255, 255, 0.5);
-    margin-right: 10px;
-}
-[class*="outline-1"] {
+[class*="outline-t"], [class*="outline-l"], .outline-7, .outline-8, .outline-9, [class*="outline-1"] {
     outline: 2px solid rgba(255, 255, 255, 0.5);
     margin-right: 10px;
 }
 
 [class*="outline-2"] {outline: 2px solid rgba(255, 255, 255, 0.5); margin-right: 10px;}
 [class*="outline-5"] { outline: 2px solid var(--Peri5); margin-right: 10px; }
-[class*="outline-2"] { outline: 2px solid var(--Peri6); margin-right: 10px; }
-[class*="outline-2"]:not(.ouline-7) { outline: 2px solid var(--Peri7); margin-right: 10px; }
+[class*="outline-6"] { outline: 2px solid var(--Peri6); margin-right: 10px; }
+[class*="outline-7"]:not(.outline-7) { outline: 2px solid var(--Peri7); margin-right: 10px; }
 [class*="outline-8"]:not(.outline-8) { outline: 2px solid var(--Peri8); margin-right: 10px; }
 .outline-cit\. { outline: 2px solid rgba(255, 255, 255, 0.5); margin-right: 10px; }
 .outline-b { outline: 2px solid rgba(255, 255, 255, 0.5); margin-right: 10px; }
