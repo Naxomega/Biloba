@@ -531,7 +531,7 @@ a,
     text-align: left;
     margin-top: 10px;
 }
-[class*="tile-d"] {
+[class*="tile-d"]:not(.line-dot) {
     background-color:var(--Diabolo);
     color: white;
     border-radius: 15px;
