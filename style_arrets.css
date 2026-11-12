@@ -751,7 +751,7 @@ a,
     text-decoration: none;
     text-align: center;
     border-radius: 10px;
-    background-color: var(rgba(0, 0, 0, 0));
+    background-color: rgba(0, 0, 0, 0);
     transition: background-color 0.3s, transform 0.2s, color 0.2s;
     font-size: 18px;
     box-sizing: border-box;
