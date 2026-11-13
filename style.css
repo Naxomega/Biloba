@@ -132,7 +132,7 @@ a,
 [class*="line-6"] {background-color:white ; color:var(--Peri6) ;}
 [class*="line-7"]:not(.line-7) {background-color:white ; color:var(--Peri7) ;}
 [class*="line-8"]:not(.line-8) {background-color:white ; color: var(--Peri8);}
-[class*="line-d"] {background-color: var(--Diabolo); color: white;}
+[class*="line-d"]:not(.line-dot, .line-dots) {background-color: var(--Diabolo); color: white;}
 .line-citadelle {background-color: var(--Citadelle); color: white;}
 
 
