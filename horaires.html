@@ -66,7 +66,8 @@
     const passages = response.listeTemps
 
     if (passages.length === 0) {
-      conteneur.innerHTML = "<p>Aucun passage trouvé pour cet arrêt.</p>";
+      conteneur.innerHTML = `<p class="lightmode">Aucun passage trouvé pour cet arrêt.</p>`;
+      titre.innerHTML = `<h2>${nomArret}</h2>`;
       return;
     }
     let ordre = 1
@@ -120,7 +121,7 @@ const bottomBar = () => {
   const provenance = urlParams.get("provenance");
   const bar = document.querySelector(".insert");
 
-  // Sécurité : si l'élément n'existe pas, on le signale dans la console
+ 
   
 
   if (provenance === "GPS") {

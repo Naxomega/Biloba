@@ -177,7 +177,7 @@ Object.values(listearret).forEach(arret => {
         }
         
 })
-map.on('popupopen', async (e) => {
+map.on(`popupopen`, async (e) => {
   let trajets = {};
   const marqueur = e.popup._source;
   if (marqueur && marqueur.options && marqueur.options.customData) {
@@ -213,7 +213,16 @@ for (let index = 0; index < passages.length; index++) {
       }
       
   }console.log(trajets)
-  conteneur.innerHTML = Object.values(trajets).map((p => `<div class="passage tile-${p.ligne.toLowerCase()}">
+  conteneur.innerHTML = Object.values(trajets).filter(a => {
+    return(a.ligne === "T1" ||
+    a.ligne === "T2" ||
+    a.ligne === "L3" ||
+    a.ligne === "L4" ||
+    a.ligne === "L5" ||
+    a.ligne === "L6" ||
+    a.ligne === "B")
+
+  }).map((p => `<div class="passage tile-${p.ligne.toLowerCase()}">
           <strong><p class="line-dot line-${p.ligne.toLowerCase()} enlarge ">${p.ligne}</p></strong> <p> 
          <strong>${p.destination}</strong>
           <br><span class="bulle"><strong>${p.temps.join(`</span></strong><strong><span class="bulle">`)}</strong></span></p></div>`)).join("");
