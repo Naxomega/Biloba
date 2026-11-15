@@ -38,23 +38,18 @@
 
 // fonction async principale
 const chargerarrets = async () => {
-  try {
+  
     let fav_arret = JSON.parse(localStorage.getItem('fav_arrets')) || [];
     
     
       const arretsproches = fav_arret.map((a) => `<a href="horaires.html?arret=${a}&provenance=Favoris" class="line-link"><span>${a}</span></a><br>`).join("");  
         conteneur.innerHTML = arretsproches
-        if (arretsproches === "") {conteneur.innerHTML = `<p class="lightmode">Aucun arrêts proche n'a été trouvé. Vous êtes bien dans le Grand Besançon ?</p>`}
+        if (arretsproches === "") {conteneur.innerHTML = `<p class="lightmode">Vous n'avez ajouté aucun arrêt en favoris (bouton étoile)</p>`}
         console.log(arretsproches)
         document.querySelector(".titre").innerHTML = "<h2>Arrêts Favoris</h2>"
-    }
+    
 
-   catch (error) {
-    document.querySelector(".titre").innerHTML = "<h2>Erreur</h2>"
-    conteneur.innerHTML = `<p class="lightmode">Impossible de vous localiser.</p>
-    <p class="lightmode">Assurez-vous d'avoir autorisé Biloba et votre navigateur à accéder à votre position</p>`;
-    console.error(error);
-  }
+   
 };
 
 
