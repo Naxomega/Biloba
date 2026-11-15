@@ -32,6 +32,7 @@
     const arretcible = urlParams.get('arret');
     const arretalt = urlParams.get('arretalt');
     const ligne = urlParams.get('ligne');
+    const dest = urlParams.get('dest');
     const provenance = urlParams.get("provenance");
     const bar = document.querySelector(".insert");
     let trajets = {};
@@ -87,7 +88,10 @@ for (let index = 0; index < passages.length; index++) {
       let statut = ""
       let moyen = ""
       let prio = 0
-      if (part1===ligne) {prio=1}
+      if (part1===ligne) {
+        if (part2===dest) {prio=2}
+        else {prio=1}
+      }
 
       if (part1==="T1"||part1==="T2") {moyen="tram"} else {moyen="bus"}
       if (attente==="0 min" && moyen==="bus"){attente=`<i class="fa-solid fa-bus-simple imminent"></i>`} // Affiche une icone de bus/tram
