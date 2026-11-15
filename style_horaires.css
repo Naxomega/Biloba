@@ -28,6 +28,7 @@
   --Diabolo: #E8526B;
   --TER: #034EA2;
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -638,17 +639,7 @@ a,
     list-style-position: inside; 
     text-align: left;   
 }
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #000;
-    }
-    .header {
-        color: #DDD;
-    }
-    .lightmode{color: #fff;}
-    .content{background-color: #333;}
-    .logo{color:white;}
-}
+
 .bulle {
     border: rgb(255, 255, 255);
     border-radius: 7px;
@@ -690,6 +681,21 @@ a,
 
 
 
+.buttonbar a {
+    background-color: #333;
+    padding: 5px;
+    border-radius: 5px;
+    flex: 1;
+    color: white;
+    
+}
+.buttonbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
 
 
 
@@ -767,3 +773,18 @@ a,
 .circle2 {animation: clignote_circle2 3s infinite;}
 .circle3 {animation: clignote_circle3 3s infinite;}
 
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+    }
+    .header {
+        color: #DDD;
+    }
+    .lightmode{color: #fff;}
+    .content{background-color: #333;}
+    .logo{color:white;}
+    .buttonbar a {color: black; background-color: #CCC;}
+
+
+}

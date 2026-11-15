@@ -37,99 +37,12 @@
         
     </div>
     <div id="map">
-      
-        <!--<script>
-          // var globales
-          const conteneur = document.querySelector(".line-container");
-          const debugLat = 47.24878;
-          const debugLon = 6.01815;
-          let listearretsproche = {};
-          const deltaLat = 0.0045; // envir. 300m
-          const deltaLon = 0.00663; // envir. 300m
-          // donc (300+300)x2 = recherche d'arrêt dans un carré de 600m de côté centré sur la position de l'utilisateur
-          //    600m
-          // +---------+
-          // |         |
-          // |    O    | 600m | O = utilisateur
-          // |         |
-          // +---------+
-          //
-          // promise gps
-const getPosition = () => {
-  return new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(resolve, reject, {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    });
-  });
-}; // promise api ginko
-const callGinko = (methodPath, args = {}) => {
-      return new Promise((resolve, reject) => {
-        ginkoAPI(
-          methodPath,
-          args,
-          (data) => resolve(data),
-          (err) => reject(err)
-        );
-      });
-    };
-
-// fonction async principale
-const chargerPositionGPS = async () => {
-  try {
-
-    const pos = await getPosition();
-    
-    const Latitude = pos.coords.latitude;
-    const Longitude = pos.coords.longitude;
-    try {
-      const arrets = await callGinko("DR/getArrets");
-      for (let index = 0; index < arrets.length; index++) {
-      let cletemp = arrets[index]
-      let cle = cletemp.nom
-      let lat = cletemp.latitude
-      let lon = cletemp.longitude
-      let proxilat = Math.abs(Latitude-lat)
-      let proxilon = Math.abs(Longitude-lon)
-      let proxi = proxilat+proxilon
-      let indiceProxi = proxi/2
-      if (!listearretsproche[cle]) {
-          listearretsproche[cle] = {nom: cle, latitude: lat, longitude: lon, proxi : indiceProxi};
-       }}
-      const arretsproches = Object.values(listearretsproche).sort((a, b) => a.proxi - b.proxi).filter(arret => {
-        return (
-          arret.latitude >= Latitude-deltaLat &&
-          arret.latitude <= Latitude+deltaLat &&
-          arret.longitude >= Longitude-deltaLon &&
-          arret.longitude <= Longitude+deltaLon
-        )}).map((a) => `<a href="horaires.html?arret=${a.nom}&provenance=GPS" class="line-link"><span>${a.nom}</span></a><br>`).join("");  
-        conteneur.innerHTML = arretsproches
-        if (arretsproches === "") {conteneur.innerHTML = `<p class="lightmode">Aucun arrêts proche n'a été trouvé. Vous êtes bien dans le Grand Besançon ?</p>`}
-        console.log(arretsproches)
-        document.querySelector(".titre").innerHTML = "<h2>Arrêts Proches</h2>"
-    } catch {
-      document.querySelector(".titre").innerHTML = "<h2>Erreur</h2>"
-      conteneur.innerHTML = `<p class="lightmode">Impossible de récupérer les arrêts</p>`;
-    
-    }
-
-  } catch (error) {
-    document.querySelector(".titre").innerHTML = "<h2>Erreur</h2>"
-    conteneur.innerHTML = `<p class="lightmode">Impossible de vous localiser.</p>
-    <p class="lightmode">Assurez-vous d'avoir autorisé Biloba et votre navigateur à accéder à votre position</p>`;
-    console.error(error);
-  }
-};
-
-
-chargerPositionGPS();
-
-  </script>-->
-  
-
     </div>
     <script type="module">
+       const urlParams = new URLSearchParams(window.location.search);
+    const maplat = urlParams.get('lat') || 47.250000;
+    const maplon = urlParams.get('lon') || 6.033330;
+    const zoom = urlParams.get('zoom') || 14;
       const callGinko = (methodPath, args = {}) => {
       return new Promise((resolve, reject) => {
         ginkoAPI(
@@ -152,7 +65,7 @@ chargerPositionGPS();
        }}
    
   import {LeafletMap, TileLayer, Marker, Circle, Polygon} from 'leaflet';
-	const map = new LeafletMap('map').setView([47.250000, 6.033330], 13);
+	const map = new LeafletMap('map').setView([maplat, maplon], parseInt(zoom));
   new TileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 19,
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'

@@ -22,7 +22,9 @@
     </div>
     <div class="content">
       <div class="titre lightmode"><h2>Biloba</h2></div>
-        <br>
+      
+      <div class="buttonbar"></div>
+        
         <div id="temps-reel"><i class="fa-solid fa-circle lightmode circle1"></i> <i class="fa-solid fa-circle lightmode circle2"></i> <i class="fa-solid fa-circle lightmode circle3"></i></div>
         <script>
 
@@ -53,10 +55,13 @@
   const conteneur = document.querySelector("#temps-reel");
   const titre = document.querySelector('.titre');
   const pagetitre = document.querySelector('title');
+  const boutons = document.querySelector('.buttonbar');
 
   try {
     const response = await callGinko("TR/getTempsLieu", { nom: nomArret, nb:3 });
-    
+    boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+                      <a href="carte.html?lat=${response.latitude}&lon=${response.longitude}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
+                      `
 
     
     
@@ -114,6 +119,7 @@ console.log(trajets)
   titre.innerHTML = `<h2>${nomArret}</h2>`;
   
   pagetitre.innerHTML = `Biloba - ${nomArret}`
+  
 };
 const bottomBar = () => {
   document.addEventListener("DOMContentLoaded", () => {
