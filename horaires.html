@@ -37,7 +37,8 @@
     const bar = document.querySelector(".insert");
     let trajets = {};
     let isRunning = true;
-
+    
+        
     const correspondances = []; // Tableau vide pour correspondances
     const callGinko = (methodPath, args = {}) => {
       return new Promise((resolve, reject) => {
@@ -52,6 +53,7 @@
 
     // 2. Fonction principale pour récupérer et afficher les horaires
     const afficherHoraires = async (nomArret) => {
+      let fav_arret = JSON.parse(localStorage.getItem('fav_arrets')) || [];
       let trajets = {};
   const conteneur = document.querySelector("#temps-reel");
   const titre = document.querySelector('.titre');
@@ -60,9 +62,21 @@
 
   try {
     const response = await callGinko("TR/getTempsLieu", { nom: nomArret, nb:3 });
-    boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+    if (fav_arret.includes(nomArret)) {
+      boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
                       <a href="carte.html?lat=${response.latitude}&lon=${response.longitude}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
+                      <a onclick="toggle_fav()"" class="buttons"><i class="fa-solid fa-star"></i></a>
                       `
+    }
+    else {
+      boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+                      <a href="carte.html?lat=${response.latitude}&lon=${response.longitude}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
+                      <a onclick="toggle_fav()"" class="buttons"><i class="fa-regular fa-star"></i></a>
+                      `
+    }
+    
+                      // Boutons : Retour (dedicace aux utilisateur d'iphones :) )
+                      //           Ouvrir dans menu carte
 
     
     
@@ -92,7 +106,7 @@ for (let index = 0; index < passages.length; index++) {
         if (part2===dest) {prio=2}
         else {prio=1}
       }
-
+      
       if (part1==="T1"||part1==="T2") {moyen="tram"} else {moyen="bus"}
       if (attente==="0 min" && moyen==="bus"){attente=`<i class="fa-solid fa-bus-simple imminent"></i>`} // Affiche une icone de bus/tram
       if (attente==="0 min" && moyen==="tram"){attente=`<i class="fa-solid fa-train-tram imminent"></i>`}// lorsque l'arrivée est imminente
@@ -138,6 +152,7 @@ const bottomBar = () => {
     bar.innerHTML = `
       <li class="bar"><a href="index.html">Lignes</a></li>
       <li class="bar"><a href="carte.html">Carte</a></li>
+      <li class="bar "><a href="carte.html">Favoris</a></li>
       <li class="bar selected"><a href="proche.html">Proches</a></li>
     `;
   } 
@@ -145,6 +160,15 @@ const bottomBar = () => {
     bar.innerHTML = `
       <li class="bar"><a href="index.html">Lignes</a></li>
       <li class="selected bar"><a href="carte.html">Carte</a></li>
+      <li class="bar "><a href="carte.html">Favoris</a></li>
+      <li class="bar"><a href="proche.html">Proches</a></li>
+    `;
+  }
+  else if (provenance === "Favoris") {
+    bar.innerHTML = `
+      <li class="bar"><a href="index.html">Lignes</a></li>
+      <li class="bar"><a href="carte.html">Carte</a></li>
+      <li class="bar selected"><a href="carte.html">Favoris</a></li>
       <li class="bar"><a href="proche.html">Proches</a></li>
     `;
   }
@@ -152,6 +176,7 @@ const bottomBar = () => {
     bar.innerHTML = `
       <li class="selected bar"><a href="index.html">Lignes</a></li>
       <li class="bar"><a href="carte.html">Carte</a></li>
+      <li class="bar "><a href="carte.html">Favoris</a></li>
       <li class="bar"><a href="proche.html">Proches</a></li>
     `;
   }
@@ -161,7 +186,22 @@ bottomBar(); afficherHoraires(arretcible);
 if (isRunning){setInterval(() => {afficherHoraires(arretcible);}, 10000)}
  // Rafraîchit les résultats tout les 10s selon les recommandations de Ginko
     
-  
+const toggle_fav = () => {
+  console.log("Fonction invoquée!")
+  let fav_arret = JSON.parse(localStorage.getItem('fav_arrets')) || [];
+  if (fav_arret.includes(arretcible)) {
+      const index = fav_arret.indexOf(arretcible);
+      fav_arret.splice(index)
+      localStorage.setItem('fav_arrets', JSON.stringify(fav_arret));
+      
+      console.log("Favori retiré")
+    }
+    else {
+      fav_arret.push(arretcible)
+      localStorage.setItem('fav_arrets', JSON.stringify(fav_arret));
+      console.log("Favori ajouté")
+    }afficherHoraires(arretcible)
+}
   </script>
 
 <div class="line-dots">
