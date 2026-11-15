@@ -74,6 +74,7 @@ body {
     font-weight: bold;
     position: relative; /* Required for the ::after pseudo-element */
     transition: color 0.3s ease; /* Smooth color transition */
+    font-size: 15px;
 }
 
 /* Center the content inside the .content div */

@@ -63,20 +63,20 @@ body {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    position: relative; /* Required for the ::after pseudo-element */
-    transition: color 0.3s ease; /* Smooth color transition */
+    position: relative;
+    transition: color 0.3s ease;
+    font-size: 15px;
 }
 
-/* Center the content inside the .content div */
 .content {
     margin-top: 20px;
     border-radius: 25px;
-    background-color: #CCC; /* Warm rose for Line 1 */
+    background-color: #CCC; 
     padding: 20px;
-    display: flex; /* Use flexbox for layout */
-    flex-direction: column; /* Stack headings vertically */
-    gap: 5px; /* Add space between elements */
-    text-align: center; /* Center text inside the container */
+    display: flex; 
+    flex-direction: column; 
+    gap: 5px; 
+    text-align: center; 
     
     
 }
