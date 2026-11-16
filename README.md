@@ -10,9 +10,10 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 - Visualise chaque arrêt avec toutes les lignes qui y passent
 - Voir les arrêts proches de vous
 - Une carte pour voir les autres arrêts (fonctionne avec Leaflet)
+- Système de favoris (arrêts, lignes et destinations)
 ## Roadmap
 - [x] Implémenter toutes les lignes (hors Proxi et spéciales)
-- [ ] Améliorer l'ésthetique du site (via des librairies JS comme React ou Vue) (en cours, pour l'instant en CSS pur)
+- [x] Améliorer l'ésthetique du site (techniquement complêté, mais j'ajouterais plus tard une plus jolie interface si j'en ai vraiment besoin)
 - [x] Système de localisation (page "Autour de moi" qui liste les arrêts à proximité)
 - [x] Système de stockage persistant (pour des arrêts favoris notamment)
 - [x] Interface plus adapté aux appareils mobile (Avec une navbar comme la plupart des applis mobile d'aujourd'hui)
@@ -24,7 +25,7 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 - [ ] Annonces des bus/trams à haute voix (comme aux stations de tram)
 - [x] Priorités sur certaines lignes (par exemple, si je consulte la page Gare Viotte en venant de la ligne L3, les L3 remonteront en haut de la liste)
 - [ ] Menu paramètres qui permettera de modifier les paramètres de l'app (vous l'avez pas vue venir celle la) (annonces TTS, nombre d'horaires affichées en une fois, etc...)
-- [ ] Implémentation d'autres services de transports liés de près ou de loin à Besançon (notamment les cars Mobigo et TER/TGV SNCF)
+- [ ] Implémentation d'autres services de transports liés de près ou de loin à Besançon (notamment les cars Mobigo et TER/TGV SNCF) (en cours)
 ## Implémentation des fonctionnalités
 Quelque chose codé "en dur", c'est qu'il est implémenté de manière fixe dans le code (par exemple un bouton T1 en html sur la page "Lignes"). Et le but c'est d'éliminer au maximum les fonctionnalités codées en dur (donc demander à l'API les lignes, et alors créer un bouton T1 avec les infos de l'API), car si Keolis changent les lignes ou autre infos, le site sera immédiatement obsolète, et de plus, ca réduit la charge de travail en termes de maintenance et d'amélioration (par exemple, si je veut modifier le design de la page des horaires, j'ai qu'un seul fichier à modifier au lieu des multiples autrefois)
 
@@ -41,6 +42,10 @@ Vous noterez que c'est un peu comme une arborescence. Et mon objectif c'est de r
 Je vais pour l'instant laisser tout comme c'est actuellement, car cela me permet d'avoir une forme de contrôle sur les données, et de pouvoir plus facilement réparer des éventuelles erreurs faites par moi ou KBM.
 # Mentions Légales
 Ginko, Les mobilités de Grand Besançon Métropole est une marque déposée par Grand Besançon Métropole, touts droits réservés
+# Crédits
+- Keolis Besançon Mobilité, pour l'API Ginko
+- Les contributeurs de Leaflet
+- Train Nomade, pour l'API SNCF
 ## Licence
 
 Ce projet est sous licence **GNU Affero General Public License v3.0 (AGPLv3)**.
