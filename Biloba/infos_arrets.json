@@ -1,0 +1,24 @@
+[
+    {
+        "nom_arret": "Gare Viotte",
+        "nom_sncf": "Besançon Viotte",
+        "uic": 87718007,
+        "type": "gare"
+    },
+    {
+        "nom_arret": "Gare de la Mouillère",
+        "nom_sncf": "Besançon Mouillère",
+        "uic": 87718015,
+        "type": "gare"
+    },
+    {
+        "nom_arret": "Temis",
+        "type": "pole",
+        "parking_relais": true
+    },
+    {
+        "nom_arret": "chamars",
+        "type": "pole",
+        "parking_relais": false
+    }
+]

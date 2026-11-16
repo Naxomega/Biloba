@@ -14,7 +14,7 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 - [x] Implémenter toutes les lignes (hors Proxi et spéciales)
 - [ ] Améliorer l'ésthetique du site (via des librairies JS comme React ou Vue) (en cours, pour l'instant en CSS pur)
 - [x] Système de localisation (page "Autour de moi" qui liste les arrêts à proximité)
-- [ ] Système de stockage persistant (pour des arrêts favoris notamment)
+- [x] Système de stockage persistant (pour des arrêts favoris notamment)
 - [x] Interface plus adapté aux appareils mobile (Avec une navbar comme la plupart des applis mobile d'aujourd'hui)
 - [ ] Système d'information de chaque bus comme l'appli/site officiel
 - [ ] Documentation complète sur l'implémentation de l'API et la logique derrière
@@ -22,7 +22,7 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 - [x] Retirer un maximum de choses codées en dur (partiel, voir plus bas)
 - [ ] Mode Kiosque qui imite les écrans à quai (par exemple pour mettre un vieux télephone à l'entrée de chez vous pour voir les horaires)
 - [ ] Annonces des bus/trams à haute voix (comme aux stations de tram)
-- [ ] Priorités sur certaines lignes (par exemple, si je consulte la page Gare Viotte en venant de la ligne L3, les L3 remonteront en haut de la liste)
+- [x] Priorités sur certaines lignes (par exemple, si je consulte la page Gare Viotte en venant de la ligne L3, les L3 remonteront en haut de la liste)
 - [ ] Menu paramètres qui permettera de modifier les paramètres de l'app (vous l'avez pas vue venir celle la) (annonces TTS, nombre d'horaires affichées en une fois, etc...)
 - [ ] Implémentation d'autres services de transports liés de près ou de loin à Besançon (notamment les cars Mobigo et TER/TGV SNCF)
 ## Implémentation des fonctionnalités

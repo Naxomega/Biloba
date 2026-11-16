@@ -35,10 +35,62 @@
     const dest = urlParams.get('dest');
     const provenance = urlParams.get("provenance");
     const bar = document.querySelector(".insert");
+    const conteneur = document.querySelector("#temps-reel");
+  const titre = document.querySelector('.titre');
+  const pagetitre = document.querySelector('title');
+  const boutons = document.querySelector('.buttonbar');
+  
     let trajets = {};
-    let isRunning = true;
+    let isRunning = "Ginko";
     
-        
+    
+    
+    
+    const type_arret = async () => {
+      const infosjson = await fetch('./infos_arrets.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();  
+                })
+                .then()  
+                .catch(error => console.error('Failed to fetch data:', error)); 
+                
+                const infos_arret = infosjson.find(a => a.nom_arret === arretcible) || "undef"
+                return infos_arret.type || "undef"
+                
+    }
+    const id_gare = async () => {
+      const infosjson = await fetch('./infos_arrets.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();  
+                })
+                .then()  
+                .catch(error => console.error('Failed to fetch data:', error)); 
+                
+                const infos_arret = infosjson.find(a => a.nom_arret === arretcible) || "undef"
+                return infos_arret.uic || "undef"
+                
+    }
+    const nom_gare = async () => {
+      const infosjson = await fetch('./infos_arrets.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();  
+                })
+                .then()  
+                .catch(error => console.error('Failed to fetch data:', error)); 
+                
+                const infos_arret = infosjson.find(a => a.nom_arret === arretcible) || "undef"
+                return infos_arret.nom_sncf || "undef"
+                
+    }
     const correspondances = []; // Tableau vide pour correspondances
     const callGinko = (methodPath, args = {}) => {
       return new Promise((resolve, reject) => {
@@ -55,25 +107,30 @@
     const afficherHoraires = async (nomArret) => {
       let fav_arret = JSON.parse(localStorage.getItem('fav_arrets')) || [];
       let trajets = {};
-  const conteneur = document.querySelector("#temps-reel");
-  const titre = document.querySelector('.titre');
-  const pagetitre = document.querySelector('title');
-  const boutons = document.querySelector('.buttonbar');
-
+  
+  const type = await type_arret()
   try {
     const response = await callGinko("TR/getTempsLieu", { nom: nomArret, nb:3 });
     if (fav_arret.includes(nomArret)) {
-      boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+      if (type==="gare"){ boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+                      <a href="carte.html?lat=${response.latitude}&lon=${response.longitude}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
+                      <a onclick="toggle_fav()"" class="buttons"><i class="fa-solid fa-star"></i></a>
+                      <a onclick="afficherTrains()" class="buttons"><i class="fa-solid fa-train"></i></a>`}
+      
+      else {boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
                       <a href="carte.html?lat=${response.latitude}&lon=${response.longitude}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
                       <a onclick="toggle_fav()"" class="buttons"><i class="fa-solid fa-star"></i></a>
                       `
-    }
-    else {
-      boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+    }}
+    else { if (type==="gare"){boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+                      <a href="carte.html?lat=${response.latitude}&lon=${response.longitude}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
+                      <a onclick="toggle_fav()"" class="buttons"><i class="fa-regular fa-star"></i></a>
+                      <a onclick="afficherTrains()" class="buttons"><i class="fa-solid fa-train"></i></a>`}
+      else {boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
                       <a href="carte.html?lat=${response.latitude}&lon=${response.longitude}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
                       <a onclick="toggle_fav()"" class="buttons"><i class="fa-regular fa-star"></i></a>
                       `
-    }
+    }}
     
                       // Boutons : Retour (dedicace aux utilisateur d'iphones :) )
                       //           Ouvrir dans menu carte
@@ -140,6 +197,33 @@ console.log(trajets)
   pagetitre.innerHTML = `Biloba - ${nomArret}`
   
 };
+const afficherTrains = async () => {
+  console.log("Fonction inoquée!")
+  alert("Fonction pas encore implémentée :/")
+  //isRunning = "SNCF"
+    const nom = await nom_gare()
+  console.log(nom)
+    const uic = await id_gare()
+  console.log(uic)
+  console.log(isRunning)
+    const horaire_train = await fetch(`https://api.trainnomade.fr/gare/${uic}.json`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();  
+                })
+                .then()  
+                .catch(error => console.error('Failed to fetch data:', error)); 
+    console.log(horaire_train)
+    let identifiants = horaire_train.noms
+    console.log(identifiants)
+    console.log(identifiants[uic])
+
+
+
+
+}
 const bottomBar = () => {
   document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -184,7 +268,8 @@ const bottomBar = () => {
 });
 };
 bottomBar(); afficherHoraires(arretcible);
-if (isRunning){setInterval(() => {afficherHoraires(arretcible);}, 10000)}
+setInterval(() => {if (isRunning==="Ginko"){afficherHoraires(arretcible)};}, 10000)
+
  // Rafraîchit les résultats tout les 10s selon les recommandations de Ginko
     
 const toggle_fav = () => {
