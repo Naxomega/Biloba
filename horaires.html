@@ -192,7 +192,7 @@ const toggle_fav = () => {
   let fav_arret = JSON.parse(localStorage.getItem('fav_arrets')) || [];
   if (fav_arret.includes(arretcible)) {
       const index = fav_arret.indexOf(arretcible);
-      fav_arret.splice(index)
+      fav_arret.splice(index, 1)
       localStorage.setItem('fav_arrets', JSON.stringify(fav_arret));
       
       console.log("Favori retiré")

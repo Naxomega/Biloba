@@ -48,7 +48,7 @@
     };
 const topBar = () => {
   let fav_dest = JSON.parse(localStorage.getItem('fav_dest')) || [];
-if (fav_dest.includes(destination)) {
+if (fav_dest.findIndex(item => item.ligne === ligne && item.destination === destination) !== -1) {
       boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
                             <a onclick="toggle_fav()"" class="buttons"><i class="fa-solid fa-star"></i></a>
                       `
@@ -62,18 +62,21 @@ if (fav_dest.includes(destination)) {
 const toggle_fav = () => {
   console.log("Fonction invoquée!")
   let fav_dest = JSON.parse(localStorage.getItem('fav_dest')) || [];
-  if (fav_dest.includes(destination)) {
-      const index = fav_dest.indexOf(destination);
-      fav_dest.splice(index)
+  const index = fav_dest.findIndex(item => item.ligne === ligne && item.destination === destination);
+  if (index !== -1) {
+    
+      fav_dest.splice(index, 1)
       localStorage.setItem('fav_dest', JSON.stringify(fav_dest));
       
       console.log("Favori retiré")
-    }
-    else {
-      fav_dest.push(destination)
+  }
+  else {
+    fav_dest.push({ligne, destination})
       localStorage.setItem('fav_dest', JSON.stringify(fav_dest));
       console.log("Favori ajouté")
-    }topBar()
+  }
+  topBar()
+  
 }
     // Fonction principale pour récupérer et afficher les arrêts
 const afficherHoraires = async (numligne, dest) => {
