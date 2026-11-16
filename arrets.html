@@ -20,9 +20,10 @@
 
         
     </div>
+    
     <div class="content">
       <div class="titre lightmode"><h2>Biloba</h2></div>
-        <br>
+        <div class="buttonbar"></div>
         <div class="link-container"><i class="fa-solid fa-circle lightmode circle1"></i> <i class="fa-solid fa-circle lightmode circle2"></i> <i class="fa-solid fa-circle lightmode circle3"></i></div>
         <script>
 // arguments en url : ligne=(T1, T2, L3...)&dest=(Gare Viotte, Pôle Temis...)&provenance=(GPS ou rien)
@@ -32,6 +33,7 @@
     const provenance = urlParams.get("provenance");
     const bar = document.querySelector(".insert");
     const logo = document.querySelector(".header")
+    const boutons = document.querySelector('.buttonbar');
     let trajets = {};
 
     const callGinko = (methodPath, args = {}) => {
@@ -44,8 +46,36 @@
         );
       });
     };
-
-    // 2. Fonction principale pour récupérer et afficher les arrêts
+const topBar = () => {
+  let fav_dest = JSON.parse(localStorage.getItem('fav_dest')) || [];
+if (fav_dest.includes(destination)) {
+      boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+                            <a onclick="toggle_fav()"" class="buttons"><i class="fa-solid fa-star"></i></a>
+                      `
+    }
+    else {
+      boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+                      <a onclick="toggle_fav()"" class="buttons"><i class="fa-regular fa-star"></i></a>
+                      `
+    }
+}
+const toggle_fav = () => {
+  console.log("Fonction invoquée!")
+  let fav_dest = JSON.parse(localStorage.getItem('fav_dest')) || [];
+  if (fav_dest.includes(destination)) {
+      const index = fav_dest.indexOf(destination);
+      fav_dest.splice(index)
+      localStorage.setItem('fav_dest', JSON.stringify(fav_dest));
+      
+      console.log("Favori retiré")
+    }
+    else {
+      fav_dest.push(destination)
+      localStorage.setItem('fav_dest', JSON.stringify(fav_dest));
+      console.log("Favori ajouté")
+    }topBar()
+}
+    // Fonction principale pour récupérer et afficher les arrêts
 const afficherHoraires = async (numligne, dest) => {
       let trajets = {};
   const conteneur = document.querySelector(".link-container");
@@ -172,6 +202,7 @@ const bottomBar = () => {
   }
 });
 };
+topBar();
 bottomBar(); afficherHoraires(ligne, destination);
 </script>
 

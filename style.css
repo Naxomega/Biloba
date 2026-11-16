@@ -236,8 +236,15 @@ a,
         color: #DDD;
     }
     .lightmode{color: #fff;}
-
+    .content{background-color: #333;}
     .logo{color:white;}
+    .line-link {
+    border: solid rgba(255, 255, 255, 0.4) 1px;
+    color: white;
+    }
+    .buttonbar a.selected {background-color: #666;}
+    .buttonbar a {background-color: #333; color: white;}
+
 }
 @font-face {
     font-family: "Poppins Custom";
@@ -317,12 +324,12 @@ a,
        
 
     height: 25px;
-    color: white;
+    color: black;
     font-weight: bold;
     text-decoration: none;
     text-align: center;
     border-radius: 10px;
-    background-color: var(--line-color, #333);
+    background-color: var(--line-color, #BBB);
     transition: background-color 0.3s, transform 0.2s;
     font-size: 13px;
     box-sizing: border-box;
@@ -347,7 +354,7 @@ a,
     text-decoration: none;
     text-align: center;
     border-radius: 10px;
-    background-color: var(--line-color, #666);
+    background-color:  #666;
     transition: background-color 0.3s, transform 0.2s;
     font-size: 13px;
     box-sizing: border-box;

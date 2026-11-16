@@ -25,19 +25,58 @@
 
         
     </div>
+    <div class="buttonbar"></div>
     <div class="content">
-      <div class="titre lightmode"><h2>Biloba</h2></div>
+
         
         <div class="line-container"><i class="fa-solid fa-circle lightmode circle1"></i> <i class="fa-solid fa-circle lightmode circle2"></i> <i class="fa-solid fa-circle lightmode circle3"></i></div>
         <script>
           // var globales
           const conteneur = document.querySelector(".line-container");
+          const boutons = document.querySelector(".buttonbar")
 
-          let listearretsproche = {};
-          
+const drawLignes = () => {
+  
+    let fav_ligne = JSON.parse(localStorage.getItem('fav_ligne')) || [];
+    
+    
+      const arretsproches = fav_ligne.map((a) => `<a href="horaires.html?arret=${a}&provenance=Favoris" class="line-link"><span>${a}</span></a><br>`).join("");  
+        conteneur.innerHTML = arretsproches
+        if (arretsproches === "") {conteneur.innerHTML = `<p class="lightmode">Vous n'avez ajouté aucune ligne en favoris (bouton étoile)</p>`}
+        console.log(arretsproches)
+    
+    
+        boutons.innerHTML = `<a onclick="drawArrets(); return true"><p>Arrêts</p></a>
+        <a class="selected" onclick="drawLignes(); return true"><p>Lignes</p></a>
+        <a onclick="drawDestinations(); return true"><p>Destinations</p></a>`
+            
+    
 
-// fonction async principale
-const chargerarrets = async () => {
+   
+};    
+const drawDestinations = () => {
+  
+    let fav_dest = JSON.parse(localStorage.getItem('fav_dest')) || [];
+    
+    
+      const arretsproches = fav_dest.map((a) => `<a href="horaires.html?arret=${a}&provenance=Favoris" class="line-link"><span>${a}</span></a><br>`).join("");  
+        conteneur.innerHTML = arretsproches
+        if (arretsproches === "") {conteneur.innerHTML = `<p class="lightmode">Vous n'avez ajouté aucune destination en favoris (bouton étoile)</p>`}
+        console.log(arretsproches)
+    
+    
+        boutons.innerHTML = `<a onclick="drawArrets(); return true"><p>Arrêts</p></a>
+        <a onclick="drawLignes(); return true"><p>Lignes</p></a>
+        <a class="selected" onclick="drawDestinations(); return true"><p>Destinations</p></a>`
+            
+    
+
+   
+};      
+
+
+
+const drawArrets = () => {
   
     let fav_arret = JSON.parse(localStorage.getItem('fav_arrets')) || [];
     
@@ -46,14 +85,17 @@ const chargerarrets = async () => {
         conteneur.innerHTML = arretsproches
         if (arretsproches === "") {conteneur.innerHTML = `<p class="lightmode">Vous n'avez ajouté aucun arrêt en favoris (bouton étoile)</p>`}
         console.log(arretsproches)
-        document.querySelector(".titre").innerHTML = "<h2>Arrêts Favoris</h2>"
+    boutons.innerHTML = `<a class="selected" onclick="drawArrets(); return true"><p>Arrêts</p></a>
+        <a onclick="drawLignes(); return true"><p>Lignes</p></a>
+        <a onclick="drawDestinations(); return true"><p>Destinations</p></a>`
+            
     
 
    
 };
 
 
-chargerarrets();
+drawArrets();
 
   </script>
   
