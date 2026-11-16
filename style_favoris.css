@@ -136,15 +136,15 @@ body {
 .line-l3 {background-color: var(--L3); color: white;}
 .line-l4 {background-color: var(--L4); color: white;}
 .line-l5 {background-color: var(--L5); color: white;}
-.line-l6 {background-color: var(--L6); color: black;}
+.line-link.line-l6 {background-color: var(--L6); color: black;}
 .line-7 {background-color: var(--7); color: white;}
 .line-8 {background-color: var(--8); color: white;}
 .line-9 {background-color: var(--9); color: white;}
-.line-10 {background-color: var(--10); color: black;}
+.line-link.line-10 {background-color: var(--10); color: black;}
 .line-11 {background-color: var(--11); color: white;}
-.line-12 {background-color: var(--12); color: black;}
+.line-link.line-12 {background-color: var(--12); color: black;}
 .line-ter {background-color: var(--TER); color: white;}
-.line-b {background-color: var(--Bbg); color: var(--Bfg);}
+.line-link.line-b {background-color: var(--Bbg); color: var(--Bfg);}
 [class*="line-2"] {background-color: var(--Comp2x); color: white;}
 [class*="line-5"] {background-color:white ; color:var(--Peri5) ;}
 [class*="line-6"] {background-color:white ; color:var(--Peri6) ;}
@@ -307,7 +307,6 @@ a,
     border: solid rgba(0, 0, 0, 0) 1px;
     color: white;
 }
-
 .line-link span {
     display: inline-block; /* Ensure each word is inline */
     margin: 0 5px; /* Add spacing between words */

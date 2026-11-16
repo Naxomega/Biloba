@@ -18,27 +18,27 @@
   --12: #7BC6BC;
   --TER: #034EA2;
  --CITADELLE: #F26522;
-  --2x: #5C6970;
+  --Comp2x: #5C6970;
   --Bbg: #111;
   --Bfg: #FFF100;
 
   /* --- PÉRIURBAINES (Couleurs de texte / contours) --- */
   /* Série 50 (Bleu) */
-  --5x: #009EE0;
+  --Peri5: #009EE0;
 
 
   /* Série 60 (Orange) */
-  --6x: #EE7B00;
+  --Peri6: #EE7B00;
 
 
   /* Série 70 (Rose) */
-  --7x: #D2528B;
+  --Peri7: #D2528B;
 
   /* Série 80 (Vert) */
-  --8x: #009036;
+  --Peri8: #009036;
   
   /* --- DIABOLO / SCOLAIRES --- */
-  --Dx: #E8526B;
+  --Diabolo: #E8526B;
 
 }
 body {
@@ -361,7 +361,7 @@ a,
     color: var(--Bfg);
 }
 [class*="line-link-2"]:hover {
-    background-color:var(--2x);
+    background-color:var(--Comp2x);
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
     color: white;
@@ -370,28 +370,28 @@ a,
     background-color:white;
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
-    color: var(--5x);
+    color: var(--Peri5);
 }
 [class*="line-link-6"]:hover {
     background-color:white;
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
-    color: var(--6x);
+    color: var(--Peri6);
 }
 [class*="line-link-7"]:not(.line-link-7):hover {
     background-color:white;
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
-    color: var(--7x);
+    color: var(--Peri7);
 }
 [class*="line-link-8"]:not(.line-link-8):hover {
     background-color:white;
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
-    color: var(--8x);
+    color: var(--Peri8);
 }
 [class*="line-link-d"]:hover {
-    background-color:var(--Dx);
+    background-color:var(--Diabolo);
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
     color: white;
