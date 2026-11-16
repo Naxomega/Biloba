@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <body>
     <div class="header">
-        <h1 class="logo">Biloba</h1>
+        <h1 class="logo">Biloba</h1></div><div class="buttonbar"></div>
 
         
-    </div>
+    
     <div class="content">
       <div class="titre lightmode"><h2>Biloba</h2></div>
         <br>
@@ -39,8 +39,38 @@
     const provenance = urlParams.get("provenance");
     const bar = document.querySelector(".insert");
     const logo = document.querySelector(".header")
+    const boutons = document.querySelector('.buttonbar');
     let trajets = {};
+    const topBar = () => {
+  let fav_ligne = JSON.parse(localStorage.getItem('fav_ligne')) || [];
+if (fav_ligne.includes(ligne)){
+      boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+                            <a onclick="toggle_fav()"" class="buttons"><i class="fa-solid fa-star"></i></a>
+                      `
+    }
+    else {
+      boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+                      <a onclick="toggle_fav()"" class="buttons"><i class="fa-regular fa-star"></i></a>
+                      `
+    }
+}
 
+const toggle_fav = () => {
+  console.log("Fonction invoquée!")
+  let fav_ligne = JSON.parse(localStorage.getItem('fav_lignes')) || [];
+  if (fav_ligne.includes(ligne)) {
+      const index = fav_ligne.indexOf(ligne);
+      fav_ligne.splice(index, 1)
+      localStorage.setItem('fav_lignes', JSON.stringify(fav_ligne));
+      
+      console.log("Favori retiré")
+    }
+    else {
+      fav_ligne.push(ligne)
+      localStorage.setItem('fav_lignes', JSON.stringify(fav_ligne));
+      console.log("Favori ajouté")
+    }topBar()
+}
     const callGinko = (methodPath, args = {}) => {
       return new Promise((resolve, reject) => {
         ginkoAPI(
@@ -243,9 +273,11 @@ const getInfos = async (numLigne) => {
 
         } catch (erreur) {console.log(erreur)}
     }
+    topBar();
     getInfos(ligne);
     getEtats(ligne);
-bottomBar(); afficherHoraires(ligne);
+    
+bottomBar(); 
 </script>
 
 

@@ -40,7 +40,7 @@ const drawLignes = () => {
     let fav_ligne = JSON.parse(localStorage.getItem('fav_ligne')) || [];
     
     
-      const arretsproches = fav_ligne.map((a) => `<a href="horaires.html?arret=${a}&provenance=Favoris" class="line-link"><span>${a}</span></a><br>`).join("");  
+      const arretsproches = fav_ligne.map((a) => `<a href="dest.html?ligne=${a}" class="line-link"><span>${a}</span></a><br>`).join("");  
         conteneur.innerHTML = arretsproches
         if (arretsproches === "") {conteneur.innerHTML = `<p class="lightmode">Vous n'avez ajouté aucune ligne en favoris (bouton étoile)</p>`}
         console.log(arretsproches)

@@ -67,7 +67,22 @@ body {
     display: inline;
     margin: 0 15px;
 }
-
+.buttonbar a {
+    background-color: #333;
+    padding: 5px;
+    border-radius: 5px;
+    flex: 1;
+    color: white;
+    cursor: pointer;
+    
+}
+.buttonbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
 .top-bar a {
     color: white;
     text-decoration: none;
@@ -428,24 +443,7 @@ a,
     list-style-position: inside; 
     text-align: left;   
 }
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #000;
-    }
-    .header {
-        color: #DDD;
-    }
-    .lightmode{color: #fff;}
-    .content{background-color: #333;}
-    .gk-mivMessage {background-color: #CCC !important;}
-    .infotrafic {background-color: #CCC !important;}
 
-    [class*="line-link-"] {
-    border: solid rgba(255, 255, 255, 0.4) 1px;
-    color: white;
-    }
-    
-}
 .bulle {
     border: rgb(255, 255, 255);
     border-radius: 7px;
@@ -791,3 +789,22 @@ margin-left: 10px;
     white-space: nowrap; 
     padding: 8px 12px;
 } 
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+    }
+    .header {
+        color: #DDD;
+    }
+    .lightmode{color: #fff;}
+    .content{background-color: #333;}
+    .gk-mivMessage {background-color: #CCC !important;}
+    .infotrafic {background-color: #CCC !important;}
+
+    [class*="line-link-"] {
+    border: solid rgba(255, 255, 255, 0.4) 1px;
+    color: white;
+    }
+    .buttonbar a {color: black; background-color: #CCC;}
+    
+}
