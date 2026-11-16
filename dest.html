@@ -57,17 +57,17 @@ if (fav_ligne.includes(ligne)){
 
 const toggle_fav = () => {
   console.log("Fonction invoquée!")
-  let fav_ligne = JSON.parse(localStorage.getItem('fav_lignes')) || [];
+  let fav_ligne = JSON.parse(localStorage.getItem('fav_ligne')) || [];
   if (fav_ligne.includes(ligne)) {
       const index = fav_ligne.indexOf(ligne);
       fav_ligne.splice(index, 1)
-      localStorage.setItem('fav_lignes', JSON.stringify(fav_ligne));
+      localStorage.setItem('fav_ligne', JSON.stringify(fav_ligne));
       
       console.log("Favori retiré")
     }
     else {
       fav_ligne.push(ligne)
-      localStorage.setItem('fav_lignes', JSON.stringify(fav_ligne));
+      localStorage.setItem('fav_ligne', JSON.stringify(fav_ligne));
       console.log("Favori ajouté")
     }topBar()
 }
