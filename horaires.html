@@ -335,7 +335,7 @@ const afficherTrainsDepart = async () => {
     conteneur.innerHTML = `<div class="buttonbar-train"></div>${Object.values(trains).sort((a, b) => a.seconded - b.seconded).map((a => `<div class="passage tile-${a.type.toLowerCase()}">
           <strong><p class="line-dot line-${a.type.toLowerCase()} enlarge outline-${a.type.toLowerCase()}">${a.type}</p></strong> <p> 
          <strong>${a.vers}</strong>
-          <br><span class="bulle"><strong>${a.temps}</strong></span></p></div>`)).join("")};
+          <br><span class="bulle"><strong>${a.temps}</strong></span></p></div>`)).join("")}
 
 `
       const boutons_train = document.querySelector(".buttonbar-train");
@@ -474,7 +474,7 @@ const afficherTrainsArrivee = async () => {
     conteneur.innerHTML = `<div class="buttonbar-train"></div>${Object.values(trains).sort((a, b) => a.seconded - b.seconded).map((a => `<div class="passage tile-${a.type.toLowerCase()}">
           <strong><p class="line-dot line-${a.type.toLowerCase()} enlarge outline-${a.type.toLowerCase()}">${a.type}</p></strong> <p> 
          <strong>${a.de}</strong>
-          <br><span class="bulle"><strong>${a.temps}</strong></span></p></div>`)).join("")};
+          <br><span class="bulle"><strong>${a.temps}</strong></span></p></div>`)).join("")}
 
 `
       const boutons_train = document.querySelector(".buttonbar-train");
