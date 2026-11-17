@@ -42,6 +42,8 @@
   
     let trajets = {};
     let isRunning;
+    let lon_arret;
+    let lat_arret;
     
     
     
@@ -112,23 +114,25 @@
   const type = await type_arret()
   try {
     const response = await callGinko("TR/getTempsLieu", { nom: nomArret, nb:3 });
+    lat_arret=response.latitude
+    lon_arret=response.longitude
     if (fav_arret.includes(nomArret)) {
       if (type==="gare"){ boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
-                      <a href="carte.html?lat=${response.latitude}&lon=${response.longitude}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
+                      <a href="carte.html?lat=${lat_arret}&lon=${lon_arret}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
                       <a onclick="toggle_fav()"" class="buttons"><i class="fa-solid fa-star"></i></a>
                       <a onclick="afficherTrainsDepart()" class="buttons"><i class="fa-solid fa-train"></i></a>`}
       
       else {boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
-                      <a href="carte.html?lat=${response.latitude}&lon=${response.longitude}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
+                      <a href="carte.html?lat=${lat_arret}&lon=${lon_arret}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
                       <a onclick="toggle_fav()"" class="buttons"><i class="fa-solid fa-star"></i></a>
                       `
     }}
     else { if (type==="gare"){boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
-                      <a href="carte.html?lat=${response.latitude}&lon=${response.longitude}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
+                      <a href="carte.html?lat=${lat_arret}&lon=${lon_arret}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
                       <a onclick="toggle_fav()"" class="buttons"><i class="fa-regular fa-star"></i></a>
                       <a onclick="afficherTrainsDepart()" class="buttons"><i class="fa-solid fa-train"></i></a>`}
       else {boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
-                      <a href="carte.html?lat=${response.latitude}&lon=${response.longitude}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
+                      <a href="carte.html?lat=${lat_arret}&lon=${lon_arret}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
                       <a onclick="toggle_fav()"" class="buttons"><i class="fa-regular fa-star"></i></a>
                       `
     }}
@@ -204,11 +208,13 @@ const afficherTrainsDepart = async () => {
   let fav_arret = JSON.parse(localStorage.getItem('fav_arrets')) || [];
   if (fav_arret.includes(arretcible)) {
       boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+      <a href="carte.html?lat=${lat_arret}&lon=${lon_arret}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
                       <a onclick="toggle_fav()"" class="buttons"><i class="fa-solid fa-star"></i></a>
                       <a onclick="afficherGinko()" class="buttons"><i class="fa-solid fa-bus-simple"></i></i></a>`}
       
       
     else { boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+    <a href="carte.html?lat=${lat_arret}&lon=${lon_arret}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
                       <a onclick="toggle_fav()"" class="buttons"><i class="fa-regular fa-star"></i></a>
                       <a onclick="afficherGinko()" class="buttons"><i class="fa-solid fa-bus-simple"></i></i></a>`}
       
@@ -341,11 +347,13 @@ const afficherTrainsArrivee = async () => {
   let fav_arret = JSON.parse(localStorage.getItem('fav_arrets')) || [];
   if (fav_arret.includes(arretcible)) {
       boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+      <a href="carte.html?lat=${lat_arret}&lon=${lon_arret}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
                       <a onclick="toggle_fav()"" class="buttons"><i class="fa-solid fa-star"></i></a>
                       <a onclick="afficherGinko()" class="buttons"><i class="fa-solid fa-bus-simple"></i></i></a>`}
       
       
     else { boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+    <a href="carte.html?lat=${lat_arret}&lon=${lon_arret}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
                       <a onclick="toggle_fav()"" class="buttons"><i class="fa-regular fa-star"></i></a>
                       <a onclick="afficherGinko()" class="buttons"><i class="fa-solid fa-bus-simple"></i></i></a>`}
       
