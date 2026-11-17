@@ -49,7 +49,7 @@ Ginko, Les mobilités de Grand Besançon Métropole est une marque déposée par
 ## Licence
 
 Ce projet est sous licence **GNU Affero General Public License v3.0 (AGPLv3)**.
-Comme dit dans le fichier [LICENSE](LICENCE.MD), ce projet vous est distribué sans la moindre garantie.
+Comme dit dans le fichier [LICENCE](LICENCE.MD), ce projet vous est distribué sans la moindre garantie.
 
 ### Résumé rapide :
 

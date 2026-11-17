@@ -41,7 +41,7 @@
   const boutons = document.querySelector('.buttonbar');
   
     let trajets = {};
-    let isRunning = "Ginko";
+    let isRunning;
     
     
     
@@ -105,6 +105,7 @@
 
     // 2. Fonction principale pour récupérer et afficher les horaires
     const afficherHoraires = async (nomArret) => {
+      isRunning = "Ginko";
       let fav_arret = JSON.parse(localStorage.getItem('fav_arrets')) || [];
       let trajets = {};
   
@@ -115,7 +116,7 @@
       if (type==="gare"){ boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
                       <a href="carte.html?lat=${response.latitude}&lon=${response.longitude}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
                       <a onclick="toggle_fav()"" class="buttons"><i class="fa-solid fa-star"></i></a>
-                      <a onclick="afficherTrains()" class="buttons"><i class="fa-solid fa-train"></i></a>`}
+                      <a onclick="afficherTrainsDepart()" class="buttons"><i class="fa-solid fa-train"></i></a>`}
       
       else {boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
                       <a href="carte.html?lat=${response.latitude}&lon=${response.longitude}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
@@ -125,7 +126,7 @@
     else { if (type==="gare"){boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
                       <a href="carte.html?lat=${response.latitude}&lon=${response.longitude}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
                       <a onclick="toggle_fav()"" class="buttons"><i class="fa-regular fa-star"></i></a>
-                      <a onclick="afficherTrains()" class="buttons"><i class="fa-solid fa-train"></i></a>`}
+                      <a onclick="afficherTrainsDepart()" class="buttons"><i class="fa-solid fa-train"></i></a>`}
       else {boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
                       <a href="carte.html?lat=${response.latitude}&lon=${response.longitude}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
                       <a onclick="toggle_fav()"" class="buttons"><i class="fa-regular fa-star"></i></a>
@@ -197,10 +198,159 @@ console.log(trajets)
   pagetitre.innerHTML = `Biloba - ${nomArret}`
   
 };
-const afficherTrains = async () => {
+const afficherTrainsDepart = async () => {
+  
   console.log("Fonction inoquée!")
-  alert("Fonction pas encore implémentée :/")
-  //isRunning = "SNCF"
+  let fav_arret = JSON.parse(localStorage.getItem('fav_arrets')) || [];
+  if (fav_arret.includes(arretcible)) {
+      boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+                      <a onclick="toggle_fav()"" class="buttons"><i class="fa-solid fa-star"></i></a>
+                      <a onclick="afficherGinko()" class="buttons"><i class="fa-solid fa-bus-simple"></i></i></a>`}
+      
+      
+    else { boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+                      <a onclick="toggle_fav()"" class="buttons"><i class="fa-regular fa-star"></i></a>
+                      <a onclick="afficherGinko()" class="buttons"><i class="fa-solid fa-bus-simple"></i></i></a>`}
+      
+  //alert("Fonction pas encore implémentée :/")
+  isRunning = "SNCF"
+    const nom = await nom_gare()
+  console.log(nom)
+  titre.innerHTML = `<h2>${nom}</h2>`
+    const uic = await id_gare()
+  console.log(uic)
+  console.log(isRunning)
+    const horaire_train = await fetch(`https://api.trainnomade.fr/gare/${uic}.json`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();  
+                })
+                .then()  
+                .catch(error => console.error('Failed to fetch data:', error)); 
+    console.log(horaire_train)
+    let identifiants = horaire_train.noms // syntaxe : identifiantnas[uic gare]
+    console.log(identifiants)
+    console.log(identifiants[uic])
+    let passages = horaire_train.passages
+    let typetrain = {}
+    typetrain["regionalRail"] = "TER"
+    typetrain["highSpeedRail"] = "TGV"
+    typetrain["interregionalRail"] = "IC"
+    console.log(passages)
+    let departs = {}
+    let arrivees = {}
+    let trains = {}
+    /*  API TRAIN NOMADE SYNTAXE : 
+        noms{} = UIC des gares
+        passages{ a = heure de d'arrivée (si absent, le train part de la gare)
+                  d = heure de départ (si absent, le train est à son terminus)
+                  pr = catégorie du train (TER = regionalRail
+                                           TGV = highSpeedRail
+                                           Intercité = interregionalRail)
+                  ra = retard a l'arrivée
+                  rd = retard au départ
+                  p = parti (donc a virer de la liste)
+                  } */
+    for (let index = 0; index < passages.length; index++) {
+      const passage = passages[index];
+      let de = identifiants[passage.o] || ""
+      let vers = identifiants[passage.de] || ""
+      let type = typetrain[passage.pr]
+      let isParti = passage.p || ""
+      let depart_seconde = parseInt(passage.d)-parseInt(horaire_train.maintenant_s) || ""
+      let depart_total = parseInt(passage.d) || ""
+      let arrivee_seconde = parseInt(passage.a)-parseInt(horaire_train.maintenant_s) || ""
+      let arrivee_total = parseInt(passage.a) || ""
+      let retard_depart = parseInt(passage.rd)
+      let retard_arrivee = parseInt(passage.ra)
+      let temps_depart
+      let temps_arrivee
+      let statut = "1"
+      let clé = de+vers+(depart_seconde || arrivee_seconde)
+      if (passage.an) {statut="ANNULÉ"}
+      if (passage.x) {statut="SUPPRIMÉ"}
+      if (retard_depart){
+      if (retard_depart >= 3600) {
+        let heure = Math.floor(retard_depart/3600).toString()
+        let reste_seconde = retard_depart%3600
+        let minutes = (reste_seconde/60).toString()
+        
+        retard_depart = ` + ${heure}h${('0'+minutes).slice(-2)} de retard`
+        }
+        
+      
+      else {retard_depart = ` + ${Math.floor(retard_depart/60)} min de retard`}}
+      if (retard_arrivee){
+      if (retard_arrivee >= 3600) {
+        let heure = Math.floor(retard_arrivee/3600).toString()
+        let reste_seconde = retard_arrivee%3600
+        let minutes = (reste_seconde/60).toString()
+        
+        retard_arrivee = ` + ${heure}h${('0'+minutes).slice(-2)} de retard`
+        }
+        
+      
+      else {retard_arrivee = ` + ${Math.floor(retard_arrivee/60)} min de retard`}}
+      if (depart_seconde){
+      if (depart_seconde >= 3600) {
+        let heure = Math.floor(depart_total/3600).toString()
+        let reste_seconde = depart_total%3600
+        let minutes = (reste_seconde/60).toString()
+        
+        temps_depart = `${heure}h${('0'+minutes).slice(-2)}`
+        }
+        
+      
+      else {temps_depart = `${Math.floor(depart_seconde/60)} min`}}
+      if (arrivee_seconde){
+      if (arrivee_seconde >= 3600) {
+        let heure = Math.floor(arrivee_total/3600).toString()
+        let reste_seconde = arrivee_total%3600
+        let minutes = (reste_seconde/60).toString()
+        
+        temps_arrivee = `${heure}h${('0'+minutes).slice(-2)}`
+        }
+        
+      
+      else {temps_arrivee = `${Math.floor(arrivee_seconde/60)} min`}}
+
+
+      if (retard_depart) {temps_depart=temps_depart+retard_depart}
+      if (retard_arrivee) {temps_arrivee=temps_arrivee+retard_arrivee}
+      if (statut === "ANNULÉ" && temps_arrivee) {temps_arrivee=statut}
+      if (statut === "ANNULÉ" && temps_depart) {temps_depart=statut}
+      if (statut === "SUPPRIMÉ" && temps_arrivee) {temps_arrivee=statut}
+      if (statut === "SUPPRIMÉ" && temps_depart) {temps_depart=statut}
+      if (!isParti && depart_seconde && depart_seconde > 0) {trains[clé]={de: de, vers: vers, temps: temps_depart, seconded: depart_seconde, type: type}}
+      
+    }
+    conteneur.innerHTML = `<div class="buttonbar-train"></div>${Object.values(trains).sort((a, b) => a.seconded - b.seconded).map((a => `<div class="passage tile-${a.type.toLowerCase()}">
+          <strong><p class="line-dot line-${a.type.toLowerCase()} enlarge outline-${a.type.toLowerCase()}">${a.type}</p></strong> <p> 
+         <strong>${a.vers}</strong>
+          <br><span class="bulle"><strong>${a.temps}</strong></span></p></div>`)).join("")};
+
+`
+      const boutons_train = document.querySelector(".buttonbar-train");
+      boutons_train.innerHTML=`<a onclick="afficherTrainsDepart()" class="buttons depart selected">Départs</a>
+                      <a onclick="afficherTrainsArrivee()"" class="buttons arrivee">Arrivées</a>`
+}
+const afficherTrainsArrivee = async () => {
+  console.log("Fonction inoquée!")
+  let fav_arret = JSON.parse(localStorage.getItem('fav_arrets')) || [];
+  if (fav_arret.includes(arretcible)) {
+      boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+                      <a onclick="toggle_fav()"" class="buttons"><i class="fa-solid fa-star"></i></a>
+                      <a onclick="afficherGinko()" class="buttons"><i class="fa-solid fa-bus-simple"></i></i></a>`}
+      
+      
+    else { boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+                      <a onclick="toggle_fav()"" class="buttons"><i class="fa-regular fa-star"></i></a>
+                      <a onclick="afficherGinko()" class="buttons"><i class="fa-solid fa-bus-simple"></i></i></a>`}
+      
+  //alert("Fonction pas encore implémentée :/")
+  isRunning = "SNCF"
     const nom = await nom_gare()
   console.log(nom)
     const uic = await id_gare()
@@ -216,14 +366,114 @@ const afficherTrains = async () => {
                 .then()  
                 .catch(error => console.error('Failed to fetch data:', error)); 
     console.log(horaire_train)
-    let identifiants = horaire_train.noms
+    let identifiants = horaire_train.noms // syntaxe : identifiantnas[uic gare]
     console.log(identifiants)
     console.log(identifiants[uic])
+    let passages = horaire_train.passages
+    let typetrain = {}
+    typetrain["regionalRail"] = "TER"
+    typetrain["highSpeedRail"] = "TGV"
+    typetrain["interregionalRail"] = "IC"
+    console.log(passages)
+    let departs = {}
+    let arrivees = {}
+    let trains = {}
+    /*  API TRAIN NOMADE SYNTAXE : 
+        noms{} = UIC des gares
+        passages{ a = heure de d'arrivée (si absent, le train part de la gare)
+                  d = heure de départ (si absent, le train est à son terminus)
+                  pr = catégorie du train (TER = regionalRail
+                                           TGV = highSpeedRail
+                                           Intercité = interregionalRail)
+                  ra = retard a l'arrivée
+                  rd = retard au départ
+                  p = parti (donc a virer de la liste)
+                  } */
+    for (let index = 0; index < passages.length; index++) {
+      const passage = passages[index];
+      let de = identifiants[passage.o] || ""
+      let vers = identifiants[passage.de] || ""
+      let type = typetrain[passage.pr]
+      let isParti = passage.p || ""
+      let depart_seconde = parseInt(passage.d)-parseInt(horaire_train.maintenant_s) || ""
+      let depart_total = parseInt(passage.d) || ""
+      let arrivee_seconde = parseInt(passage.a)-parseInt(horaire_train.maintenant_s) || ""
+      let arrivee_total = parseInt(passage.a) || ""
+      let retard_depart = parseInt(passage.rd)
+      let retard_arrivee = parseInt(passage.ra)
+      let temps_depart
+      let temps_arrivee
+      let statut = "1"
+      let clé = de+vers+(depart_seconde || arrivee_seconde)
+      if (passage.an) {statut="ANNULÉ"}
+      if (passage.x) {statut="SUPPRIMÉ"}
+      if (retard_depart){
+      if (retard_depart >= 3600) {
+        let heure = Math.floor(retard_depart/3600).toString()
+        let reste_seconde = retard_depart%3600
+        let minutes = (reste_seconde/60).toString()
+        
+        retard_depart = ` + ${heure}h${('0'+minutes).slice(-2)} de retard`
+        }
+        
+      
+      else {retard_depart = ` + ${Math.floor(retard_depart/60)} min de retard`}}
+      if (retard_arrivee){
+      if (retard_arrivee >= 3600) {
+        let heure = Math.floor(retard_arrivee/3600).toString()
+        let reste_seconde = retard_arrivee%3600
+        let minutes = (reste_seconde/60).toString()
+        
+        retard_arrivee = ` + ${heure}h${('0'+minutes).slice(-2)} de retard`
+        }
+        
+      
+      else {retard_arrivee = ` + ${Math.floor(retard_arrivee/60)} min de retard`}}
+      if (depart_seconde){
+      if (depart_seconde >= 3600) {
+        let heure = Math.floor(depart_total/3600).toString()
+        let reste_seconde = depart_total%3600
+        let minutes = (reste_seconde/60).toString()
+        
+        temps_depart = `${heure}h${('0'+minutes).slice(-2)}`
+        }
+        
+      
+      else {temps_depart = `${Math.floor(depart_seconde/60)} min`}}
+      if (arrivee_seconde){
+      if (arrivee_seconde >= 3600) {
+        let heure = Math.floor(arrivee_total/3600).toString()
+        let reste_seconde = arrivee_total%3600
+        let minutes = (reste_seconde/60).toString()
+        
+        temps_arrivee = `${heure}h${('0'+minutes).slice(-2)}`
+        }
+        
+      
+      else {temps_arrivee = `${Math.floor(arrivee_seconde/60)} min`}}
 
 
+      if (retard_depart) {temps_depart=temps_depart+retard_depart}
+      if (retard_arrivee) {temps_arrivee=temps_arrivee+retard_arrivee}
+      if (statut === "ANNULÉ" && temps_arrivee) {temps_arrivee=statut}
+      if (statut === "ANNULÉ" && temps_depart) {temps_depart=statut}
+      if (statut === "SUPPRIMÉ" && temps_arrivee) {temps_arrivee=statut}
+      if (statut === "SUPPRIMÉ" && temps_depart) {temps_depart=statut}
+      
+      if (!isParti && arrivee_seconde && arrivee_seconde > 0) {trains[clé]={de: de, vers: vers, temps: temps_arrivee, secondea: arrivee_seconde, type: type}}
+      
+    }
+    conteneur.innerHTML = `<div class="buttonbar-train"></div>${Object.values(trains).sort((a, b) => a.seconded - b.seconded).map((a => `<div class="passage tile-${a.type.toLowerCase()}">
+          <strong><p class="line-dot line-${a.type.toLowerCase()} enlarge outline-${a.type.toLowerCase()}">${a.type}</p></strong> <p> 
+         <strong>${a.de}</strong>
+          <br><span class="bulle"><strong>${a.temps}</strong></span></p></div>`)).join("")};
 
-
+`
+      const boutons_train = document.querySelector(".buttonbar-train");
+      boutons_train.innerHTML=`<a onclick="afficherTrainsDepart()" class="buttons depart">Départs</a>
+                      <a onclick="afficherTrainsArrivee()"" class="buttons arrivee selected">Arrivées</a>`
 }
+const afficherGinko = () => {afficherHoraires(arretcible)}
 const bottomBar = () => {
   document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
