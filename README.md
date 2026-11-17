@@ -11,6 +11,7 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 - Voir les arrêts proches de vous
 - Une carte pour voir les autres arrêts (fonctionne avec Leaflet)
 - Système de favoris (arrêts, lignes et destinations)
+- Multimodalité avec les horaires des trains SNCF directement dans la page des gares (uniquement Gare Viotte et Gare de la Mouillère pour le moment)
 ## Roadmap
 - [x] Implémenter toutes les lignes (hors Proxi et spéciales)
 - [x] Améliorer l'ésthetique du site (techniquement complêté, mais j'ajouterais plus tard une plus jolie interface si j'en ai vraiment besoin)
@@ -25,7 +26,7 @@ Site internet qui permet d'avoir les horaires en temps réel des trams/bus Ginko
 - [ ] Annonces des bus/trams à haute voix (comme aux stations de tram)
 - [x] Priorités sur certaines lignes (par exemple, si je consulte la page Gare Viotte en venant de la ligne L3, les L3 remonteront en haut de la liste)
 - [ ] Menu paramètres qui permettera de modifier les paramètres de l'app (vous l'avez pas vue venir celle la) (annonces TTS, nombre d'horaires affichées en une fois, etc...)
-- [ ] Implémentation d'autres services de transports liés de près ou de loin à Besançon (notamment les cars Mobigo et TER/TGV SNCF) (en cours)
+- [x] Implémentation d'autres services de transports liés de près ou de loin à Besançon (notamment les cars Mobigo et TER/TGV SNCF) (Trains uniquement)
 ## Implémentation des fonctionnalités
 Quelque chose codé "en dur", c'est qu'il est implémenté de manière fixe dans le code (par exemple un bouton T1 en html sur la page "Lignes"). Et le but c'est d'éliminer au maximum les fonctionnalités codées en dur (donc demander à l'API les lignes, et alors créer un bouton T1 avec les infos de l'API), car si Keolis changent les lignes ou autre infos, le site sera immédiatement obsolète, et de plus, ca réduit la charge de travail en termes de maintenance et d'amélioration (par exemple, si je veut modifier le design de la page des horaires, j'ai qu'un seul fichier à modifier au lieu des multiples autrefois)
 
