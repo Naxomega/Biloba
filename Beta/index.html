@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biloba - Lignes</title>
+    <link rel="stylesheet" href="style.css">
+    <base href="/Biloba/">
+    <meta name="description" content="Consultez les dernières horaires des bus de Besançon !" />
+    <meta name="theme-color" content="#121212">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="naxomega.github.io/Biloba/manifest.json">
+        
+    
+        <script src="https://api.ginko.voyage/api.js?apiKey=r8B7t6Hgd7vF9V3VV9PQ4vc2a"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+        
+    <meta http-equiv="Cache-Control" content="no-cache">
+   <!-- <script>if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('sw.js')
+      .then(function(reg) {
+        console.log('Service Worker Biloba enregistré !', reg); // Service Worker pour PWA
+      })
+      .catch(function(err) {
+        console.error('Erreur d\'enregistrement SW :', err);
+      });
+  });
+}</script> -->
+</head>
+<body>
+    <div class="header">
+        <h1 class="logo lightmode">Biloba</h1>
+        
+        <!--<div class="information">
+            <h3 class="lightmode">INFORMATION</h3>
+            <h4 class="lightmode">En raison d'un dyscfonctionnement de l'API Ginko, les horaires ne sont pas disponible</h4>
+        </div>-->
+    </div>
+    
+        <div class="buttonbar"></div>
+        <div class="content"><div class="lines"></div>
+        
+        <br>
+        <script>
+            const barre = document.querySelector("#recherche")
+            const callGinko = (methodPath, args = {}) => {
+      return new Promise((resolve, reject) => {
+        ginkoAPI(
+          methodPath,
+          args,
+          (data) => resolve(data), // Fonction API Ginko
+          (err) => reject(err)
+        );
+      });
+    };
+            const conteneur = document.querySelector(".lines")
+            const boutons = document.querySelector(".buttonbar")
+    const  recherchescolaire = async () => {
+            const barre = document.querySelector("#recherche")
+                const getLignes = await callGinko("DR/getLignes", {});  // Création d'un dico de "traduction" de lignes
+    let listeligne = {};                                    // Num Public -> Identifiant
+    console.log(getLignes)                                  // L3 -> 3
+    for (let index = 0; index < getLignes.length; index++) {
+      const ligneselect = getLignes[index]
+      const nompublic = ligneselect.numLignePublic
+      const id = ligneselect.id
+
+      listeligne[nompublic] = {id: id, ligne: nompublic}
+    }
+    console.log(listeligne)
+    const cible = barre.value.trim()
+    const dcible = "D"+barre.value.trim()
+    console.log(dcible)
+    if (listeligne[dcible]) {window.location.href = `dest.html?ligne=${dcible}`}
+    else if (listeligne[cible]) {window.location.href=`dest.html?ligne=${cible}`}
+    
+
+            }
+            const drawUrbaines = () => {
+                conteneur.innerHTML = `<h3 class="lightmode">TRAM & LIANES</h3>
+        <div class="line-dots">
+            <a href="dest.html?ligne=T1" class="line-dot line-t1">T1</a>
+            <a href="dest.html?ligne=T2" class="line-dot line-t2">T2</a>
+            <a href="dest.html?ligne=L3" class="line-dot line-l3">L3</a>
+            <a href="dest.html?ligne=L4" class="line-dot line-l4">L4</a>
+        </div>
+        <div class="line-dots">
+            <a href="dest.html?ligne=L5" class="line-dot line-l5">L5</a>
+            <a href="dest.html?ligne=L6" class="line-dot line-l6">L6</a>
+            
+        </div>
+        <h3 class="lightmode">Lignes Urbaines</h3>
+        <div class="line-dots">
+            <a href="dest.html?ligne=7" class="line-dot line-7">7</a>
+            <a href="dest.html?ligne=8" class="line-dot line-8">8</a>
+            <a href="dest.html?ligne=9" class="line-dot line-9">9</a>
+            <a href="dest.html?ligne=10" class="line-dot line-10">10</a>
+        </div>
+        <div class="line-dots">
+            <a href="dest.html?ligne=11" class="line-dot line-11">11</a>
+            <a href="dest.html?ligne=12" class="line-dot line-12">12</a>
+            <a href="dest.html?ligne=Ginko Citadelle" class="line-dot line-citadelle">Cit.</a>
+            <a href="dest.html?ligne=Plan B" class="line-dot line-b">B</a>
+            
+        </div>`
+        boutons.innerHTML = `<a class="selected" onclick="drawUrbaines(); return true"><p>Urbaines</p></a>
+        <a onclick="drawPeriurbaines(); return true"><p>Périurbaines</p></a>
+        <a onclick="drawScolaires(); return true"><p>Scolaires</p></a>`
+            }
+        const drawPeriurbaines = () => {
+                conteneur.innerHTML = `<h3 class="lightmode">Lignes Complémentaires</h3>
+                <div class="line-dots">
+            <a href="dest.html?ligne=20" class="line-dot line-20">20</a>
+            <a href="dest.html?ligne=21" class="line-dot line-21">21</a>
+            <a href="dest.html?ligne=22" class="line-dot line-22">22</a>
+            <a href="dest.html?ligne=23" class="line-dot line-23">23</a>
+            <a href="dest.html?ligne=24" class="line-dot line-24">24</a></div>
+                <h3 class="lightmode">Pôle Micropolis</h3>
+            <div class="line-dots">
+            <a href="dest.html?ligne=51" class="line-dot line-51">51</a>
+            <a href="dest.html?ligne=52" class="line-dot line-52">52</a>
+            <a href="dest.html?ligne=53" class="line-dot line-53">53</a>
+            <a href="dest.html?ligne=54" class="line-dot line-54">54</a>
+            <a href="dest.html?ligne=55" class="line-dot line-55">55</a></div>
+            <div class="line-dots">
+            <a href="dest.html?ligne=56" class="line-dot line-56">56</a>
+            <a href="dest.html?ligne=57" class="line-dot line-57">57</a>
+            <a href="dest.html?ligne=58" class="line-dot line-58">58</a>
+            <a href="dest.html?ligne=59" class="line-dot line-59">59</a></div>
+                <h3 class="lightmode">Pôle Temis</h3>
+            <div class="line-dots">
+            <a href="dest.html?ligne=61" class="line-dot line-61">61</a>
+            <a href="dest.html?ligne=62" class="line-dot line-62">62</a>
+            <a href="dest.html?ligne=63" class="line-dot line-63">63</a>
+            <a href="dest.html?ligne=64" class="line-dot line-64">64</a></div>
+            <div class="line-dots">
+            <a href="dest.html?ligne=65" class="line-dot line-65">65</a>
+            <a href="dest.html?ligne=66" class="line-dot line-66">66</a>
+            <a href="dest.html?ligne=67" class="line-dot line-67">67</a>
+            <a href="dest.html?ligne=68" class="line-dot line-68">68</a></div>
+                <h3 class="lightmode">Pôle Orchamps</h3>
+            <div class="line-dots">
+            <a href="dest.html?ligne=71" class="line-dot line-71">71</a>
+            <a href="dest.html?ligne=72" class="line-dot line-72">72</a>
+            <a href="dest.html?ligne=73" class="line-dot line-73">73</a>
+            <a href="dest.html?ligne=74" class="line-dot line-74">74</a></div>
+            <div class="line-dots">
+            <a href="dest.html?ligne=75" class="line-dot line-75">75</a>
+            <a href="dest.html?ligne=76" class="line-dot line-76">76</a></div>
+                <h3 class="lightmode">Pôle Chamars</h3>
+            <div class="line-dots">
+            <a href="dest.html?ligne=81" class="line-dot line-81">81</a>
+            <a href="dest.html?ligne=82" class="line-dot line-82">82</a>
+            <a href="dest.html?ligne=83" class="line-dot line-83">83</a>
+            <a href="dest.html?ligne=84" class="line-dot line-84">84</a></div>
+            <div class="line-dots">
+            <a href="dest.html?ligne=85" class="line-dot line-85">85</a>
+            <a href="dest.html?ligne=86" class="line-dot line-86">86</a>
+            <a href="dest.html?ligne=87" class="line-dot line-87">87</a></div>
+            <div class="line-dots">
+            
+
+        </div>`
+        boutons.innerHTML = `<a  onclick="drawUrbaines(); return true"><p>Urbaines</p></a>
+        <a class="selected" onclick="drawPeriurbaines(); return true"><p>Périurbaines</p></a>
+        <a onclick="drawScolaires(); return true"><p>Scolaires</p></a>`
+            }
+            const drawScolaires = () => {
+                
+                const barre = document.querySelector("#recherche")
+                conteneur.innerHTML = `<br><div class="buttonok"><input type="text" id="recherche" placeholder="Entrez la ligne ici..." onKeyDown="if (event.key === 'Enter') recherchescolaire()"><a  onclick="recherchescolaire(); return true"><p>OK</p></a></div>`
+        boutons.innerHTML = `<a class="" onclick="drawUrbaines(); return true"><p>Urbaines</p></a>
+        <a  onclick="drawPeriurbaines(); return true"><p>Périurbaines</p></a>
+        <a class="selected" onclick="drawScolaires(); return true"><p>Scolaires</p></a>`
+        
+            
+        }
+            
+drawUrbaines();
+        </script>
+        
+        <div class="bar-container">
+    <nav class="top-bar">
+            <ul class="insert">
+                <li class="selected bar"><a href="index.html"><span class="material-symbols-rounded">timeline</span><br>Lignes</a></li>
+                <li class="bar"><a href="carte.html"><span class="material-symbols-rounded">map</span><br>Carte</a></li>
+                <li class="bar"><a href="favoris.html"><span class="material-symbols-rounded">star</span><br>Favoris</a></li>
+                <li class="bar"><a href="proche.html"><span class="material-symbols-rounded">pin_drop</span><br>Proches</a></li>
+
+            </ul>
+        </nav>
+        </div><br>
+<br><br>
+</body>
+</html>
