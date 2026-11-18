@@ -85,56 +85,90 @@ const toggle_fav = () => {
 
     // 2. Fonction principale pour récupérer et afficher les arrêts
 const afficherHoraires = async (numligne) => {
+  let cache_dest = JSON.parse(localStorage.getItem('biloba_cache_dest')) || {};
+  let temps = Date.now()
+
       let trajets = {};
   const conteneur = document.querySelector(".link-container");
   const titre = document.querySelector('.titre');
   const pagetitre = document.querySelector('title');
-
-  try {
-    const getLignes = await callGinko("DR/getLignes", {});  // Création d'un dico de "traduction" de lignes
-    let listeligne = {};                                    // Num Public -> Identifiant
-    console.log(getLignes)                                  // 3 -> L3
-    for (let index = 0; index < getLignes.length; index++) {
-      const ligneselect = getLignes[index]
-      const nompublic = ligneselect.numLignePublic
-      const id = ligneselect.id
-
-      listeligne[nompublic] = {id: id}
-    }
-    let listevariantes = {};                                      // Création d'un dico qui liste tout les destinations
-    for (let index = 0; index < getLignes.length; index++) {      // Voir syntaxe plus bas
-      const variantes = getLignes[index].variantes
-      const ligneselect = getLignes[index]
-      const nompublic = ligneselect.numLignePublic
-      const idligne = ligneselect.id
-      for (let index = 0; index < variantes.length; index++) {
-        const destinationpublic = variantes[index].destination
-        const destsel = destinationpublic + nompublic
-        const id = variantes[index].id
-        
-        
-        if (!listevariantes[destsel]) {
-          listevariantes[destsel] = {id : id, ligne: nompublic, idligne : idligne, destination: destinationpublic}
-          
-      }
-      else  {
-        const ligneactuelle = await (callGinko("DR/getDetailsVariante", { idLigne: idligne, idVariante: id }));
-        const lignestockee = await (callGinko("DR/getDetailsVariante", { idLigne: listevariantes[destsel].idligne, idVariante: listevariantes[destsel].id }));
-        
-        const longactuelle = ligneactuelle ? ligneactuelle.length : "Invalide";
-        const longstockee = lignestockee ? lignestockee.length : "Invalide";
-        
-          if (typeof longactuelle === "number" && typeof longstockee === "number" && longactuelle >= longstockee) {
-            
-            
-            listevariantes[destsel] = {id : id, ligne: nompublic, idligne : idligne, destination: destinationpublic}
+  let listeligne = {}; 
+  let listevariantes = {};   
+  titre.innerHTML = `<h2>Ligne ${ligne}</h2>`;
+  
+  pagetitre.innerHTML = `Biloba - ${ligne}`
+  logo.innerHTML = `<h1 class="logo line-${ligne.toLowerCase()}">Biloba</h1>`
+  if (cache_dest) {
+    listevariantes = cache_dest
+    
+    conteneur.innerHTML = Object.values(listevariantes).filter(a => {
+        return (
+          a.ligne === numligne
+        )
+      }).map(a => {if (a.destination.length >= 28) {
+        return `<a href="arrets.html?ligne=${a.ligne}&dest=${a.destination}" class="line-link-${numligne.toLowerCase()} line-1">
+               <p class="notbold">Vers&nbsp;</p><br><p class="notbold">${a.destination}</p>
+            </a>`
           }
-         
-      }
-        
+          else {
+            return `<a href="arrets.html?ligne=${a.ligne}&dest=${a.destination}" class="line-link-${numligne.toLowerCase()} line-1">
+                <p class="notbold">Vers&nbsp;</p><br><p class="">${a.destination}</p>
+            </a>`
+          }
+        }).join("")}
+
+
+  
+      try {
+        const getLignes = await callGinko("DR/getLignes", {});  // Création d'un dico de "traduction" de lignes
+                                           // Num Public -> Identifiant
+        console.log(getLignes)                                  // 3 -> L3
+        for (let index = 0; index < getLignes.length; index++) {
+          const ligneselect = getLignes[index]
+          const nompublic = ligneselect.numLignePublic
+          const id = ligneselect.id
+
+          listeligne[nompublic] = {id: id}
+        }
+                                           // Création d'un dico qui liste tout les destinations
+        for (let index = 0; index < getLignes.length; index++) {      // Voir syntaxe plus bas
+          const variantes = getLignes[index].variantes
+          const ligneselect = getLignes[index]
+          const nompublic = ligneselect.numLignePublic
+          const idligne = ligneselect.id
+          for (let index = 0; index < variantes.length; index++) {
+            const destinationpublic = variantes[index].destination
+            const destsel = destinationpublic + nompublic
+            const id = variantes[index].id
+            
+            
+            if (!listevariantes[destsel]) {
+              listevariantes[destsel] = {id : id, ligne: nompublic, idligne : idligne, destination: destinationpublic}
+              
+          }
+          else  {
+            const ligneactuelle = await (callGinko("DR/getDetailsVariante", { idLigne: idligne, idVariante: id }));
+            const lignestockee = await (callGinko("DR/getDetailsVariante", { idLigne: listevariantes[destsel].idligne, idVariante: listevariantes[destsel].id }));
+            
+            const longactuelle = ligneactuelle ? ligneactuelle.length : "Invalide";
+            const longstockee = lignestockee ? lignestockee.length : "Invalide";
+            
+              if (typeof longactuelle === "number" && typeof longstockee === "number" && longactuelle >= longstockee) {
+                
+                
+                listevariantes[destsel] = {id : id, ligne: nompublic, idligne : idligne, destination: destinationpublic}
+              }
+            
+          } 
+            
+          } 
       }
       
-    }
+          
+        } catch (erreur) {
+        console.error("Erreur :", erreur);
+        conteneur.innerHTML = `<p style="color:red">Erreur : ${erreur}</p>`;}
+  
     /*  Syntaxe conversion :  listeligne["Ligne public (ex. L3)"].id
                                       retourne "3"   
         Syntaxe destination : listevariantes["Destination publique (ex. Gare Viotte)"+"Ligne Public (ex. T2)"].id (ID variante)
@@ -146,7 +180,8 @@ const afficherHoraires = async (numligne) => {
     console.log(listevariantes)
     
     console.log(listeligne[numligne].id)
-    
+    cache_dest = listevariantes
+    localStorage.setItem('biloba_cache_dest', JSON.stringify(cache_dest));
    
     // 3. Affichage
    /*conteneur.innerHTML = Object.values(arrets).map((p => `<a href="horaires.html?arret=${p.nom}" class="line-link-${numligne.toLowerCase()} line-1">
@@ -169,14 +204,11 @@ const afficherHoraires = async (numligne) => {
           }
         }).join("")
       console.log(conteneur)
-    } catch (erreur) {
-    console.error("Erreur :", erreur);
-    conteneur.innerHTML = `<p style="color:red">Erreur : ${erreur}</p>`;
-  }
+     
   titre.innerHTML = `<h2>Ligne ${ligne}</h2>`;
   
-  pagetitre.innerHTML = `Biloba - ${ligne}`}
-  logo.innerHTML = `<h1 class="logo line-${ligne.toLowerCase()}">Biloba</h1>`
+  pagetitre.innerHTML = `Biloba - ${ligne}`
+  logo.innerHTML = `<h1 class="logo line-${ligne.toLowerCase()}">Biloba</h1>`}
 
 const bottomBar = () => {
   document.addEventListener("DOMContentLoaded", () => {
