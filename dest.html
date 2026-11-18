@@ -86,7 +86,7 @@ const toggle_fav = () => {
     // 2. Fonction principale pour récupérer et afficher les arrêts
 const afficherHoraires = async (numligne) => {
   let cache_dest = JSON.parse(localStorage.getItem('biloba_cache_dest')) || {};
-  let temps = Date.now()
+  
 
       let trajets = {};
   const conteneur = document.querySelector(".link-container");
@@ -116,6 +116,7 @@ const afficherHoraires = async (numligne) => {
             </a>`
           }
         }).join("")}
+        else {conteneur.innerHTML=`<i class="fa-solid fa-circle lightmode circle1"></i> <i class="fa-solid fa-circle lightmode circle2"></i> <i class="fa-solid fa-circle lightmode circle3"></i>`}
 
 
   
@@ -130,6 +131,7 @@ const afficherHoraires = async (numligne) => {
 
           listeligne[nompublic] = {id: id}
         }
+        localStorage.setItem('biloba_cache_lignes', JSON.stringify(listeligne));
                                            // Création d'un dico qui liste tout les destinations
         for (let index = 0; index < getLignes.length; index++) {      // Voir syntaxe plus bas
           const variantes = getLignes[index].variantes

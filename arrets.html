@@ -82,13 +82,45 @@ const toggle_fav = () => {
     // Fonction principale pour récupérer et afficher les arrêts
 const afficherHoraires = async (numligne, dest) => {
       let trajets = {};
+      
+  
+  
+  logo.innerHTML = `<h1 class="logo line-${ligne.toLowerCase()}">Biloba</h1>`
   const conteneur = document.querySelector(".link-container");
   const titre = document.querySelector('.titre');
   const pagetitre = document.querySelector('title');
+  let listeligne = {}; let listevariantes = {}; 
+  titre.innerHTML = `<h2>${numligne} vers ${dest}</h2>`;
+  pagetitre.innerHTML = `Biloba - ${numligne} > ${dest}`
+  let cache_dest = JSON.parse(localStorage.getItem('biloba_cache_dest')) || {};
+  let cache_lignes = JSON.parse(localStorage.getItem('biloba_cache_lignes')) || {};
+  if (cache_dest && cache_lignes) {
+    listevariantes = cache_dest
+    listeligne = cache_lignes
+    const response = await callGinko("DR/getDetailsVariante", { idLigne: listeligne[numligne].id, idVariante: listevariantes[dest+numligne].id});
+
+
+    
+    
+    console.log("Réponse de l'API (arrets) :", response);
+   
+
+    
+    const arrets = response;
+
+    if (arrets.length === 0) {
+      conteneur.innerHTML = "<p>Aucun arrêt trouvé</p>";
+      return;
+    }
+    // 3. Affichage
+   conteneur.innerHTML = Object.values(arrets).map((p => `<a href="horaires.html?arret=${p.nom}&ligne=${numligne}&dest=${dest}" class="line-link-${numligne.toLowerCase()} line-1">
+                <span>${p.nom}</span>
+            </a>`)).join("");
+  }
 
   try {
     const getLignes = await callGinko("DR/getLignes", {});  // Création d'un dico de "traduction" de lignes
-    let listeligne = {};                                    // Num Public -> Identifiant
+                                        // Num Public -> Identifiant
     console.log(getLignes)                                  // 3 -> L3
     for (let index = 0; index < getLignes.length; index++) {
       const ligneselect = getLignes[index]
@@ -97,7 +129,8 @@ const afficherHoraires = async (numligne, dest) => {
 
       listeligne[nompublic] = {id: id}
     }
-    let listevariantes = {};                                      // Création d'un dico qui liste tout les destinations
+    localStorage.setItem('biloba_cache_lignes', JSON.stringify(listeligne));
+                                         // Création d'un dico qui liste tout les destinations
     for (let index = 0; index < getLignes.length; index++) {      // Voir syntaxe plus bas
       const variantes = getLignes[index].variantes
       const ligneselect = getLignes[index]
@@ -165,11 +198,8 @@ const afficherHoraires = async (numligne, dest) => {
     } catch (erreur) {
     console.error("Erreur :", erreur);
     conteneur.innerHTML = `<p style="color:red">Erreur : ${erreur}</p>`;
-  }
-  titre.innerHTML = `<h2>${ligne} vers ${dest}</h2>`;
+  }}
   
-  pagetitre.innerHTML = `Biloba - ${ligne} > ${dest}`}
-  logo.innerHTML = `<h1 class="logo line-${ligne.toLowerCase()}">Biloba</h1>`
 
 const bottomBar = () => {
   document.addEventListener("DOMContentLoaded", () => {
