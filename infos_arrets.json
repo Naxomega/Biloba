@@ -20,5 +20,16 @@
         "nom_arret": "chamars",
         "type": "pole",
         "parking_relais": false
+    },
+    {
+        "nom_sncf": "École-Valentin",
+        "type": "gare",
+        "uic": 87710731
+
+    },
+    {
+        "nom_sncf": "Besançon Franche-Comté TGV",
+        "type": "gare",
+        "uic": 87300863
     }
 ]
