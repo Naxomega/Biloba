@@ -235,10 +235,10 @@ const afficherTrainsDepart = async () => {
 
       if (retard_depart) {temps_depart=temps_depart+retard_depart}
       if (retard_arrivee) {temps_arrivee=temps_arrivee+retard_arrivee}
-      if (statut === "ANNULÉ" && temps_arrivee) {temps_arrivee=temps_depart+statut+statut}
-      if (statut === "ANNULÉ" && temps_depart) {temps_depart=temps_depart+statut}
-      if (statut === "SUPPRIMÉ" && temps_arrivee) {temps_arrivee=temps_depart+statut}
-      if (statut === "SUPPRIMÉ" && temps_depart) {temps_depart+statut}
+      if (statut === " | ANNULÉ" && temps_arrivee) {temps_arrivee=temps_arrivee+statut}
+      if (statut === " | ANNULÉ" && temps_depart) {temps_depart=temps_depart+statut}
+      if (statut === " | SUPPRIMÉ" && temps_arrivee) {temps_arrivee=temps_arrivee+statut}
+      if (statut === " | SUPPRIMÉ" && temps_depart) {temps_depart=temps_depart+statut}
       if (!isParti && depart_seconde && depart_seconde > 0) {trains[clé]={de: de, vers: vers, temps: temps_depart, seconded: depart_seconde, type: type, voie: voie}}
       
     }
@@ -376,10 +376,10 @@ const afficherTrainsArrivee = async () => {
 
       if (retard_depart) {temps_depart=temps_depart+retard_depart}
       if (retard_arrivee) {temps_arrivee=temps_arrivee+retard_arrivee}
-      if (statut === "ANNULÉ" && temps_arrivee) {temps_arrivee=temps_depart+statut+statut}
-      if (statut === "ANNULÉ" && temps_depart) {temps_depart=temps_depart+statut}
-      if (statut === "SUPPRIMÉ" && temps_arrivee) {temps_arrivee=temps_depart+statut}
-      if (statut === "SUPPRIMÉ" && temps_depart) {temps_temps_depart+statut}
+      if (statut === " | ANNULÉ" && temps_arrivee) {temps_arrivee=temps_arrivee+statut}
+      if (statut === " | ANNULÉ" && temps_depart) {temps_depart=temps_depart+statut}
+      if (statut === " | SUPPRIMÉ" && temps_arrivee) {temps_arrivee=temps_arrivee+statut}
+      if (statut === " | SUPPRIMÉ" && temps_depart) {temps_depart=temps_depart+statut}
       
       if (!isParti && arrivee_seconde && arrivee_seconde > 0) {trains[clé]={de: de, vers: vers, temps: temps_arrivee, secondea: arrivee_seconde, type: type, voie: voie}}
       
