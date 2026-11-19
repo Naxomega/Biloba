@@ -268,7 +268,7 @@ const afficherTrainsDepart = async () => {
       let isParti = passage.p || ""
       let voie = ""
       if (passage.v) {
-      voie = ` | Voie ${passage.v}`}
+      voie = `<span class="bulle"><strong>Voie ${passage.v}</strong></span>`}
       let depart_seconde = parseInt(passage.d)-parseInt(horaire_train.maintenant_s) || ""
       let depart_total = parseInt(passage.d) || ""
       let arrivee_seconde = parseInt(passage.a)-parseInt(horaire_train.maintenant_s) || ""
@@ -278,10 +278,10 @@ const afficherTrainsDepart = async () => {
       let temps_depart
       let temps_arrivee
       
-      let statut = "1"
+      let statut = ""
       let clé = de+vers+(depart_seconde || arrivee_seconde)
-      if (passage.an) {statut=` | ANNULÉ`}
-      if (passage.x) {statut=` | SUPPRIMÉ`}
+      if (passage.an) {statut=`<span class="bulle"><strong>ANNULÉ</strong></span>`}
+      if (passage.x) {statut=`<span class="bulle"><strong>SUPPRIMÉ</strong></span>`}
       if (retard_depart){
       if (retard_depart >= 3600) {
         let heure = Math.floor(retard_depart/3600).toString()
@@ -330,18 +330,15 @@ const afficherTrainsDepart = async () => {
 
       if (retard_depart) {temps_depart=temps_depart+retard_depart}
       if (retard_arrivee) {temps_arrivee=temps_arrivee+retard_arrivee}
-      if (statut === " | ANNULÉ" && temps_arrivee) {temps_arrivee=temps_arrivee+statut}
-      if (statut === " | ANNULÉ" && temps_depart) {temps_depart=temps_depart+statut}
-      if (statut === " | SUPPRIMÉ" && temps_arrivee) {temps_arrivee=temps_arrivee+statut}
-      if (statut === " | SUPPRIMÉ" && temps_depart) {temps_depart=temps_depart+statut}
       
-      if (!isParti && depart_seconde && depart_seconde > 0) {trains[clé]={de: de, vers: vers, temps: temps_depart, seconded: depart_seconde, type: type, voie: voie}}
+      
+      if (!isParti && depart_seconde && depart_seconde > 0) {trains[clé]={de: de, vers: vers, temps: temps_depart, seconde: depart_seconde, type: type, voie: voie, statut: statut}}
       
     }
-    conteneur.innerHTML = `<div class="buttonbar-train"></div>${Object.values(trains).sort((a, b) => a.seconded - b.seconded).map((a => `<div class="passage tile-${a.type.toLowerCase()}">
+    conteneur.innerHTML = `<div class="buttonbar-train"></div>${Object.values(trains).sort((a, b) => a.seconde - b.seconde).map((a => `<div class="passage tile-${a.type.toLowerCase()}">
           <strong><p class="line-dot line-${a.type.toLowerCase()} enlarge outline-${a.type.toLowerCase()}">${a.type}</p></strong> <p> 
-         <strong>${a.vers}${a.voie}</strong>
-          <br><span class="bulle"><strong>${a.temps}</strong></span></p></div>`)).join("")}
+         <strong>${a.vers}</strong>
+          <br><span class="bulle"><strong>${a.temps}</strong></span>${a.voie}${a.statut}</p></div>`)).join("")}
 
 `
       const boutons_train = document.querySelector(".buttonbar-train");
@@ -411,7 +408,7 @@ const afficherTrainsArrivee = async () => {
       let isParti = passage.p || ""
       let voie = ""
       if (passage.v) {
-      voie = ` | Voie ${passage.v}`}
+      voie = `<span class="bulle"><strong>Voie ${passage.v}</strong></span>`}
       let depart_seconde = parseInt(passage.d)-parseInt(horaire_train.maintenant_s) || ""
       let depart_total = parseInt(passage.d) || ""
       let arrivee_seconde = parseInt(passage.a)-parseInt(horaire_train.maintenant_s) || ""
@@ -420,10 +417,10 @@ const afficherTrainsArrivee = async () => {
       let retard_arrivee = parseInt(passage.ra)
       let temps_depart
       let temps_arrivee
-      let statut = "1"
+      let statut = ""
       let clé = de+vers+(depart_seconde || arrivee_seconde)
-      if (passage.an) {statut=" | ANNULÉ"}
-      if (passage.x) {statut=" | SUPPRIMÉ"}
+      if (passage.an) {statut=`<span class="bulle"><strong>ANNULÉ</strong></span>`}
+      if (passage.x) {statut=`<span class="bulle"><strong>SUPPRIMÉ</strong></span>`}
       if (retard_depart){
       if (retard_depart >= 3600) {
         let heure = Math.floor(retard_depart/3600).toString()
@@ -472,19 +469,15 @@ const afficherTrainsArrivee = async () => {
 
       if (retard_depart) {temps_depart=temps_depart+retard_depart}
       if (retard_arrivee) {temps_arrivee=temps_arrivee+retard_arrivee}
-      if (statut === " | ANNULÉ" && temps_arrivee) {temps_arrivee=temps_arrivee+statut}
-      if (statut === " | ANNULÉ" && temps_depart) {temps_depart=temps_depart+statut}
-      if (statut === " | SUPPRIMÉ" && temps_arrivee) {temps_arrivee=temps_arrivee+statut}
-      if (statut === " | SUPPRIMÉ" && temps_depart) {temps_depart=temps_depart+statut}
       
       
-      if (!isParti && arrivee_seconde && arrivee_seconde > 0) {trains[clé]={de: de, vers: vers, temps: temps_arrivee, secondea: arrivee_seconde, type: type, voie: voie}}
       
+     if (!isParti && arrivee_seconde && arrivee_seconde > 0) {trains[clé]={de: de, vers: vers, temps: temps_arrivee, seconde: arrivee_seconde, type: type, voie: voie, statut: statut}}
     }
-    conteneur.innerHTML = `<div class="buttonbar-train"></div>${Object.values(trains).sort((a, b) => a.seconded - b.seconded).map((a => `<div class="passage tile-${a.type.toLowerCase()}">
+    conteneur.innerHTML = `<div class="buttonbar-train"></div>${Object.values(trains).sort((a, b) => a.seconde - b.seconde).map((a => `<div class="passage tile-${a.type.toLowerCase()}">
           <strong><p class="line-dot line-${a.type.toLowerCase()} enlarge outline-${a.type.toLowerCase()}">${a.type}</p></strong> <p> 
-         <strong>${a.de}${a.voie}</strong>
-          <br><span class="bulle"><strong>${a.temps}</strong></span></p></div>`)).join("")}
+         <strong>${a.vers}</strong>
+          <br><span class="bulle"><strong>${a.temps}</strong></span>${a.voie}${a.statut}</p></div>`)).join("")}
 
 `
       const boutons_train = document.querySelector(".buttonbar-train");
