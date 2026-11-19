@@ -476,7 +476,7 @@ const afficherTrainsArrivee = async () => {
     }
     conteneur.innerHTML = `<div class="buttonbar-train"></div>${Object.values(trains).sort((a, b) => a.seconde - b.seconde).map((a => `<div class="passage tile-${a.type.toLowerCase()}">
           <strong><p class="line-dot line-${a.type.toLowerCase()} enlarge outline-${a.type.toLowerCase()}">${a.type}</p></strong> <p> 
-         <strong>${a.vers}</strong>
+         <strong>${a.de}</strong>
           <br><span class="bulle"><strong>${a.temps}</strong></span>${a.voie}${a.statut}</p></div>`)).join("")}
 
 `
