@@ -98,8 +98,10 @@ const afficherHoraires = async (numligne, dest) => {
     console.log("Mode cache")
     listevariantes = cache_dest
     listeligne = cache_lignes
-    const response = await callGinko("DR/getDetailsVariante", { idLigne: listeligne[numligne].id, idVariante: listevariantes[dest+numligne].id});
-
+    const response = {}
+    try {
+    constresponse = await callGinko("DR/getDetailsVariante", { idLigne: listeligne[numligne].id, idVariante: listevariantes[dest+numligne].id});
+    } catch (erreur) {console.log(erreur)}
 
     
     
