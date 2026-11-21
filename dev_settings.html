@@ -545,12 +545,13 @@ const toggle_fav = () => {
       localStorage.setItem('fav_arrets', JSON.stringify(fav_arret));
       console.log("Favori ajouté")
     }
+
+}
 const clear_cache = () => {
   localStorage.setItem('biloba_cache_lignes', JSON.stringify(""))
   localStorage.setItem('biloba_cache_dest', JSON.stringify(""))
+  alert("C'est bon.")
 }
-}
-
   </script>
 
 <div class="line-dots">
