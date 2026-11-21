@@ -100,6 +100,10 @@ const afficherHoraires = async (numligne) => {
   logo.innerHTML = `<h1 class="logo line-${ligne.toLowerCase()}">Biloba</h1>`
   if (cache_dest) {
     listevariantes = cache_dest
+
+    console.log("Réponse du cache (destinations) :", cache_dest)
+    
+
     
     conteneur.innerHTML = Object.values(listevariantes).filter(a => {
         return (

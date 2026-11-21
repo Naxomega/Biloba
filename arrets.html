@@ -95,6 +95,7 @@ const afficherHoraires = async (numligne, dest) => {
   let cache_dest = JSON.parse(localStorage.getItem('biloba_cache_dest')) || {};
   let cache_lignes = JSON.parse(localStorage.getItem('biloba_cache_lignes')) || {};
   if (cache_dest && cache_lignes) {
+    console.log("Mode cache")
     listevariantes = cache_dest
     listeligne = cache_lignes
     const response = await callGinko("DR/getDetailsVariante", { idLigne: listeligne[numligne].id, idVariante: listevariantes[dest+numligne].id});
@@ -102,7 +103,7 @@ const afficherHoraires = async (numligne, dest) => {
 
     
     
-    console.log("Réponse de l'API (arrets) :", response);
+    console.log("Réponse de l'API (fonction cache) (arrets) :", response);
    
 
     
