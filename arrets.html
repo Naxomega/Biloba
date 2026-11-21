@@ -82,6 +82,7 @@ const toggle_fav = () => {
     // Fonction principale pour récupérer et afficher les arrêts
 const afficherHoraires = async (numligne, dest) => {
       let trajets = {};
+      let response
       
   
   
@@ -98,9 +99,11 @@ const afficherHoraires = async (numligne, dest) => {
     console.log("Mode cache")
     listevariantes = cache_dest
     listeligne = cache_lignes
-    const response = {}
+    
     try {
-    constresponse = await callGinko("DR/getDetailsVariante", { idLigne: listeligne[numligne].id, idVariante: listevariantes[dest+numligne].id});
+      console.log("Appel de l'API... (cache)")
+      console.log(`idLigne: ${listeligne[numligne].id}, idVariante : ${listevariantes[dest+numligne].id} `)
+    response = await callGinko("DR/getDetailsVariante", { idLigne: listeligne[numligne].id, idVariante: listevariantes[dest+numligne].id});
     } catch (erreur) {console.log(erreur)}
 
     
@@ -109,24 +112,28 @@ const afficherHoraires = async (numligne, dest) => {
    
 
     
-    const arrets = response;
-
-    if (arrets.length === 0) {
-      conteneur.innerHTML = "<p>Aucun arrêt trouvé</p>";
-      return;
-    }
+    const arrets = response || []
+    
     // 3. Affichage
-   conteneur.innerHTML = Object.values(arrets).map((p => `<a href="horaires.html?arret=${p.nom}&ligne=${numligne}&dest=${dest}" class="line-link-${numligne.toLowerCase()} line-1">
+    if (arrets.length === 0) {
+      conteneur.innerHTML = `<p class="lightmode">Aucun arrêt trouvé dans le cache<br>Veuillez patienter...</p>`;
+      
+    } else { conteneur.innerHTML = Object.values(arrets).map((p => `<a href="horaires.html?arret=${p.nom}&ligne=${numligne}&dest=${dest}" class="line-link-${numligne.toLowerCase()} line-1">
                 <span>${p.nom}</span>
-            </a>`)).join("");
+            </a>`)).join("");}
+    
+  
   }
-
+  
+  
+  console.log("Fonction principale...")
+    listeligne = {}
+    listevariantes = {}   
   try {
     const getLignes = await callGinko("DR/getLignes", {});  // Création d'un dico de "traduction" de lignes
                                         // Num Public -> Identifiant
     console.log(getLignes)         
-    listeligne = {}
-    listevariantes = {}                         // 3 -> L3
+                          // 3 -> L3
     for (let index = 0; index < getLignes.length; index++) {
       const ligneselect = getLignes[index]
       const nompublic = ligneselect.numLignePublic
