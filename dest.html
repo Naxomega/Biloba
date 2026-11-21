@@ -123,7 +123,9 @@ const afficherHoraires = async (numligne) => {
       try {
         const getLignes = await callGinko("DR/getLignes", {});  // Création d'un dico de "traduction" de lignes
                                            // Num Public -> Identifiant
-        console.log(getLignes)                                  // 3 -> L3
+        console.log(getLignes)   
+        listeligne = {}
+        listevariantes = {}                               // 3 -> L3
         for (let index = 0; index < getLignes.length; index++) {
           const ligneselect = getLignes[index]
           const nompublic = ligneselect.numLignePublic
