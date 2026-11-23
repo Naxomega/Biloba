@@ -110,11 +110,12 @@
     const afficherHoraires = async (nomArret) => {
       isRunning = "Ginko";
       let fav_arret = JSON.parse(localStorage.getItem('fav_arrets')) || [];
+      const nombre_horaire = JSON.parse(localStorage.getItem('biloba_param_nombre_horaire')) || 3;
       let trajets = {};
   
   const type = await type_arret()
   try {
-    const response = await callGinko("TR/getTempsLieu", { nom: nomArret, nb:3 });
+    const response = await callGinko("TR/getTempsLieu", { nom: nomArret, nb:nombre_horaire });
     lat_arret=response.latitude
     lon_arret=response.longitude
     if (fav_arret.includes(nomArret)) {

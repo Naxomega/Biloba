@@ -28,7 +28,9 @@
         
         <div id="temps-reel">
         <a onclick="clear_cache()" class="line-link"><p>Vider le cache</p></a><br>
-      <h4 class="lightmode">Zone de danger</h4><a onclick="clear_fav()" class="line-link"  style="background-color: red;"><p>Vider tous les favoris</p></a><br>
+        <p class="lightmode">Nombre d'horaires affichées en même temps</p>
+      <div class="buttonok"><input type="text" id="recherche" placeholder="Entrez la valeur ici (1-5)" onKeyDown="if (event.key === 'Enter') nombrehoraire()"><a  onclick="nombrehoraire(); return true"><p>OK</p></a></div>
+        <h4 class="lightmode">Zone de danger</h4><a onclick="clear_fav()" class="line-link"  style="background-color: red;"><p>Vider tous les favoris</p></a><br>
          <a onclick="clear_fav_arrets()" class="line-link"  style="background-color: red;"><p>Vider les favoris (arrêts)</p></a><br>
   <a onclick="clear_fav_ligne()" class="line-link"  style="background-color: red;"><p>Vider les favoris (lignes)</p></a><br>
 <a onclick="clear_fav_dest()" class="line-link"  style="background-color: red;"><p>Vider les favoris (dest.)</p></a></div>
@@ -51,7 +53,20 @@
     let isRunning;
     let lon_arret;
     let lat_arret;
-   
+
+
+
+
+
+const nombrehoraire = () => {
+  const barre = document.querySelector('#recherche')
+  if (barre.value) {
+    if (parseInt(barre.value) === 1 || parseInt(barre.value) === 2 || parseInt(barre.value) === 3 || parseInt(barre.value) === 4 || parseInt(barre.value) === 5) {
+      localStorage.setItem('biloba_param_nombre_horaire', JSON.stringify(parseInt(barre.value)))
+      alert(`Paramètre défini à ${parseInt(barre.value)}`)
+    } else {alert ("La valeur spécifiée ne peut pas fonctionner")}
+  } else {alert("Il faut entrer du texte pour que ca fonctionne -_-")}
+}
 const bottomBar = () => {
   document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
