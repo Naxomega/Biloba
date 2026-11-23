@@ -1,0 +1,408 @@
+:root {
+  /* --- TRAMWAY --- */
+  --T1: #00ABC4;
+  --T2: #B7007A;
+  --Bbg : #111;
+  --Bfg : #FFF100;
+  /* --- LIANES --- */
+  --L3: #006AB3;
+  --L4: #E2001A;
+  --L5: #1FA22E;
+  --L6: #FFE500;
+  
+
+  /* --- URBAINES --- */
+  --7: #A74C21;
+  --8: #00396B;
+  --9: #F29400;
+  --10: #CECB00;
+  --11: #C592BE;
+  --12: #7BC6BC;
+  --Citadelle: #F26522;
+  /* --- COMP & PERI & AUTRES --- */
+  --Comp2x: #5C6970;
+  --Peri5: #009EE0;
+  --Peri6: #EE7B00;
+  --Peri7: #D2528B;
+  --Peri8: #009036;
+  --Diabolo: #E8526B;
+  --TER: #034EA2;
+}
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    align-items: center;
+    text-align: center;
+}
+
+
+
+
+a,
+.line-link,
+.line-dot {
+    -webkit-tap-highlight-color: transparent; 
+    outline: none; 
+}
+
+.top-bar {
+            background-color: #111;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            text-align: center;
+            flex: 1 1 100%;
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 60px;
+            display: flex;
+            flex-direction: column;
+            outline: 2px solid #444;
+
+        }
+
+
+.top-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.top-bar li {
+    display: inline-flex;
+    margin: 0 15px;
+}
+
+.top-bar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative; 
+    transition: color 0.3s ease; 
+    outline: none; 
+    font-size: 13px;
+    
+}
+.top-bar a:hover {
+    color: #ffcc00; 
+}
+
+.top-bar a:hover::after {
+    width: 100%; /* Expand the underline to full width */
+}
+
+
+
+.line-dots {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.line-dot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 25%;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 25px;
+    transition: transform 0.3s ease;
+    outline: none; /* Remove the default blue outline */
+}
+
+.line-dot:hover {
+    transform: scale(1.2); /* Slightly enlarge the dot on hover */
+}
+
+.line-t1 {background-color: var(--T1); color: white;}
+.line-t2 {background-color: var(--T2); color: white;}
+.line-l3 {background-color: var(--L3); color: white;}
+.line-l4 {background-color: var(--L4); color: white;}
+.line-l5 {background-color: var(--L5); color: white;}
+.line-l6 {background-color: var(--L6); color: black;}
+.line-7 {background-color: var(--7); color: white;}
+.line-8 {background-color: var(--8); color: white;}
+.line-9 {background-color: var(--9); color: white;}
+.line-10 {background-color: var(--10); color: black;}
+.line-11 {background-color: var(--11); color: white;}
+.line-12 {background-color: var(--12); color: black;}
+.line-ter {background-color: var(--TER); color: white;}
+.line-b {background-color: var(--Bbg); color: var(--Bfg);}
+[class*="line-2"] {background-color: var(--Comp2x); color: white;}
+[class*="line-5"] {background-color:white ; color:var(--Peri5) ;}
+[class*="line-6"] {background-color:white ; color:var(--Peri6) ;}
+[class*="line-7"]:not(.line-7) {background-color:white ; color:var(--Peri7) ;}
+[class*="line-8"]:not(.line-8) {background-color:white ; color: var(--Peri8);}
+[class*="line-d"]:not(.line-dot, .line-dots) {background-color: var(--Diabolo); color: white;}
+.line-citadelle {background-color: var(--Citadelle); color: white;}
+
+
+a,
+.line-link,
+.line-dot {
+    -webkit-tap-highlight-color: transparent; /* Remove the blue highlight on mobile */
+    outline: none; /* Remove the default focus outline */
+}
+
+.line-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 45%;      /* Prend 45% de la largeur du conteneur, s'adapte */
+       
+       /* Largeur min pour éviter des boutons trop petits */
+    height: 48px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    background-color: var(--line-color, #333);
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 18px;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.line-link:hover {
+    background-color: #555;
+    transform: scale(1.01);
+}
+
+.line-link h3 {
+    display: inline-block; /* Ensure each word is inline */
+    margin: 0 5px; /* Add spacing between words */
+}
+
+.line-link h3.notbold {
+    font-weight: normal; /* Make the text not bold */
+}
+.link-container {
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow links to wrap to the next line on smaller screens */
+    justify-content: center; /* Center the links horizontally */
+    gap: 15px; /* Add space between the links */
+    padding: 10px; /* Add padding to prevent links from touching the edges */
+    flex-direction: column; /* Stack headings vertically */
+    align-items: center;
+    text-align: center;
+}
+
+.notbold {
+    font-weight: 400;
+}
+
+@media (max-width: 600px) {
+    .line-link {
+        flex: 1 1 48%;   /* 2 boutons par ligne sur mobile */
+        max-width: 100%;
+    }
+}
+#wrap {
+  width: 750px;
+  height: 1500px;
+  overflow: hidden;
+  
+}
+
+#scaled-frame {
+  width: 73%;
+  height: 500;
+  transform: scale(1.30);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  align-items: center;
+}
+.list-title {
+    margin-bottom: 1px; /* Brings the title closer to the list */
+}
+
+.notable-list {
+    margin-top: 0;      /* Removes the top gap of the list */
+    padding-left: 20px; /* Keeps the bullets indented */
+    list-style-position: inside; /* Centers the bullets better in your layout */
+    text-align: left;   /* Optional: keeps the items aligned if you prefer */
+}
+
+
+@font-face {
+    font-family: "Poppins Custom";
+    src: url("https://www.ginko.voyage/fileadmin/ginko/fonts/poppinsmediumcustom/poppinsmediumcustom-regular-webfont.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+.logo {
+    font-family:'Poppins Custom';
+    background-color: #00ABC4;
+    border-radius: 10px;
+    max-width: 100%;
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    color: white;
+    min-width: fit-content;
+    padding-top:10px;
+    
+}
+.poppins{
+     font-family:'Poppins Custom';
+   
+}
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Style the links inside the navigation bar */
+
+.selected {background-color: #00ABC4;padding: 5px;border-radius: 5px;}
+.bar-container {
+    position: fixed;
+    bottom: 15px;
+    width: 90%;          
+    max-width: 450px;    
+    left: 0;
+    right: 0;
+    margin: 0 auto;      
+    
+    display: flex;
+    align-items: center;
+}
+.information {
+    background-color: red;
+    border-radius: 25px;
+    padding: 1px;
+}
+.buttonbar {
+    display: flex;
+    justify-content: space-evenly;
+
+}
+.buttonbar a {
+    max-width: max-content;
+    min-width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 45%;
+       
+
+    height: 25px;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #BBB;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 13px;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.buttonbar a.selected {
+    max-width: max-content;
+    min-width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 45%;
+       
+
+    height: 25px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    background-color:  #666;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 13px;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.buttonok a {
+    
+    min-width: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 10%;
+    max-width: 50px;
+       
+
+    height: 25px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    background-color: var(--line-color, #333);
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 13px;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-left: 5px;
+}
+.buttonok {
+    display: flex;
+    justify-content: center;
+}
+.buttonok input{
+    border-radius: 10px;
+}
+.content {
+    margin-top: 20px;
+    border-radius: 25px;
+    background-color: #CCC; 
+    padding: 20px;
+    display: flex; 
+    flex-direction: column; 
+    gap: 5px; 
+    text-align: center; 
+    
+    
+}
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+    }
+    .header {
+        color: #DDD;
+    }
+    .lightmode{color: #fff;}
+    
+    .logo{color:white;}
+    .content{background-color: #333;}
+    .line-link {
+    border: solid rgba(255, 255, 255, 0.4) 1px;
+    color: white;
+    }
+    .buttonbar a.selected {background-color: #666;}
+    .buttonbar a {background-color: #333; color: white;}
+
+}
+        

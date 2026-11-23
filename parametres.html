@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biloba - Paramètres</title>
+    <link rel="stylesheet" href="style_parametres.css">
+    <base href="/Biloba/">
+    <script src="https://api.ginko.voyage/api.js?apiKey=r8B7t6Hgd7vF9V3VV9PQ4vc2a"></script>
+    <meta name="theme-color" content="#121212">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes"> 
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+<body>
+    <div class="header">
+        <h1 class="logo lightmode">Biloba</h1>
+
+        
+    </div>
+    <div class="content">
+      <div class="titre lightmode"><h2>Paramètres</h2></div>
+      
+      <div class="buttonbar"></div>
+        
+        <div id="temps-reel">
+        <a onclick="clear_cache()" class="line-link"><p>Vider le cache</p></a><br>
+      <h4 class="lightmode">Zone de danger</h4><a onclick="clear_fav()" class="line-link"  style="background-color: red;"><p>Vider tous les favoris</p></a><br>
+         <a onclick="clear_fav_arrets()" class="line-link"  style="background-color: red;"><p>Vider les favoris (arrêts)</p></a><br>
+  <a onclick="clear_fav_ligne()" class="line-link"  style="background-color: red;"><p>Vider les favoris (lignes)</p></a><br>
+<a onclick="clear_fav_dest()" class="line-link"  style="background-color: red;"><p>Vider les favoris (dest.)</p></a></div>
+<br>
+        <script>
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const arretcible = urlParams.get('arret');
+    const arretalt = urlParams.get('arretalt');
+    const ligne = urlParams.get('ligne');
+    const dest = urlParams.get('dest');
+    const provenance = urlParams.get("provenance");
+    const bar = document.querySelector(".insert");
+    const conteneur = document.querySelector("#temps-reel");
+  const titre = document.querySelector('.titre');
+  const pagetitre = document.querySelector('title');
+  const boutons = document.querySelector('.buttonbar');
+  
+    let trajets = {};
+    let isRunning;
+    let lon_arret;
+    let lat_arret;
+   
+const bottomBar = () => {
+  document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const provenance = urlParams.get("provenance");
+  const bar = document.querySelector(".insert");
+
+ 
+  
+
+  if (provenance === "GPS") {
+    bar.innerHTML = `
+      <li class=" bar"><a href="index.html"><span class="material-symbols-rounded">timeline</span><br>Lignes</a></li>
+                <li class="bar"><a href="carte.html"><span class="material-symbols-rounded">map</span><br>Carte</a></li>
+                <li class="bar"><a href="favoris.html"><span class="material-symbols-rounded">star</span><br>Favoris</a></li>
+                <li class="bar selected"><a href="proche.html"><span class="material-symbols-rounded">pin_drop</span><br>Proches</a></li>
+    `;
+  } 
+  else if (provenance === "Carte") {
+    bar.innerHTML = `
+      <li class=" bar"><a href="index.html"><span class="material-symbols-rounded">timeline</span><br>Lignes</a></li>
+                <li class="bar selected"><a href="carte.html"><span class="material-symbols-rounded">map</span><br>Carte</a></li>
+                <li class="bar"><a href="favoris.html"><span class="material-symbols-rounded">star</span><br>Favoris</a></li>
+                <li class="bar"><a href="proche.html"><span class="material-symbols-rounded">pin_drop</span><br>Proches</a></li>
+    `;
+  }
+  else if (provenance==="Favoris") {bar.innerHTML = `
+      <li class= bar"><a href="index.html"><span class="material-symbols-rounded">timeline</span><br>Lignes</a></li>
+                <li class="bar "><a href="carte.html"><span class="material-symbols-rounded">map</span><br>Carte</a></li>
+                <li class="bar selected"><a href="favoris.html"><span class="material-symbols-rounded">star</span><br>Favoris</a></li>
+                <li class="bar"><a href="proche.html"><span class="material-symbols-rounded">pin_drop</span><br>Proches</a></li>
+    `;}
+  else {
+    bar.innerHTML = `
+      <li class="bar"><a href="index.html"><span class="material-symbols-rounded">timeline</span><br>Lignes</a></li>
+                <li class="bar"><a href="carte.html"><span class="material-symbols-rounded">map</span><br>Carte</a></li>
+                <li class="bar"><a href="favoris.html"><span class="material-symbols-rounded">star</span><br>Favoris</a></li>
+                <li class="bar"><a href="proche.html"><span class="material-symbols-rounded">pin_drop</span><br>Proches</a></li>
+    `;
+  }
+});
+};
+bottomBar(); 
+
+ // Rafraîchit les résultats tout les 10s selon les recommandations de Ginko
+    
+
+const clear_cache = () => {
+  localStorage.setItem('biloba_cache_lignes', JSON.stringify(""))
+  localStorage.setItem('biloba_cache_dest', JSON.stringify(""))
+  alert("C'est bon.")
+}
+const clear_fav = () => {
+  localStorage.setItem('fav_arrets', JSON.stringify(""))
+  localStorage.setItem('fav_dest', JSON.stringify(""))
+  localStorage.setItem('fav_ligne', JSON.stringify(""))
+
+  alert("C'est bon.")
+}
+const clear_fav_ligne = () => {
+  localStorage.setItem('fav_ligne', JSON.stringify(""))
+
+  alert("C'est bon.")
+}
+const clear_fav_dest = () => {
+  localStorage.setItem('fav_dest', JSON.stringify(""))
+
+  alert("C'est bon.")
+}
+const clear_fav_arrets = () => {
+  localStorage.setItem('fav_arrets', JSON.stringify(""))
+
+
+  alert("C'est bon.")
+}
+  </script>
+
+<div class="line-dots">
+
+        </div>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="bar-container">
+    <nav class="top-bar">
+            <ul class="insert">
+                
+            </ul>
+        </nav>
+        </div>
+</body>
+</html>
