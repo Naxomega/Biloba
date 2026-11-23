@@ -405,7 +405,8 @@ const bottomBar = () => {
                 <li class="bar"><a href="carte.html"><span class="material-symbols-rounded">map</span><br>Carte</a></li>
                 <li class="bar"><a href="favoris.html"><span class="material-symbols-rounded">star</span><br>Favoris</a></li>
                 <li class="bar selected"><a href="proche.html"><span class="material-symbols-rounded">pin_drop</span><br>Proches</a></li>
-    `;
+                    <li class="bar"><a href="parametres.html"><span class="material-symbols-rounded">settings</span><br>Options</a></li>
+`;
   } 
   else if (provenance === "Carte") {
     bar.innerHTML = `
@@ -413,21 +414,24 @@ const bottomBar = () => {
                 <li class="bar selected"><a href="carte.html"><span class="material-symbols-rounded">map</span><br>Carte</a></li>
                 <li class="bar"><a href="favoris.html"><span class="material-symbols-rounded">star</span><br>Favoris</a></li>
                 <li class="bar"><a href="proche.html"><span class="material-symbols-rounded">pin_drop</span><br>Proches</a></li>
-    `;
+                    <li class="bar"><a href="parametres.html"><span class="material-symbols-rounded">settings</span><br>Options</a></li>
+`;
   }
   else if (provenance==="Favoris") {bar.innerHTML = `
       <li class=" bar"><a href="index.html"><span class="material-symbols-rounded">timeline</span><br>Lignes</a></li>
                 <li class="bar "><a href="carte.html"><span class="material-symbols-rounded">map</span><br>Carte</a></li>
                 <li class="bar selected"><a href="favoris.html"><span class="material-symbols-rounded">star</span><br>Favoris</a></li>
                 <li class="bar"><a href="proche.html"><span class="material-symbols-rounded">pin_drop</span><br>Proches</a></li>
-    `;}
+                    <li class="bar"><a href="parametres.html"><span class="material-symbols-rounded">settings</span><br>Options</a></li>
+`;}
   else {
     bar.innerHTML = `
       <li class="selected bar"><a href="index.html"><span class="material-symbols-rounded">timeline</span><br>Lignes</a></li>
                 <li class="bar"><a href="carte.html"><span class="material-symbols-rounded">map</span><br>Carte</a></li>
                 <li class="bar"><a href="favoris.html"><span class="material-symbols-rounded">star</span><br>Favoris</a></li>
                 <li class="bar"><a href="proche.html"><span class="material-symbols-rounded">pin_drop</span><br>Proches</a></li>
-    `;
+                    <li class="bar"><a href="parametres.html"><span class="material-symbols-rounded">settings</span><br>Options</a></li>
+`;
   }
 });
 };

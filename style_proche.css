@@ -303,9 +303,9 @@ a,
             align-items: center;
             text-align: center;
             flex: 1 1 100%;
-            padding: 10px 0;
+            padding: 7px 0;
             text-align: center;
-            border-radius: 60px;
+            border-radius: 75px;
             display: flex;
             flex-direction: column;
             outline: 2px solid #444;
@@ -321,7 +321,8 @@ a,
 
 .top-bar li {
     display: inline-flex;
-    margin: 0 15px;
+    margin: 0 10px;
+    
 }
 
 .top-bar a {
@@ -331,7 +332,8 @@ a,
     position: relative; 
     transition: color 0.3s ease; 
     outline: none; 
-    font-size: 13px;
+    font-size: 12px;
+    flex: 1
 }
 .top-bar a:hover {
     color: #ffcc00; 
@@ -339,6 +341,11 @@ a,
 
 .top-bar a:hover::after {
     width: 100%; /* Expand the underline to full width */
+}
+
+
+.top-bar span.material-symbols-rounded {
+    font-size: 20px;
 }
 .selected {background-color: #00ABC4;padding: 5px;border-radius: 5px;}
 .bar-container {
