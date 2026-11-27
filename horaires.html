@@ -61,7 +61,10 @@
                 .catch(error => console.error('Failed to fetch data:', error)); 
                 
                 const infos_arret = infosjson.find(a => a.nom_arret === arretcible) || "undef"
-                return infos_arret.type || "undef"
+                let type = []
+               
+                if (infos_arret.isGare) {type.push("gare")}
+                return type || "undef"
                 
     }
     const id_gare = async () => {
@@ -114,12 +117,13 @@
       let trajets = {};
   
   const type = await type_arret()
+      
   try {
     const response = await callGinko("TR/getTempsLieu", { nom: nomArret, nb:nombre_horaire });
     lat_arret=response.latitude
     lon_arret=response.longitude
     if (fav_arret.includes(nomArret)) {
-      if (type==="gare"){ boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+      if (type.includes("gare")){ boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
                       <a href="carte.html?lat=${lat_arret}&lon=${lon_arret}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
                       <a onclick="toggle_fav()"" class="buttons"><i class="fa-solid fa-star"></i></a>
                       <a onclick="afficherTrainsDepart()" class="buttons"><i class="fa-solid fa-train"></i></a>`}
@@ -129,7 +133,7 @@
                       <a onclick="toggle_fav()"" class="buttons"><i class="fa-solid fa-star"></i></a>
                       `
     }}
-    else { if (type==="gare"){boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
+    else { if (type.includes("gare")){boutons.innerHTML = `<a onclick="history.back()" class="buttons"><i class="fa-solid fa-arrow-left"></i></a>
                       <a href="carte.html?lat=${lat_arret}&lon=${lon_arret}&zoom=16" class="buttons"><i class="fa-solid fa-location-dot"></i></a>
                       <a onclick="toggle_fav()"" class="buttons"><i class="fa-regular fa-star"></i></a>
                       <a onclick="afficherTrainsDepart()" class="buttons"><i class="fa-solid fa-train"></i></a>`}
@@ -336,12 +340,14 @@ const afficherTrainsDepart = async () => {
       if (!isParti && depart_seconde && depart_seconde > 0) {trains[clé]={de: de, vers: vers, temps: temps_depart, seconde: depart_seconde, type: type, voie: voie, statut: statut}}
       
     }
+    if (trains.length>0){
     conteneur.innerHTML = `<div class="buttonbar-train"></div>${Object.values(trains).sort((a, b) => a.seconde - b.seconde).map((a => `<div class="passage tile-${a.type.toLowerCase()}">
           <strong><p class="line-dot line-${a.type.toLowerCase()} enlarge outline-${a.type.toLowerCase()}">${a.type}</p></strong> <p> 
          <strong>${a.vers}</strong>
           <br><span class="bulle"><strong>${a.temps}</strong></span>${a.voie}${a.statut}</p></div>`)).join("")}
 
-`
+`}
+else {conteneur.innerHTML=`<div class="buttonbar-train"></div><br><p class="lightmode">Aucun train trouvé</p>`}
       const boutons_train = document.querySelector(".buttonbar-train");
       boutons_train.innerHTML=`<a onclick="afficherTrainsDepart()" class="buttons depart selected">Départs</a>
                       <a onclick="afficherTrainsArrivee()"" class="buttons arrivee">Arrivées</a>`
@@ -475,12 +481,14 @@ const afficherTrainsArrivee = async () => {
       
      if (!isParti && arrivee_seconde && arrivee_seconde > 0) {trains[clé]={de: de, vers: vers, temps: temps_arrivee, seconde: arrivee_seconde, type: type, voie: voie, statut: statut}}
     }
+    if (trains.length >0){
     conteneur.innerHTML = `<div class="buttonbar-train"></div>${Object.values(trains).sort((a, b) => a.seconde - b.seconde).map((a => `<div class="passage tile-${a.type.toLowerCase()}">
           <strong><p class="line-dot line-${a.type.toLowerCase()} enlarge outline-${a.type.toLowerCase()}">${a.type}</p></strong> <p> 
          <strong>${a.de}</strong>
           <br><span class="bulle"><strong>${a.temps}</strong></span>${a.voie}${a.statut}</p></div>`)).join("")}
 
-`
+`}
+else {conteneur.innerHTML=`<div class="buttonbar-train"></div><br><p class="lightmode">Aucun train trouvé</p>`}
       const boutons_train = document.querySelector(".buttonbar-train");
       boutons_train.innerHTML=`<a onclick="afficherTrainsDepart()" class="buttons depart">Départs</a>
                       <a onclick="afficherTrainsArrivee()"" class="buttons arrivee selected">Arrivées</a>`

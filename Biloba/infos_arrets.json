@@ -3,33 +3,272 @@
         "nom_arret": "Gare Viotte",
         "nom_sncf": "Besançon Viotte",
         "uic": 87718007,
-        "type": "gare"
+        "isArret": true,
+        "isPole": true,
+        "isGare": true,
+        "haveVeloCite": true
     },
     {
         "nom_arret": "Gare de la Mouillère",
         "nom_sncf": "Besançon Mouillère",
         "uic": 87718015,
-        "type": "gare"
+        "isArret": true,
+        "isGare": true,
+        "haveVeloCite": true,
+        "haveVeloParks": true
     },
     {
         "nom_arret": "Temis",
-        "type": "pole",
-        "parking_relais": true
+        "isPole": true,
+        "isArret": true,
+        "haveParkingRelais": true,
+        "haveVeloParks": true
     },
     {
-        "nom_arret": "chamars",
-        "type": "pole",
-        "parking_relais": false
+        "nom_arret": "Chamars",
+        "isPole": true,
+        "isArret": true,
+        "haveParkingRelais": false,
+        "haveVeloCite": true,
+        "haveVeloParks": true
     },
     {
         "nom_sncf": "École-Valentin",
-        "type": "gare",
+        "isArret": false,
+        "isGare": true,
         "uic": 87710731
 
     },
     {
         "nom_sncf": "Besançon Franche-Comté TGV",
-        "type": "gare",
+        "isGare": true,
+        "isArret": false,
         "uic": 87300863
+    },
+    {
+        "nom_arret": "Remparts",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Battant",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Flore",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Isenbart",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Parc Micaud",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Canot",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "8 Mai",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Janvier",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Oudet",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Croix d'Arènes",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "8 Septembre",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Jean Cornet",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Granvelle",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Victor Hugo",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Lecourbe",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Fontaine-Argent",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Chamars Esplanade",
+        "isArret": true,
+        "haveVeloCite": true,
+        "haveVeloParks": true
+    },
+    {
+        "nom_arret": "Révolution",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Tristan Bernard",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Mermoz",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Liberté",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "République",
+        "isArret": true,
+        "isPole": true,
+        "haveVeloCite": true,
+        "haveVeloParks": true
+    },
+    {
+        "nom_arret": "Poste",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Granges",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Centre St Pierre",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Mairie",
+        "isArret": true,
+        "haveVeloCite": true,
+        "haveVeloParks": true
+    },
+    {
+        "nom_arret": "Leclerc",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Voirin",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Lycée Jules Haag",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Marie Louise",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Gibelotte",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Stade Léo Lagrange",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "IUT",
+        "isArret": true,
+        "haveVeloCite": true
+    },
+    {
+        "nom_arret": "Crous Université",
+        "isArret": true,
+        "haveVeloCite": true,
+        "haveVeloParks": true
+    },
+    {
+        "nom_arret": "Micropolis",
+        "isArret": true,
+        "isPole": true,
+        "haveParkingRelais": true
+    },
+    {
+        "nom_arret": "Ile de France",
+        "isArret": true,
+        "haveParkingRelais": true
+    },
+    {
+        "nom_arret": "Hauts de Chazal",
+        "isArret": true,
+        "haveParkingRelais": true
+    },
+    {
+        "nom_arret": "St Claude",
+        "isArret": true,
+        "haveParkingRelais": true
+    },
+    {
+        "nom_arret": "Fort Benoît",
+        "isArret": true,
+        "haveParkingRelais": true
+    },
+    {
+        "nom_arret": "UFR Santé",
+        "isArret": true,
+        "haveVeloParks": true
+    },
+    {
+        "nom_arret": "CHU Minjoz",
+        "isArret": true,
+        "haveVeloParks": true
+    },
+    {
+        "nom_arret": "Malcombe",
+        "isArret": true,
+        "haveVeloParks": true
+    },
+    {
+        "nom_arret": "Patinoire / Piscine",
+        "isArret": true,
+        "haveVeloParks": true
+    },
+    {
+        "nom_arret": "Chalezeule - Marnières",
+        "isArret": true,
+        "haveVeloParks": true
     }
 ]
