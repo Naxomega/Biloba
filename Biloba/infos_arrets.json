@@ -6,7 +6,8 @@
         "isArret": true,
         "isPole": true,
         "isGare": true,
-        "haveVeloCite": true
+        "haveVeloCite": true,
+        "lignesMobigo": ["LR201", "LR202", "LR203", "LR205", "LR605", "LR204"]
     },
     {
         "nom_arret": "Gare de la Mouillère",
@@ -22,7 +23,8 @@
         "isPole": true,
         "isArret": true,
         "haveParkingRelais": true,
-        "haveVeloParks": true
+        "haveVeloParks": true,
+        "lignesMobigo": ["LR201", "LR202", "LR612"]
     },
     {
         "nom_arret": "Chamars",
@@ -30,7 +32,8 @@
         "isArret": true,
         "haveParkingRelais": false,
         "haveVeloCite": true,
-        "haveVeloParks": true
+        "haveVeloParks": true,
+        "lignesMobigo": ["LR207"]
     },
     {
         "nom_sncf": "École-Valentin",
@@ -43,7 +46,8 @@
         "nom_sncf": "Besançon Franche-Comté TGV",
         "isGare": true,
         "isArret": false,
-        "uic": 87300863
+        "uic": 87300863,
+        "lignesMobigo": ["LR208"]
     },
     {
         "nom_arret": "Remparts",
@@ -171,7 +175,8 @@
     {
         "nom_arret": "Centre St Pierre",
         "isArret": true,
-        "haveVeloCite": true
+        "haveVeloCite": true,
+        "lignesMobigo": ["LR201", "LR202", "LR203", "LR205", "LR204"]
     },
     {
         "nom_arret": "Mairie",
@@ -187,7 +192,8 @@
     {
         "nom_arret": "Voirin",
         "isArret": true,
-        "haveVeloCite": true
+        "haveVeloCite": true,
+        "lignesMobigo": ["LR205"]
     },
     {
         "nom_arret": "Lycée Jules Haag",
@@ -218,13 +224,15 @@
         "nom_arret": "Crous Université",
         "isArret": true,
         "haveVeloCite": true,
-        "haveVeloParks": true
+        "haveVeloParks": true,
+        "lignesMobigo": ["LR205"]
     },
     {
         "nom_arret": "Micropolis",
         "isArret": true,
         "isPole": true,
-        "haveParkingRelais": true
+        "haveParkingRelais": true,
+        "lignesMobigo": ["LR205", "LR207"]
     },
     {
         "nom_arret": "Ile de France",
@@ -232,7 +240,7 @@
         "haveParkingRelais": true
     },
     {
-        "nom_arret": "Hauts de Chazal",
+        "nom_arret": "Hauts du Chazal",
         "isArret": true,
         "haveParkingRelais": true
     },
@@ -270,5 +278,20 @@
         "nom_arret": "Chalezeule - Marnières",
         "isArret": true,
         "haveVeloParks": true
+    },
+    {
+        "nom_arret": "Beauquier",
+        "isArret": true,
+        "lignesMobigo": ["LR202"]
+    },
+    {
+        "nom_arret": "École-Valentin - Valentin",
+        "isArret": true,
+        "lignesMobigo": ["LR202"]
+    },
+    {
+        "nom_arret": "Rivotte",
+        "isArret": true,
+        "lignesMobigo": ["LR203", "LR204"]
     }
 ]

@@ -170,7 +170,9 @@ body {
 
 
 
-
+.buttons.selected {
+    background-color: #007C91;
+}
 
 
 
@@ -855,6 +857,9 @@ a,
     .logo{color:white;}
     .buttonbar a {color: black; background-color: #CCC;}
     .buttonbar-train a {color: black; background-color: #CCC;}
+    .buttons.selected {
+    background-color: #00BCD4;
+}
 
 
 }
