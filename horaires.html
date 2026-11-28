@@ -298,8 +298,9 @@ const afficherTrainsDepart = async () => {
       let depart_total = parseInt(passage.d) || ""
       let arrivee_seconde = parseInt(passage.a)-parseInt(horaire_train.maintenant_s) || ""
       let arrivee_total = parseInt(passage.a) || ""
-      let retard_depart = parseInt(passage.rd)
-      let retard_arrivee = parseInt(passage.ra)
+      let retard_depart = parseInt(passage.rd) || 0
+      let retard_arrivee = parseInt(passage.ra) || 0
+      let retard_seconde = retard_depart
       let temps_depart
       let temps_arrivee
       
@@ -357,7 +358,7 @@ const afficherTrainsDepart = async () => {
       if (retard_arrivee) {temps_arrivee=temps_arrivee+retard_arrivee}
       
       
-      if (!isParti && depart_seconde && depart_seconde > 0) {trains[clé]={de: de, vers: vers, temps: temps_depart, seconde: depart_seconde, type: type, voie: voie, statut: statut}}
+      if (!isParti && depart_seconde && depart_seconde+retard_seconde > 0) {trains[clé]={de: de, vers: vers, temps: temps_depart, seconde: depart_seconde, type: type, voie: voie, statut: statut}}
       
     }
     if (passages.length>0){
@@ -489,8 +490,9 @@ const afficherTrainsArrivee = async () => {
       let depart_total = parseInt(passage.d) || ""
       let arrivee_seconde = parseInt(passage.a)-parseInt(horaire_train.maintenant_s) || ""
       let arrivee_total = parseInt(passage.a) || ""
-      let retard_depart = parseInt(passage.rd)
-      let retard_arrivee = parseInt(passage.ra)
+      let retard_depart = parseInt(passage.rd) || 0
+      let retard_arrivee = parseInt(passage.ra) || 0
+      let retard_seconde = retard_arrivee
       let temps_depart
       let temps_arrivee
       let statut = ""
@@ -548,7 +550,7 @@ const afficherTrainsArrivee = async () => {
       
       
       
-     if (!isParti && arrivee_seconde && arrivee_seconde > 0) {trains[clé]={de: de, vers: vers, temps: temps_arrivee, seconde: arrivee_seconde, type: type, voie: voie, statut: statut}}
+     if (!isParti && arrivee_seconde && arrivee_seconde+retard_seconde > 0) {trains[clé]={de: de, vers: vers, temps: temps_arrivee, seconde: arrivee_seconde, type: type, voie: voie, statut: statut}}
     }
     if (passages.length >0){
     conteneur.innerHTML = `<div class="buttonbar-train"></div>${Object.values(trains).sort((a, b) => a.seconde - b.seconde).map((a => `<div class="passage tile-${a.type.toLowerCase()}">
